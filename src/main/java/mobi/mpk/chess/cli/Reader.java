@@ -1,5 +1,7 @@
 package mobi.mpk.chess.cli;
 
+import com.google.gson.Gson;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -16,10 +18,13 @@ public class Reader extends Thread {
         try {
 
             String line;
+            Gson gson = new Gson();
 
             while (true) {
                 line = in.readUTF();
-                System.out.println(line);
+                Request request = gson.fromJson(line, Request.class);
+
+                System.out.println(request.text);
             }
 
         } catch (IOException e) {

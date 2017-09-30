@@ -15,13 +15,10 @@ public class Client {
     private DataInputStream in;
     private DataOutputStream out;
 
-
-
     public Client(){
         try{
             Socket socket = new Socket(adress, port);
             System.out.println("Вы подключились!");
-
 
             out = new DataOutputStream(socket.getOutputStream());
             in = new DataInputStream(socket.getInputStream());
@@ -33,16 +30,17 @@ public class Client {
             reader.start();
 
             Gson gson = new Gson();
-
             String line;
 
             while(true){
                 line = read.nextLine();
-                Request request = new Request();
-                request.setName("Jack");
-                request.setText(line);
+
+                Request request = new Request("", line);
+
                 String gsonString = gson.toJson(request);
+
                 out.writeUTF(gsonString);
+
                 if(line.equals("exit")) break;
             }
 
@@ -54,6 +52,5 @@ public class Client {
             System.out.println(ex);
         }
     }
-
 
 }
