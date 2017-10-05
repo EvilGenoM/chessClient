@@ -1,160 +1,143 @@
 package mobi.mpk.chessandroid.view;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.hardware.display.DisplayManagerCompat;
-import android.view.Display;
-import android.view.WindowManager;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.domain.Board;
-import mobi.mpk.chessandroid.domain.Cell;
-import mobi.mpk.chessandroid.domain.Color;
-import mobi.mpk.chessandroid.view.figure.BishopFigureView;
+import mobi.mpk.chessandroid.view.figure.BishopView;
 import mobi.mpk.chessandroid.view.figure.FigureView;
-import mobi.mpk.chessandroid.view.figure.KingFigureView;
-import mobi.mpk.chessandroid.view.figure.KnightFigureView;
-import mobi.mpk.chessandroid.view.figure.PawnFigureView;
-import mobi.mpk.chessandroid.view.figure.QueenFigureView;
-import mobi.mpk.chessandroid.view.figure.RookFigureView;
+import mobi.mpk.chessandroid.view.figure.KingView;
+import mobi.mpk.chessandroid.view.figure.KnightView;
+import mobi.mpk.chessandroid.view.figure.PawnView;
+import mobi.mpk.chessandroid.view.figure.QueenView;
+import mobi.mpk.chessandroid.view.figure.RookView;
 
 /**
- * Created by evgen on 03.10.17.
+ * Created by evgen on 04.10.17.
  */
 
 public class BoardView {
 
-    private Board board;
-    private List<FigureView> whiteFigureViews;
-    private List<FigureView> blackFigureViews;
     private CellView[][] cellViews;
-    private int size = 90;
 
-    private Context context;
-    private Paint paint;
+    private List<FigureView> whiteFigureViewList;
+    private List<FigureView> blackFigureViewList;
 
-    public BoardView(Context context, Board board){
+    private int left;
+    private int top;
 
-        this.context = context;
+    private int right;
+    private int bottom;
 
-        this.board = board;
-        blackFigureViews = new LinkedList<>();
-        whiteFigureViews = new LinkedList<>();
 
-        initWhiteFigureViews();
-        initBlackFigureViews();
+    private GameView gameView;
 
-        cellViews = new CellView[board.lengthBoard()][board.lengthBoard()];
-        initCellViews(board.lengthBoard());
+    public BoardView(int left, int top, int right, int bottom, GameView gameView){
 
-        this.paint = new Paint();
-        initPaint();
+        this.left = left;
+        this.top = top;
 
-    }
+        this.right = right;
+        this.bottom = bottom;
 
-    private void initWhiteFigureViews() {
+        this.gameView = gameView;
 
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
-        whiteFigureViews.add(new PawnFigureView(Color.white));
+        initWhiteFigureView();
+        initBlackFigureView();
 
-        whiteFigureViews.add(new RookFigureView(Color.white));
-        whiteFigureViews.add(new KnightFigureView(Color.white));
-        whiteFigureViews.add(new BishopFigureView(Color.white));
-        whiteFigureViews.add(new QueenFigureView(Color.white));
-        whiteFigureViews.add(new KingFigureView(Color.white));
-        whiteFigureViews.add(new BishopFigureView(Color.white));
-        whiteFigureViews.add(new KnightFigureView(Color.white));
-        whiteFigureViews.add(new RookFigureView(Color.white));
+        int size = initSizeCell();
+        initBoard(size);
 
     }
 
-    private void initBlackFigureViews() {
+    private void initWhiteFigureView() {
 
-        blackFigureViews.add(new RookFigureView(Color.black));
-        blackFigureViews.add(new KnightFigureView(Color.black));
-        blackFigureViews.add(new BishopFigureView(Color.black));
-        blackFigureViews.add(new QueenFigureView(Color.black));
-        blackFigureViews.add(new KingFigureView(Color.black));
-        blackFigureViews.add(new BishopFigureView(Color.black));
-        blackFigureViews.add(new KnightFigureView(Color.black));
-        blackFigureViews.add(new RookFigureView(Color.black));
+        whiteFigureViewList = new LinkedList<>();
 
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
-        blackFigureViews.add(new PawnFigureView(Color.black));
+        whiteFigureViewList.add(new RookView(Colors.white));
+        whiteFigureViewList.add(new KnightView(Colors.white));
+        whiteFigureViewList.add(new BishopView(Colors.white));
+        whiteFigureViewList.add(new QueenView(Colors.white));
+        whiteFigureViewList.add(new KingView(Colors.white));
+        whiteFigureViewList.add(new BishopView(Colors.white));
+        whiteFigureViewList.add(new KnightView(Colors.white));
+        whiteFigureViewList.add(new RookView(Colors.white));
+
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
+        whiteFigureViewList.add(new PawnView(Colors.white));
 
 
     }
 
-    private void initCellViews(int length){
+    private void initBlackFigureView() {
 
-        for(int i = 0; i < length; i++){
+        blackFigureViewList = new LinkedList<>();
 
-            for (int j = 0; j < length; j++){
+        blackFigureViewList.add(new RookView(Colors.black));
+        blackFigureViewList.add(new KnightView(Colors.black));
+        blackFigureViewList.add(new BishopView(Colors.black));
+        blackFigureViewList.add(new QueenView(Colors.black));
+        blackFigureViewList.add(new KingView(Colors.black));
+        blackFigureViewList.add(new BishopView(Colors.black));
+        blackFigureViewList.add(new KnightView(Colors.black));
+        blackFigureViewList.add(new RookView(Colors.black));
 
-                cellViews[i][j] = new CellView(i, j, size);
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+        blackFigureViewList.add(new PawnView(Colors.black));
+
+    }
+
+    private void initBoard(int size) {
+
+        cellViews = new CellView[8][8];
+        int x = left;
+        int y = top;
+
+        FigureView figureView = null;
+
+        for (int i = 0; i < 8; i++){
+
+            for (int j = 0; j < 8; j++){
+
+                if( i < 2) {
+                    figureView = getFigureView(i, j+1, blackFigureViewList);
+                }
+
+                if( i > 5 ){
+                    figureView = getFigureView(7-i, j+1, whiteFigureViewList);
+                }
+
+                cellViews[i][j] = new CellView(x, y, size, figureView);
+                x += size;
+                figureView = null;
 
             }
+
+            x = left;
+            y += size;
 
         }
 
     }
 
-    private void initPaint(){
+    private FigureView getFigureView(int i, int j, List<FigureView> figureViews){
 
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-
-    }
-
-    public void onDraw(Canvas canvas){
-
-        Cell[][] cells = this.board.getCells();
-
-        for (int i = 0; i < board.lengthBoard(); i++){
-
-            for (int j = 0; j < board.lengthBoard(); j++){
-
-                int color = countColor(cells[i][j].getColor());
-                cellViews[i][j].onDraw(canvas, paint, color);
-
-                if( j < 2) {
-                    FigureView figureView = getFigureView(i+1, j, blackFigureViews);
-                    figureView.onDraw(cellViews[i][j].getLeft(), cellViews[i][j].getTop(), canvas, context);
-                }
-
-                if( j > 5 ){
-                    FigureView figureView = getFigureView(i+1, 7-j, whiteFigureViews);
-                    figureView.onDraw(cellViews[i][j].getLeft(), cellViews[i][j].getTop(), canvas, context);
-                }
-
-
-            }
-
-        }
-
-    }
-
-    public FigureView getFigureView(int i, int j, List<FigureView> figureViews){
-
-        int k = i+(j*8);
+        int k = j+(i*8);
         int sum = 0;
         for(FigureView figureView : figureViews){
             ++sum;
@@ -168,14 +151,32 @@ public class BoardView {
 
     }
 
-    private int countColor(Color color){
+    private int initSizeCell() {
 
-        if(color == Color.white){
-            return ContextCompat.getColor(context, R.color.whiteCell);
+        if((right-left) < (bottom-top)){
+
+            return (right-left)/8;
+
         } else {
-            return ContextCompat.getColor(context, R.color.blackCell);
+
+            return (bottom-top)/8;
+
         }
 
     }
 
+
+    public void onDraw(Canvas canvas, Context context) {
+
+        for (int i = 0; i < 8; i++){
+
+            for (int j = 0; j < 8; j++){
+
+                cellViews[i][j].onDraw(canvas, context);
+
+            }
+
+        }
+
+    }
 }
