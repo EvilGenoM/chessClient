@@ -1,56 +1,61 @@
 package mobi.mpk.chessandroid.view;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.support.v4.content.ContextCompat;
 
-import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.domain.Color;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
+import mobi.mpk.chessandroid.view.figure.FigureView;
 
 /**
- * Created by evgen on 03.10.17.
+ * Created by evgen on 04.10.17.
  */
 
 public class CellView {
 
-    private int left;
-    private int top;
+    private int x;
+    private int y;
+    private int size;
 
-    private int right;
-    private int bottom;
+    private FigureView figureView;
 
-    public CellView(int x, int y, int size){
+    public CellView(int x, int y, int size, FigureView figureView){
 
-        this.left = x * size;
-        this.top = y * size;
+        this.x = x;
+        this.y = y;
+        this.size = size;
 
-        this.right = this.left + size;
-        this.bottom = this.top + size;
-
-    }
-
-    public void onDraw(Canvas canvas, Paint paint, int color){
-
-        paint.setColor(color);
-
-        canvas.drawRect(left, top, right, bottom, paint);
+        this.figureView = figureView;
 
     }
 
-    public int getLeft() {
-        return left;
+    public void onDraw(Canvas canvas, Context context){
+
+        Paint paint = new Paint();
+        if((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)) {
+
+            paint.setColor(Color.BLACK);
+
+        } else {
+
+            paint.setColor(Color.WHITE);
+
+        }
+
+        canvas.drawRect(x, y, x + size, y + size, paint);
+        if(figureView != null) {
+            figureView.createBitmap(context, size);
+            figureView.onDraw(canvas, this);
+        }
+
     }
 
-    public int getTop() {
-        return top;
+    public int getX() {
+        return x;
     }
 
-    public int getRight() {
-        return right;
+    public int getY() {
+        return y;
     }
-
-    public int getBottom() {
-        return bottom;
-    }
-
 }
