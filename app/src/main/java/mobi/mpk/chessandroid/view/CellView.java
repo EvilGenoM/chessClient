@@ -5,7 +5,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v4.content.ContextCompat;
 
+import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.view.figure.FigureView;
 
 /**
@@ -34,12 +36,13 @@ public class CellView {
 
         Paint paint = new Paint();
         if((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)) {
-
-            paint.setColor(Color.BLACK);
+            int color = ContextCompat.getColor(context, R.color.blackCell);
+            paint.setColor(color);
 
         } else {
 
-            paint.setColor(Color.WHITE);
+            int color = ContextCompat.getColor(context, R.color.whiteCell);
+            paint.setColor(color);
 
         }
 

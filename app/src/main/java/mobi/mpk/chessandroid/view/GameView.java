@@ -48,6 +48,15 @@ public class GameView extends View {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int width = getMeasuredWidth();
+        setMeasuredDimension(width, width);
+
+    }
+
+    @Override
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
         this.canvas = canvas;
@@ -64,23 +73,12 @@ public class GameView extends View {
 
         int left, right, top, bottom;
 
-        if(width < height) {
+        left = 0;
+        right = width;
 
-            left = INDENT_SIDE;
-            right = width - INDENT_SIDE;
+        top = 0;
+        bottom = height;
 
-            top = (height / 2) - (right - left) / 2;
-            bottom = top + (right - left);
-
-        } else {
-
-            top = INDENT_SIDE;
-            bottom = height - INDENT_SIDE;
-
-            left = (width / 2) - (bottom - top) / 2;
-            right = left + (bottom - top);
-
-        }
         boardView = new BoardView(left, top, right, bottom, this);
 
     }
