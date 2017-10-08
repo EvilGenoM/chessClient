@@ -18,17 +18,11 @@ public class BishopView extends FigureView {
 
         this.color = color;
 
-    }
-
-    @Override
-    public void createBitmap(Context context, int size) {
-        Bitmap bmpFull;
         if(color == Colors.white){
-            bmpFull = BitmapFactory.decodeResource(context.getResources(), R.drawable.white_bishop);
+            this.adressBitmap = R.drawable.white_bishop;
         } else {
-            bmpFull = BitmapFactory.decodeResource(context.getResources(), R.drawable.black_bishop);
+            this.adressBitmap = R.drawable.black_bishop;
         }
 
-        this.bmp = Bitmap.createScaledBitmap(bmpFull, size, size, false);
     }
 }

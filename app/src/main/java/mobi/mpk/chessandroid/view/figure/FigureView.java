@@ -1,14 +1,12 @@
 package mobi.mpk.chessandroid.view.figure;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
-import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.view.CellView;
 import mobi.mpk.chessandroid.view.Colors;
+import mobi.mpk.chessandroid.view.GameView;
 
 /**
  * Created by evgen on 04.10.17.
@@ -16,14 +14,12 @@ import mobi.mpk.chessandroid.view.Colors;
 
 public abstract class FigureView {
 
-    protected Bitmap bmp;
+    protected int adressBitmap;
     protected Colors color;
 
-    public abstract void createBitmap(Context context, int size);
+    public void onDraw(GameView gameView, int x, int y, int size){
 
-    public void onDraw(Canvas canvas, CellView cellView){
-
-        canvas.drawBitmap(bmp, cellView.getX(), cellView.getY(), null);
+        gameView.onDrawFigure(adressBitmap, x, y, size);
 
     }
 

@@ -18,18 +18,12 @@ public class QueenView extends FigureView {
 
         this.color = color;
 
-    }
-
-    @Override
-    public void createBitmap(Context context, int size) {
-        Bitmap bmpFull;
         if(color == Colors.white){
-            bmpFull = BitmapFactory.decodeResource(context.getResources(), R.drawable.white_queen);
+            this.adressBitmap = R.drawable.white_queen;
         } else {
-            bmpFull = BitmapFactory.decodeResource(context.getResources(), R.drawable.black_queen);
+            this.adressBitmap = R.drawable.black_queen;
         }
 
-        this.bmp = Bitmap.createScaledBitmap(bmpFull, size, size, false);
     }
 
 }

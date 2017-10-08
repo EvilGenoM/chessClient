@@ -110,19 +110,19 @@ public class BoardView {
 
         FigureView figureView = null;
 
-        for (int i = 0; i < 8; i++){
+        for (int i = 7; i >= 0; i--){
 
-            for (int j = 0; j < 8; j++){
+            for (int j = 7; j >= 0; j--){
 
                 if( i < 2) {
-                    figureView = getFigureView(i, j+1, blackFigureViewList);
+                    figureView = getFigureView(i, j+1, whiteFigureViewList);
                 }
 
                 if( i > 5 ){
-                    figureView = getFigureView(7-i, j+1, whiteFigureViewList);
+                    figureView = getFigureView(7-i, j+1, blackFigureViewList);
                 }
 
-                cellViews[i][j] = new CellView(x, y, size, figureView);
+                cellViews[i][j] = new CellView(i, j, x, y, size, figureView);
                 x += size;
                 figureView = null;
 
@@ -166,13 +166,13 @@ public class BoardView {
     }
 
 
-    public void onDraw(Canvas canvas, Context context) {
+    public void onDraw() {
 
         for (int i = 0; i < 8; i++){
 
             for (int j = 0; j < 8; j++){
 
-                cellViews[i][j].onDraw(canvas, context);
+                cellViews[i][j].onDraw(gameView);
 
             }
 
@@ -180,4 +180,23 @@ public class BoardView {
 
     }
 
+    public CellView getCellView(int x, int y) {
+
+        CellView cellView = null;
+
+        for (int i = 0; i < 8; i++){
+
+            for (int j = 0; j < 8; j++){
+
+                if(cellViews[i][j].existPoint(x, y)){
+                    cellView = cellViews[i][j];
+                    break;
+                }
+
+            }
+
+        }
+
+        return cellView;
+    }
 }

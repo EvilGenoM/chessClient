@@ -18,18 +18,13 @@ public class PawnView  extends FigureView {
 
         this.color = color;
 
-    }
-
-    @Override
-    public void createBitmap(Context context, int size) {
-        Bitmap bmpFull;
         if(color == Colors.white){
-            bmpFull = BitmapFactory.decodeResource(context.getResources(), R.drawable.white_pawn);
+            this.adressBitmap = R.drawable.white_pawn;
         } else {
-            bmpFull = BitmapFactory.decodeResource(context.getResources(), R.drawable.black_pawn);
+            this.adressBitmap = R.drawable.black_pawn;
         }
 
-        this.bmp = Bitmap.createScaledBitmap(bmpFull, size, size, false);
+
     }
 
 }

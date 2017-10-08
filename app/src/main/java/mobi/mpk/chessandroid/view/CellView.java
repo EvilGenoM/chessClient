@@ -1,13 +1,6 @@
 package mobi.mpk.chessandroid.view;
 
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.support.v4.content.ContextCompat;
-
-import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.view.figure.FigureView;
 
 /**
@@ -16,49 +9,75 @@ import mobi.mpk.chessandroid.view.figure.FigureView;
 
 public class CellView {
 
+    private int locationX;
+    private int locationY;
+    private int size;
+
     private int x;
     private int y;
-    private int size;
+
+    private Colors color;
 
     private FigureView figureView;
 
-    public CellView(int x, int y, int size, FigureView figureView){
+    public CellView(int x, int y, int locationX, int locationY, int size, FigureView figureView){
+
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.size = size;
 
         this.x = x;
         this.y = y;
-        this.size = size;
+
+        initColor();
 
         this.figureView = figureView;
 
     }
 
-    public void onDraw(Canvas canvas, Context context){
+    private void initColor() {
 
-        Paint paint = new Paint();
-        if((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)) {
-            int color = ContextCompat.getColor(context, R.color.blackCell);
-            paint.setColor(color);
-
+        if((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)){
+            color = Colors.black;
         } else {
-
-            int color = ContextCompat.getColor(context, R.color.whiteCell);
-            paint.setColor(color);
-
+            color = Colors.white;
         }
 
-        canvas.drawRect(x, y, x + size, y + size, paint);
+    }
+
+    public void onDraw(GameView gameView){
+
+        gameView.onDrawCell(locationX, locationY, size, color);
+
         if(figureView != null) {
-            figureView.createBitmap(context, size);
-            figureView.onDraw(canvas, this);
+            figureView.onDraw(gameView, locationX, locationY, size);
         }
 
     }
 
-    public int getX() {
-        return x;
+    public int getLocationX() {
+        return locationX;
     }
 
-    public int getY() {
-        return y;
+    public int getLocationY() {
+        return locationY;
+    }
+
+    public FigureView getFigureView() {
+        return figureView;
+    }
+
+    public void setFigureView(FigureView figureView) {
+        this.figureView = figureView;
+    }
+
+    public boolean existPoint(int x, int y) {
+
+        if(x>=this.x && x<=(this.x+size) && y>=this.y && y<=(this.y+size)){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }
