@@ -25,15 +25,10 @@ public class Drawer {
         paint = new Paint();
     }
 
-    public void drawRect(int top, int left, int bottom, int right, Color color){
+    public void drawRect(int top, int left, int bottom, int right, int color){
 
-        if(color == Color.black){
-            int colorCell = ContextCompat.getColor(context, R.color.blackCell);
-            paint.setColor(colorCell);
-        } else {
-            int colorCell = ContextCompat.getColor(context, R.color.whiteCell);
-            paint.setColor(colorCell);
-        }
+        int colorCell = ContextCompat.getColor(context, color);
+        paint.setColor(colorCell);
 
         canvas.drawRect(left, top, right, bottom, paint);
 

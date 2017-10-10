@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.type;
 
 /**
  * Created by evgen on 10.10.17.

@@ -4,6 +4,7 @@ import dagger.Component;
 import mobi.mpk.chessandroid.di.module.BoardViewModule;
 import mobi.mpk.chessandroid.di.module.UtilsModule;
 import mobi.mpk.chessandroid.di.module.ViewModule;
+import mobi.mpk.chessandroid.ui.FigureView;
 import mobi.mpk.chessandroid.view.CellView;
 
 /**
@@ -14,5 +15,7 @@ import mobi.mpk.chessandroid.view.CellView;
 public interface ViewComponent {
 
     void inject(CellView cellView);
+
+    void inject(FigureView figureView);
 
 }
