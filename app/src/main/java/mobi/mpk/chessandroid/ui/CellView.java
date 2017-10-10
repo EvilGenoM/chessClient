@@ -24,9 +24,9 @@ public class CellView {
     private FigureView figureView;
 
     @Inject
-    private Drawer drawer;
+    Drawer drawer;
     @Inject
-    private GameController controller;
+    GameController controller;
 
     public CellView(int x, int y, int size) {
         this.x = x;

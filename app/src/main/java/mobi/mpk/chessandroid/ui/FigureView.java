@@ -21,7 +21,7 @@ public class FigureView {
     private FigureType figureType;
 
     @Inject
-    private Drawer drawer;
+    Drawer drawer;
 
     public FigureView(int x, int y, int size, FigureType figureType, Color color) {
         this.x = x;

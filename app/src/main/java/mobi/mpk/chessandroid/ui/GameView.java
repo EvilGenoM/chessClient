@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.di.component.DaggerViewComponent;
 import mobi.mpk.chessandroid.di.component.ViewComponent;
 import mobi.mpk.chessandroid.di.module.BoardViewModule;
+import mobi.mpk.chessandroid.di.module.GameControllerModule;
 import mobi.mpk.chessandroid.di.module.ViewModule;
 
 /**
@@ -43,6 +45,7 @@ public class GameView extends View {
         return DaggerViewComponent.builder()
                 .viewModule(new ViewModule(context, canvas))
                 .boardViewModule(new BoardViewModule(lengthSide))
+                .gameControllerModule(new GameControllerModule())
                 .build();
     }
 
