@@ -1,14 +1,11 @@
-package mobi.mpk.chessandroid.module;
+package mobi.mpk.chessandroid.di.module;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import mobi.mpk.chessandroid.ui.Drawer;
 import mobi.mpk.chessandroid.ui.BoardView;
 
 /**

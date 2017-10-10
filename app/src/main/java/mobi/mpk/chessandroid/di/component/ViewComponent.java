@@ -1,10 +1,9 @@
-package mobi.mpk.chessandroid.component;
+package mobi.mpk.chessandroid.di.component;
 
 import dagger.Component;
-import mobi.mpk.chessandroid.MainActivity;
-import mobi.mpk.chessandroid.module.BoardViewModule;
-import mobi.mpk.chessandroid.module.UtilsModule;
-import mobi.mpk.chessandroid.module.ViewModule;
+import mobi.mpk.chessandroid.di.module.BoardViewModule;
+import mobi.mpk.chessandroid.di.module.UtilsModule;
+import mobi.mpk.chessandroid.di.module.ViewModule;
 import mobi.mpk.chessandroid.view.CellView;
 
 /**

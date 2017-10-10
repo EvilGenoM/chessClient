@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.module;
+package mobi.mpk.chessandroid.di.module;
 
 import android.content.Context;
 import android.graphics.Canvas;

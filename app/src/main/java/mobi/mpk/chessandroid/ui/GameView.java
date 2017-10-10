@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import mobi.mpk.chessandroid.component.DaggerViewComponent;
-import mobi.mpk.chessandroid.component.ViewComponent;
-import mobi.mpk.chessandroid.module.BoardViewModule;
-import mobi.mpk.chessandroid.module.ViewModule;
+import mobi.mpk.chessandroid.di.component.DaggerViewComponent;
+import mobi.mpk.chessandroid.di.component.ViewComponent;
+import mobi.mpk.chessandroid.di.module.BoardViewModule;
+import mobi.mpk.chessandroid.di.module.ViewModule;
 
 /**
  * Created by evgen on 10.10.17.

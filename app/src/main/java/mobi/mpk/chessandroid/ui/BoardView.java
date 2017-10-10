@@ -1,16 +1,8 @@
 package mobi.mpk.chessandroid.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
-import android.view.View;
+import javax.inject.Inject;
 
-import dagger.*;
-
-import mobi.mpk.chessandroid.component.ViewComponent;
-import mobi.mpk.chessandroid.module.ViewModule;
-import mobi.mpk.chessandroid.view.CellView;
+import mobi.mpk.chessandroid.ui.CellView;
 
 /**
  * Created by evgen on 10.10.17.
@@ -18,22 +10,45 @@ import mobi.mpk.chessandroid.view.CellView;
 
 public class BoardView {
 
+    private int AMOUNT_CELL = 8;
+
     private int top;
     private int left;
     private int lengthSide;
 
     private CellView[][] cellView;
 
-    public BoardView(int lengthSide){
-        this.top = 0;
-        this.left = 0;
-        this.lengthSide = lengthSide;
+    public BoardView(int lengthSide) {
+        this(0, 0, lengthSide);
     }
 
-    public BoardView(int top, int left, int lengthSide){
+    public BoardView(int top, int left, int lengthSide) {
         this.top = top;
         this.left = left;
         this.lengthSide = lengthSide;
+        initBoard();
+    }
+
+    private void initBoard() {
+
+        cellView = new CellView[AMOUNT_CELL][AMOUNT_CELL];
+
+        int x = 0;
+        int y = 0;
+        int size = lengthSide/AMOUNT_CELL;
+
+        for(int i = 0; i < AMOUNT_CELL; i++){
+
+            for (int j = 0; j < AMOUNT_CELL; j++){
+                cellView[i][j] = new CellView(x, y, size);
+                x++;
+            }
+
+            x = 0;
+            y++;
+
+        }
+
     }
 
 }
