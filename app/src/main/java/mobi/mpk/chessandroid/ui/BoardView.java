@@ -6,29 +6,34 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import dagger.*;
+
+import mobi.mpk.chessandroid.component.ViewComponent;
+import mobi.mpk.chessandroid.module.ViewModule;
 import mobi.mpk.chessandroid.view.CellView;
 
 /**
  * Created by evgen on 10.10.17.
  */
 
-public class BoardView extends View {
+public class BoardView {
+
+    private int top;
+    private int left;
+    private int lengthSide;
 
     private CellView[][] cellView;
 
-    public BoardView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public BoardView(int lengthSide){
+        this.top = 0;
+        this.left = 0;
+        this.lengthSide = lengthSide;
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
+    public BoardView(int top, int left, int lengthSide){
+        this.top = top;
+        this.left = left;
+        this.lengthSide = lengthSide;
     }
 
 }
