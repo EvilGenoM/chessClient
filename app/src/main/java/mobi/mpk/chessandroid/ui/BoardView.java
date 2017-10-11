@@ -22,7 +22,7 @@ public class BoardView {
         this(0, 0, lengthSide);
     }
 
-    public BoardView(int top, int left, int lengthSide) {
+    public BoardView(int left, int top, int lengthSide) {
         this.top = top;
         this.left = left;
         this.lengthSide = lengthSide;
@@ -35,17 +35,17 @@ public class BoardView {
 
         int x = 0;
         int y = 0;
-        int size = lengthSide/AMOUNT_CELL;
+        int size = lengthSide/8;
 
-        for(int i = 0; i < AMOUNT_CELL; i++){
+        for (int i = 0; i < AMOUNT_CELL; i++) {
 
-            for (int j = 0; j < AMOUNT_CELL; j++){
+            for (int j = 0; j < AMOUNT_CELL; j++) {
                 cellView[i][j] = new CellView(x, y, size);
-                x++;
+                x += size;
             }
 
             x = 0;
-            y++;
+            y += size;
 
         }
 

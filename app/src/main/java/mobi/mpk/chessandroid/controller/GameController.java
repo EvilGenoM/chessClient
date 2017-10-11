@@ -10,7 +10,7 @@ public class GameController {
 
     public boolean checkExistFigure(char x, int y){
 
-        return true;
+        return false;
 
     }
 

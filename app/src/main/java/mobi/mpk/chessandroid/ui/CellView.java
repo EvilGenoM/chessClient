@@ -32,6 +32,22 @@ public class CellView {
         this.x = x;
         this.y = y;
         this.size = size;
+        GameView.getComponent().inject(this);
+        identifyColor();
+        onDraw();
+    }
+
+    private void identifyColor() {
+
+        int x = (this.x / size) + 1;
+        int y = (this.y / size) + 1;
+
+        if ((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)){
+            color = Color.white;
+        } else {
+            color = Color.black;
+        }
+
     }
 
     private void onDraw() {
@@ -51,7 +67,7 @@ public class CellView {
 
     private void drawFigure() {
 
-        if(checkExistFigure()){
+        if (checkExistFigure()) {
 
             Map<String, Enum> figureData = controller.getFigureData(x, y);
             FigureType figureType = (FigureType) figureData.get("figure");
@@ -80,7 +96,8 @@ public class CellView {
     }
 
     private int identifyYtoCell() {
-        return x / size;
+        int y = 8 - (this.y/size);
+        return y;
     }
 
 }

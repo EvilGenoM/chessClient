@@ -22,7 +22,6 @@ public class BoardViewModule {
     }
 
     @Provides
-    @NonNull
     @Singleton
     public BoardView provideBoardView(){
         return new BoardView(lengthSide);

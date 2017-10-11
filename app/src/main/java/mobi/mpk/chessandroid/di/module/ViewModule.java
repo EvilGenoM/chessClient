@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.di.module;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
 
@@ -18,20 +19,20 @@ public class ViewModule {
     private Context context;
     private Canvas canvas;
 
-    public ViewModule(Context context, Canvas canvas) {
+    public ViewModule(@NonNull Context context, @NonNull Canvas canvas) {
         this.context = context;
         this.canvas = canvas;
     }
 
     @Provides
     @Singleton
-    Context provideContext() {
+    public Context provideContext() {
         return context;
     }
 
     @Provides
     @Singleton
-    Canvas provideCanvas() {
+    public Canvas provideCanvas() {
         return canvas;
     }
 

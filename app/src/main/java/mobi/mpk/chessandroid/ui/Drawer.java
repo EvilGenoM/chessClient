@@ -25,7 +25,7 @@ public class Drawer {
         paint = new Paint();
     }
 
-    public void drawRect(int top, int left, int bottom, int right, int color){
+    public void drawRect(int left, int top, int right, int bottom, int color){
 
         int colorCell = ContextCompat.getColor(context, color);
         paint.setColor(colorCell);

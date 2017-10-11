@@ -31,7 +31,7 @@
         android:textColor="#555"
         android:textSize="30dp" />
 
-    <mobi.mpk.chessandroid.view.GameView
+    <mobi.mpk.chessandroid.ui.GameView
         android:id="@+id/GameView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

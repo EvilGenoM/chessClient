@@ -17,7 +17,6 @@ import mobi.mpk.chessandroid.ui.BoardView;
 public class GameControllerModule {
 
     @Provides
-    @NonNull
     @Singleton
     public GameController provideGameController(){
         return new GameController();

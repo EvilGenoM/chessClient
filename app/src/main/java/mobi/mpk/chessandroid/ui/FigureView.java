@@ -29,6 +29,7 @@ public class FigureView {
         this.size = size;
         this.figureType = figureType;
         this.color = color;
+    //    GameView.getComponent().inject(this);
     }
 
     public void onDraw() {
