@@ -1,8 +1,10 @@
 package mobi.mpk.chessandroid.model.game;
 
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import mobi.mpk.chessandroid.model.Cell;
 import mobi.mpk.chessandroid.model.Player;
@@ -18,6 +20,7 @@ import mobi.mpk.chessandroid.model.exception.rule.WayFigureHaveObstaclesExceptio
 import mobi.mpk.chessandroid.model.figure.Figure;
 import mobi.mpk.chessandroid.model.rules.InspectorRules;
 import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.type.FigureType;
 
 public class ClassicGame extends Game {
 
@@ -153,6 +156,41 @@ public class ClassicGame extends Game {
         }
 
         return board;
+    }
+
+    @Override
+    public boolean checkExistFigure(char x, int y) {
+
+        boolean checkFigure = false;
+
+        Cell cell = getBoard().getCell(x, y);
+        if(cell != null){
+            checkFigure = cell.existFigure();
+        }
+
+        return checkFigure;
+    }
+
+    @Override
+    public Map<String, Enum> getFigureData(char x, int y) {
+
+        Figure figure = null;
+        FigureType figureType;
+        Color color;
+
+        Map<String, Enum> figureData = new HashMap<>();
+
+        Cell cell = getBoard().getCell(x, y);
+        if(cell != null){
+            figure = cell.getFigure();
+        }
+
+        if(figure != null){
+            figureData.put("FigureType", figure.getFigureType());
+            figureData.put("Color", figure.getColor());
+        }
+
+        return figureData;
     }
 
 }

@@ -1,7 +1,6 @@
 package mobi.mpk.chessandroid.di.module;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
@@ -17,23 +16,15 @@ import dagger.Provides;
 public class ViewModule {
 
     private Context context;
-    private Canvas canvas;
 
-    public ViewModule(@NonNull Context context, @NonNull Canvas canvas) {
+    public ViewModule(@NonNull Context context) {
         this.context = context;
-        this.canvas = canvas;
     }
 
     @Provides
     @Singleton
     public Context provideContext() {
         return context;
-    }
-
-    @Provides
-    @Singleton
-    public Canvas provideCanvas() {
-        return canvas;
     }
 
 }

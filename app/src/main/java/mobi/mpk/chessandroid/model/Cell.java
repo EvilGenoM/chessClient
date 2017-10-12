@@ -55,6 +55,16 @@ public class Cell {
         return this.figure;
     }
 
+    public boolean existFigure() {
+
+        if(this.figure == null){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
     public int getIntX() {
 
         char symbol = 'a';

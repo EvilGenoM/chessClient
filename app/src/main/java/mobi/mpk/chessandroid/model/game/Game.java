@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.model.game;
 
 
 import java.util.List;
+import java.util.Map;
 
 import mobi.mpk.chessandroid.model.Board;
 import mobi.mpk.chessandroid.model.Player;
@@ -64,5 +65,8 @@ public abstract class Game {
         return name;
     }
 
+    public abstract boolean checkExistFigure(char x, int y);
+
+    public abstract Map<String,Enum> getFigureData(char x, int y);
 
 }

@@ -1,8 +1,4 @@
-package mobi.mpk.chessandroid.ui;
-
-import javax.inject.Inject;
-
-import mobi.mpk.chessandroid.ui.CellView;
+package mobi.mpk.chessandroid.ui.game_view;
 
 /**
  * Created by evgen on 10.10.17.

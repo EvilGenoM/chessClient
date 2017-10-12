@@ -1,12 +1,13 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.game_view;
 
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
 
 /**
@@ -32,7 +33,7 @@ public class CellView {
         this.x = x;
         this.y = y;
         this.size = size;
-        GameView.getComponent().inject(this);
+        App.getComponent().inject(this);
         identifyColor();
         onDraw();
     }
@@ -67,23 +68,19 @@ public class CellView {
 
     private void drawFigure() {
 
-        if (checkExistFigure()) {
+        char x = identifyXtoCell();
+        int y = identifyYtoCell();
+
+        if (controller.checkExistFigure(x, y)) {
 
             Map<String, Enum> figureData = controller.getFigureData(x, y);
             FigureType figureType = (FigureType) figureData.get("figure");
             Color figureColor = (Color) figureData.get("color");
 
             figureView = new FigureView(x, y, size, figureType, figureColor);
+
         }
 
-    }
-
-    private boolean checkExistFigure() {
-
-        char x = identifyXtoCell();
-        int y = identifyYtoCell();
-
-        return controller.checkExistFigure(x, y);
     }
 
     private char identifyXtoCell() {
