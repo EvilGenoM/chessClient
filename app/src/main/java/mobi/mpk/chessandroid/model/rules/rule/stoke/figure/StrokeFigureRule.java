@@ -1,6 +1,7 @@
 package mobi.mpk.chessandroid.model.rules.rule.stoke.figure;
 
-import mobi.mpk.chessServerSpring.domain.Stroke;
+
+import mobi.mpk.chessandroid.model.Stroke;
 
 public interface StrokeFigureRule {
 

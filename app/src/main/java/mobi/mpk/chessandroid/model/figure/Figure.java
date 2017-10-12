@@ -1,11 +1,12 @@
 package mobi.mpk.chessandroid.model.figure;
 
-
-import mobi.mpk.chessServerSpring.domain.Color;
+import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.type.FigureType;
 
 public abstract class Figure {
 
     private Color color;
+    private FigureType figureType;
 
     public Figure() {
         this(Color.white);
@@ -17,6 +18,14 @@ public abstract class Figure {
 
     public Color getColor() {
         return color;
+    }
+
+    protected void setFigureType(FigureType figureType) {
+        this.figureType = figureType;
+    }
+
+    public FigureType getFigureType() {
+        return figureType;
     }
 
     @Override

@@ -1,26 +1,28 @@
 package mobi.mpk.chessandroid.model.game;
 
-import mobi.mpk.chessServerSpring.User;
-import mobi.mpk.chessServerSpring.domain.*;
-import mobi.mpk.chessServerSpring.domain.exception.CellCorrectException;
-import mobi.mpk.chessServerSpring.domain.exception.FigureNotFindException;
-import mobi.mpk.chessServerSpring.domain.exception.StrokeCorrectException;
-import mobi.mpk.chessServerSpring.domain.exception.rule.FigureCanNotMoveException;
-import mobi.mpk.chessServerSpring.domain.exception.rule.PossibleMoveException;
-import mobi.mpk.chessServerSpring.domain.exception.rule.WayFigureHaveObstaclesException;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-import mobi.mpk.chessServerSpring.domain.rules.ClassicInspectorRules;
-import mobi.mpk.chessServerSpring.domain.rules.InspectorRules;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import mobi.mpk.chessandroid.model.Cell;
+import mobi.mpk.chessandroid.model.Player;
+import mobi.mpk.chessandroid.model.ResultStroke;
+import mobi.mpk.chessandroid.model.Stroke;
+import mobi.mpk.chessandroid.model.User;
+import mobi.mpk.chessandroid.model.exception.CellCorrectException;
+import mobi.mpk.chessandroid.model.exception.FigureNotFindException;
+import mobi.mpk.chessandroid.model.exception.StrokeCorrectException;
+import mobi.mpk.chessandroid.model.exception.rule.FigureCanNotMoveException;
+import mobi.mpk.chessandroid.model.exception.rule.PossibleMoveException;
+import mobi.mpk.chessandroid.model.exception.rule.WayFigureHaveObstaclesException;
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.model.rules.InspectorRules;
+import mobi.mpk.chessandroid.type.Color;
 
 public class ClassicGame extends Game {
 
     private Color nowStroke = Color.white;
 
-    @Autowired
     private InspectorRules inspectorRules;
 
     public ClassicGame(User user1, User user2) {

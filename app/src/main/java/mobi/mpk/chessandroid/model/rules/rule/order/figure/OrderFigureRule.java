@@ -1,9 +1,9 @@
 package mobi.mpk.chessandroid.model.rules.rule.order.figure;
 
-import mobi.mpk.chessServerSpring.domain.Color;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-
 import java.util.List;
+
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.type.Color;
 
 public interface OrderFigureRule {
 

@@ -1,12 +1,12 @@
 package mobi.mpk.chessandroid.model.rules.rule.obstacle.move;
 
 
-import mobi.mpk.chessServerSpring.domain.Board;
-import mobi.mpk.chessServerSpring.domain.Cell;
-import mobi.mpk.chessServerSpring.domain.Stroke;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-import mobi.mpk.chessServerSpring.domain.figure.Knight;
-import mobi.mpk.chessServerSpring.domain.figure.Pawn;
+import mobi.mpk.chessandroid.model.Board;
+import mobi.mpk.chessandroid.model.Cell;
+import mobi.mpk.chessandroid.model.Stroke;
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.model.figure.Knight;
+import mobi.mpk.chessandroid.model.figure.Pawn;
 
 public class ObstacleMoveLineRule implements ObstacleMoveRule {
 

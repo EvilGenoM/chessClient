@@ -1,11 +1,18 @@
 package mobi.mpk.chessandroid.model.rules.rule.order.figure;
 
 
-import mobi.mpk.chessServerSpring.domain.Color;
-import mobi.mpk.chessServerSpring.domain.figure.*;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryBishop;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryFigure;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryKing;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryKnight;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryPawn;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryQueen;
+import mobi.mpk.chessandroid.model.figure.factory.FactoryRook;
+import mobi.mpk.chessandroid.type.Color;
 
 public class ClassicOrderFigureRule implements OrderFigureRule {
 

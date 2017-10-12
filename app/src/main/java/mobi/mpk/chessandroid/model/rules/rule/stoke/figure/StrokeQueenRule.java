@@ -1,9 +1,9 @@
 package mobi.mpk.chessandroid.model.rules.rule.stoke.figure;
 
 
-import mobi.mpk.chessServerSpring.domain.Cell;
-import mobi.mpk.chessServerSpring.domain.Stroke;
-import mobi.mpk.chessServerSpring.domain.figure.Queen;
+import mobi.mpk.chessandroid.model.Cell;
+import mobi.mpk.chessandroid.model.Stroke;
+import mobi.mpk.chessandroid.model.figure.Queen;
 
 public class StrokeQueenRule implements StrokeFigureRule {
 

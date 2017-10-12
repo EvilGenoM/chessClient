@@ -1,9 +1,9 @@
 package mobi.mpk.chessandroid.model.rules.rule.end.game;
 
 
-import mobi.mpk.chessServerSpring.domain.Board;
-import mobi.mpk.chessServerSpring.domain.Color;
-import mobi.mpk.chessServerSpring.domain.figure.King;
+import mobi.mpk.chessandroid.model.Board;
+import mobi.mpk.chessandroid.model.figure.King;
+import mobi.mpk.chessandroid.type.Color;
 
 public class ClassicEndGameRule implements EndGameRule {
 

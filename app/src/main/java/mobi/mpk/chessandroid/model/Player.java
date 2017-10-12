@@ -1,9 +1,9 @@
 package mobi.mpk.chessandroid.model;
 
 
-import mobi.mpk.chessServerSpring.User;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-import mobi.mpk.chessServerSpring.domain.rules.InspectorRules;
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.model.rules.InspectorRules;
+import mobi.mpk.chessandroid.type.Color;
 
 public class Player {
 

@@ -1,25 +1,33 @@
 package mobi.mpk.chessandroid.model.rules;
 
 
-import mobi.mpk.chessServerSpring.domain.Board;
-import mobi.mpk.chessServerSpring.domain.Color;
-import mobi.mpk.chessServerSpring.domain.Stroke;
-import mobi.mpk.chessServerSpring.domain.exception.rule.FigureCanNotMoveException;
-import mobi.mpk.chessServerSpring.domain.exception.rule.PossibleMoveException;
-import mobi.mpk.chessServerSpring.domain.exception.rule.WayFigureHaveObstaclesException;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-import mobi.mpk.chessServerSpring.domain.rules.rule.obstacle.move.*;
-import mobi.mpk.chessServerSpring.domain.rules.rule.order.figure.ClassicOrderFigureRule;
-import mobi.mpk.chessServerSpring.domain.rules.rule.order.figure.OrderFigureRule;
-import mobi.mpk.chessServerSpring.domain.rules.rule.possiblemove.ClassicPossibleMoveRule;
-import mobi.mpk.chessServerSpring.domain.rules.rule.possiblemove.PossibleMoveRule;
-import mobi.mpk.chessServerSpring.domain.rules.rule.stoke.figure.*;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+import mobi.mpk.chessandroid.model.Board;
+import mobi.mpk.chessandroid.model.Stroke;
+import mobi.mpk.chessandroid.model.exception.rule.FigureCanNotMoveException;
+import mobi.mpk.chessandroid.model.exception.rule.PossibleMoveException;
+import mobi.mpk.chessandroid.model.exception.rule.WayFigureHaveObstaclesException;
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.model.rules.rule.obstacle.move.ObstacleMoveDiagonalRule;
+import mobi.mpk.chessandroid.model.rules.rule.obstacle.move.ObstacleMoveKnightRule;
+import mobi.mpk.chessandroid.model.rules.rule.obstacle.move.ObstacleMoveLineRule;
+import mobi.mpk.chessandroid.model.rules.rule.obstacle.move.ObstacleMovePawnRule;
+import mobi.mpk.chessandroid.model.rules.rule.obstacle.move.ObstacleMoveRule;
+import mobi.mpk.chessandroid.model.rules.rule.order.figure.ClassicOrderFigureRule;
+import mobi.mpk.chessandroid.model.rules.rule.order.figure.OrderFigureRule;
+import mobi.mpk.chessandroid.model.rules.rule.possiblemove.ClassicPossibleMoveRule;
+import mobi.mpk.chessandroid.model.rules.rule.possiblemove.PossibleMoveRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokeBishopRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokeFigureRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokeKingRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokeKnightRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokePawnRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokeQueenRule;
+import mobi.mpk.chessandroid.model.rules.rule.stoke.figure.StrokeRookRule;
+import mobi.mpk.chessandroid.type.Color;
+
 public class ClassicInspectorRules implements InspectorRules {
 
     List<StrokeFigureRule> strokeFigureRules;

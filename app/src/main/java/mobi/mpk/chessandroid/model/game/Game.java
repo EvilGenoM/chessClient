@@ -1,19 +1,19 @@
 package mobi.mpk.chessandroid.model.game;
 
 
-import mobi.mpk.chessServerSpring.User;
-import mobi.mpk.chessServerSpring.domain.Board;
-import mobi.mpk.chessServerSpring.domain.Color;
-import mobi.mpk.chessServerSpring.domain.Player;
-import mobi.mpk.chessServerSpring.domain.ResultStroke;
-import mobi.mpk.chessServerSpring.domain.exception.CellCorrectException;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-import mobi.mpk.chessServerSpring.domain.rules.InspectorRules;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
+import mobi.mpk.chessandroid.model.Board;
+import mobi.mpk.chessandroid.model.Player;
+import mobi.mpk.chessandroid.model.ResultStroke;
+import mobi.mpk.chessandroid.model.User;
+import mobi.mpk.chessandroid.model.exception.CellCorrectException;
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.type.Color;
+
 public abstract class Game {
+
+    public static final String TO = "to";
 
     private Player player1;
     private Player player2;
@@ -27,7 +27,7 @@ public abstract class Game {
         this.player1 = new Player(user1);
         this.player2 = new Player(user2);
 
-        this.name = user1.getName()+"to"+user2.getName();
+        this.name = user1.getName()+ TO +user2.getName();
 
         this.player1.setColorFigures(Color.white);
         this.player2.setColorFigures(Color.black);

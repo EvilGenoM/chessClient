@@ -1,8 +1,8 @@
 package mobi.mpk.chessandroid.model;
 
 
-import mobi.mpk.chessServerSpring.domain.exception.CellCorrectException;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
+import mobi.mpk.chessandroid.model.exception.CellCorrectException;
+import mobi.mpk.chessandroid.model.figure.Figure;
 
 public class Cell {
 

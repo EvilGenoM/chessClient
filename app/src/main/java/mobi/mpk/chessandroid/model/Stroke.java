@@ -1,12 +1,12 @@
 package mobi.mpk.chessandroid.model;
 
 
-import mobi.mpk.chessServerSpring.domain.exception.CellCorrectException;
-import mobi.mpk.chessServerSpring.domain.exception.FigureNotFindException;
-import mobi.mpk.chessServerSpring.domain.exception.StrokeCorrectException;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-
 import java.util.Date;
+
+import mobi.mpk.chessandroid.model.exception.CellCorrectException;
+import mobi.mpk.chessandroid.model.exception.FigureNotFindException;
+import mobi.mpk.chessandroid.model.exception.StrokeCorrectException;
+import mobi.mpk.chessandroid.model.figure.Figure;
 
 public class Stroke {
 

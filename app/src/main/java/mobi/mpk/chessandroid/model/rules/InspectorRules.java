@@ -1,19 +1,16 @@
 package mobi.mpk.chessandroid.model.rules;
 
-import mobi.mpk.chessServerSpring.domain.Board;
-import mobi.mpk.chessServerSpring.domain.Color;
-import mobi.mpk.chessServerSpring.domain.Stroke;
-import mobi.mpk.chessServerSpring.domain.figure.Figure;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+import mobi.mpk.chessandroid.model.Board;
+import mobi.mpk.chessandroid.model.Stroke;
+import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.type.Color;
+
 public interface InspectorRules {
 
-    void checkMoveRules(Board board, Stroke stroke, Color colorPlayer) throws Exception;
+    void checkMoveRules(Board board, Stroke stroke, Color color) throws Exception;
 
     List<Figure> getOrderFigure(Color color);
 

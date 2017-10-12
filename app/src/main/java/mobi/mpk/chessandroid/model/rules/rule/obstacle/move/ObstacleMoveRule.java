@@ -1,8 +1,8 @@
 package mobi.mpk.chessandroid.model.rules.rule.obstacle.move;
 
 
-import mobi.mpk.chessServerSpring.domain.Board;
-import mobi.mpk.chessServerSpring.domain.Stroke;
+import mobi.mpk.chessandroid.model.Board;
+import mobi.mpk.chessandroid.model.Stroke;
 
 public interface ObstacleMoveRule {
 
