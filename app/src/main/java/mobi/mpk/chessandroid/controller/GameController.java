@@ -2,8 +2,11 @@ package mobi.mpk.chessandroid.controller;
 
 import java.util.Map;
 
+import javax.xml.transform.Result;
+
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.Game;
+import mobi.mpk.chessandroid.observer.model.GameData;
 
 /**
  * Created by evgen on 10.10.17.
@@ -12,7 +15,12 @@ import mobi.mpk.chessandroid.model.game.Game;
 public class GameController {
 
     private Game game;
+    private GameData gameData;
     private boolean white = true;
+
+    public GameController(GameData gameData){
+        this.gameData = gameData;
+    }
 
     public boolean checkExistFigure(char x, int y){
 
@@ -33,11 +41,17 @@ public class GameController {
     public void move(String stroke) {
 
         if(white){
-            game.doStroke(new User("One"), stroke);
-            white = false;
+            ResultType result = game.doStroke(new User("One"), stroke);
+            if(result = ResultType.SUCCESS){
+                gameData.setResultGame();
+                white = false;
+            }
         } else {
-            game.doStroke(new User("Two"), stroke);
-            white = true;
+            ResultType result = game.doStroke(new User("Two"), stroke);
+            if(result = ResultType.SUCCESS){
+                gameData.setResultGame();
+                white = true;
+            }
         }
 
     }

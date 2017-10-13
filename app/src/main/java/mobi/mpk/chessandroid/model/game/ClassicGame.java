@@ -6,9 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
-import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.model.Cell;
 import mobi.mpk.chessandroid.model.Player;
 import mobi.mpk.chessandroid.model.ResultStroke;
@@ -23,7 +20,6 @@ import mobi.mpk.chessandroid.model.exception.rule.WayFigureHaveObstaclesExceptio
 import mobi.mpk.chessandroid.model.figure.Figure;
 import mobi.mpk.chessandroid.model.rules.ClassicInspectorRules;
 import mobi.mpk.chessandroid.model.rules.InspectorRules;
-import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.type.Color;
 
 public class ClassicGame extends Game {
@@ -32,15 +28,11 @@ public class ClassicGame extends Game {
 
     private InspectorRules inspectorRules;
 
-    @Inject
-    GameData gameData;
-
     public ClassicGame(User user1, User user2) {
 
         super(user1, user2);
         inspectorRules = new ClassicInspectorRules();
         initBoard();
-        App.getComponent().inject(this);
 
     }
 
@@ -103,7 +95,6 @@ public class ClassicGame extends Game {
 
                 player.move(stroke, getBoard(), inspectorRules);
                 nextStroke();
-                gameData.setResultGame();
                 return new ResultStroke("Success move", true);
 
             } else {
