@@ -121,7 +121,10 @@ public class ClassicGame extends Game {
 
     private Player getPlayer(User user) {
 
-        if(getPlayer1().getUser().equals(user)){
+        User user1 = getPlayer1().getUser();
+        String name = user1.getName();
+
+        if(name.equals(user.getName())){
 
             return getPlayer1();
 
@@ -190,13 +193,6 @@ public class ClassicGame extends Game {
         }
 
         return figureData;
-    }
-
-    @Override
-    public void moveFigure() {
-        Cell cell = getBoard().getCell('a', 1);
-        Cell cell2 = getBoard().getCell('d', 5);
-        cell2.setFigure(cell.getFigure());
     }
 
 }

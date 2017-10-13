@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.controller;
 
 import java.util.Map;
 
+import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.Game;
 
 /**
@@ -11,6 +12,7 @@ import mobi.mpk.chessandroid.model.game.Game;
 public class GameController {
 
     private Game game;
+    private boolean white = true;
 
     public boolean checkExistFigure(char x, int y){
 
@@ -28,9 +30,16 @@ public class GameController {
         this.game = game;
     }
 
-    public void moveFigure() {
+    public void move(String stroke) {
 
-        game.moveFigure();
+        if(white){
+            game.doStroke(new User("One"), stroke);
+            white = false;
+        } else {
+            game.doStroke(new User("Two"), stroke);
+            white = true;
+        }
 
     }
+
 }

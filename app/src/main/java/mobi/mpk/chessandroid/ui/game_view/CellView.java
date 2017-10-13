@@ -4,11 +4,11 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
-import mobi.mpk.chessandroid.ui.MainActivity;
 
 
 public class CellView {
@@ -30,7 +30,7 @@ public class CellView {
         this.x = x;
         this.y = y;
         this.size = size;
-        MainActivity.getComponent().inject(this);
+        App.getComponent().inject(this);
         identifyColor();
         onDraw();
     }
@@ -40,7 +40,7 @@ public class CellView {
         int x = (this.x / size) + 1;
         int y = (this.y / size) + 1;
 
-        if ((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)){
+        if ((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)) {
             color = Color.white;
         } else {
             color = Color.black;
@@ -91,8 +91,27 @@ public class CellView {
     }
 
     private int identifyYtoCell() {
-        int y = 8 - (this.y/size);
+        int y = 8 - (this.y / size);
         return y;
+    }
+
+    public boolean belongsCell(int x, int y) {
+
+        if (this.y < y && (this.y + size) > y && this.x < x && (this.x + size) > x) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public String getCoordinateCell(int x, int y) {
+
+        String coordinateCell = "" + identifyXtoCell();
+        coordinateCell += identifyYtoCell();
+
+        return coordinateCell;
+
     }
 
 }

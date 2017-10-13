@@ -27,7 +27,7 @@ public class BoardView {
 
         int x = 0;
         int y = 0;
-        int size = lengthSide/8;
+        int size = lengthSide / 8;
 
         for (int i = 0; i < AMOUNT_CELL; i++) {
 
@@ -44,12 +44,17 @@ public class BoardView {
     }
 
     public String getCoordinateCell(int x, int y) {
+        String coordinateCell = "";
         for (int i = 0; i < AMOUNT_CELL; i++) {
 
             for (int j = 0; j < AMOUNT_CELL; j++) {
-                cellView[i][j].
+                if (cellView[i][j].belongsCell(x, y)) {
+                    coordinateCell = cellView[i][j].getCoordinateCell(x, y);
+                }
             }
 
         }
+
+        return coordinateCell;
     }
 }

@@ -9,8 +9,8 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
-import mobi.mpk.chessandroid.ui.MainActivity;
 
 public class GameView extends View {
 
@@ -27,8 +27,7 @@ public class GameView extends View {
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        MainActivity.getComponent().inject(this);
-        boardView = new BoardView(lengthSide);
+        App.getComponent().inject(this);
     }
 
     @Override
@@ -39,21 +38,28 @@ public class GameView extends View {
 
         if(event.getAction() == MotionEvent.ACTION_DOWN){
             stroke += boardView.getCoordinateCell(x, y) + " ";
-            stroke.trim();
-            if(stroke.length() == 5){
+            if(stroke.length() == 6){
+                stroke.trim();
                 controller.move(stroke);
+                stroke = "";
+                invalidate();
             }
-            invalidate();
         }
 
-        return true;
+        return super.onTouchEvent(event);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        lengthSide = getMeasuredWidth();
+
+        if(getMeasuredHeight() > getMeasuredWidth()){
+            lengthSide = getMeasuredWidth();
+        } else {
+            lengthSide = getMeasuredHeight();
+        }
         setMeasuredDimension(lengthSide, lengthSide);
+        boardView = new BoardView(lengthSide);
     }
 
     @Override
