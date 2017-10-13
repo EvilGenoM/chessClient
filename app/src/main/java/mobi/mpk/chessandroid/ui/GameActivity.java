@@ -14,8 +14,6 @@ import mobi.mpk.chessandroid.model.game.Game;
 
 public class GameActivity extends AppCompatActivity {
 
-    private Game game;
-
     @Inject
     GameController gameController;
 
@@ -23,9 +21,14 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        game = new ClassicGame(new User("One"), new User("Two"));
         App.getComponent().inject(this);
-        gameController.setGame(game);
+
+        if(!gameController.checkExistGame()){
+
+            Game game = new ClassicGame(new User("One"), new User("Two"));
+            gameController.setGame(game);
+
+        }
 
         setContentView(R.layout.activity_game);
     }

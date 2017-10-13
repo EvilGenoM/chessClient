@@ -42,4 +42,13 @@ public class GameController {
 
     }
 
+    public boolean checkExistGame() {
+
+        if(game == null){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 }
