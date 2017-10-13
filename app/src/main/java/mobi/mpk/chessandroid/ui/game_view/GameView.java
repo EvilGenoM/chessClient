@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.App;
+import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.ui.MainActivity;
 
 public class GameView extends View {
 
@@ -17,9 +19,34 @@ public class GameView extends View {
     @Inject
     Drawer drawer;
 
+    @Inject
+    GameController controller;
+
+    private BoardView boardView;
+    private String stroke = "";
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        App.getComponent().inject(this);
+        MainActivity.getComponent().inject(this);
+        boardView = new BoardView(lengthSide);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+            stroke += boardView.getCoordinateCell(x, y) + " ";
+            stroke.trim();
+            if(stroke.length() == 5){
+                controller.move(stroke);
+            }
+            invalidate();
+        }
+
+        return true;
     }
 
     @Override
@@ -33,7 +60,7 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawer.setCanvas(canvas);
-        BoardView boardView = new BoardView(lengthSide);
+        boardView.onDrawBoard();
     }
 
 }

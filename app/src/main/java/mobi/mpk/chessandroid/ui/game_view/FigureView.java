@@ -2,14 +2,11 @@ package mobi.mpk.chessandroid.ui.game_view;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
+import mobi.mpk.chessandroid.ui.MainActivity;
 
-/**
- * Created by evgen on 10.10.17.
- */
 
 public class FigureView {
 
@@ -30,7 +27,7 @@ public class FigureView {
         this.size = size;
         this.figureType = figureType;
         this.color = color;
-        App.getComponent().inject(this);
+        MainActivity.getComponent().inject(this);
     }
 
     public void onDraw() {

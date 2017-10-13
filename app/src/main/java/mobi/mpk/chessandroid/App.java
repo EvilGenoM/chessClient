@@ -1,6 +1,5 @@
 package mobi.mpk.chessandroid;
 
-
 import android.app.Application;
 
 import mobi.mpk.chessandroid.di.component.AppComponent;
@@ -15,7 +14,6 @@ public class App extends Application{
     public void onCreate(){
         super.onCreate();
         component = buildComponent();
-
     }
 
     protected AppComponent buildComponent() {

@@ -18,9 +18,9 @@ import mobi.mpk.chessandroid.model.exception.rule.FigureCanNotMoveException;
 import mobi.mpk.chessandroid.model.exception.rule.PossibleMoveException;
 import mobi.mpk.chessandroid.model.exception.rule.WayFigureHaveObstaclesException;
 import mobi.mpk.chessandroid.model.figure.Figure;
+import mobi.mpk.chessandroid.model.rules.ClassicInspectorRules;
 import mobi.mpk.chessandroid.model.rules.InspectorRules;
 import mobi.mpk.chessandroid.type.Color;
-import mobi.mpk.chessandroid.type.FigureType;
 
 public class ClassicGame extends Game {
 
@@ -31,6 +31,7 @@ public class ClassicGame extends Game {
     public ClassicGame(User user1, User user2) {
 
         super(user1, user2);
+        inspectorRules = new ClassicInspectorRules();
         initBoard();
 
     }
@@ -175,8 +176,6 @@ public class ClassicGame extends Game {
     public Map<String, Enum> getFigureData(char x, int y) {
 
         Figure figure = null;
-        FigureType figureType;
-        Color color;
 
         Map<String, Enum> figureData = new HashMap<>();
 
@@ -191,6 +190,13 @@ public class ClassicGame extends Game {
         }
 
         return figureData;
+    }
+
+    @Override
+    public void moveFigure() {
+        Cell cell = getBoard().getCell('a', 1);
+        Cell cell2 = getBoard().getCell('d', 5);
+        cell2.setFigure(cell.getFigure());
     }
 
 }

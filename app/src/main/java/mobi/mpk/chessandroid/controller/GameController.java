@@ -28,4 +28,9 @@ public class GameController {
         this.game = game;
     }
 
+    public void moveFigure() {
+
+        game.moveFigure();
+
+    }
 }

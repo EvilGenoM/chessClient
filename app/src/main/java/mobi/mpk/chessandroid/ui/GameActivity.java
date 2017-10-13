@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.model.User;
@@ -22,10 +21,12 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+
         game = new ClassicGame(new User("One"), new User("Two"));
-        App.getComponent().inject(this);
+        MainActivity.getComponent().inject(this);
         gameController.setGame(game);
+
+        setContentView(R.layout.activity_game);
     }
 
 }
