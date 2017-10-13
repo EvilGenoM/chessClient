@@ -8,7 +8,6 @@ import java.util.Map;
 
 import mobi.mpk.chessandroid.model.Cell;
 import mobi.mpk.chessandroid.model.Player;
-import mobi.mpk.chessandroid.model.ResultStroke;
 import mobi.mpk.chessandroid.model.Stroke;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.exception.CellCorrectException;
@@ -21,6 +20,7 @@ import mobi.mpk.chessandroid.model.figure.Figure;
 import mobi.mpk.chessandroid.model.rules.ClassicInspectorRules;
 import mobi.mpk.chessandroid.model.rules.InspectorRules;
 import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.type.ResultType;
 
 public class ClassicGame extends Game {
 
@@ -82,7 +82,7 @@ public class ClassicGame extends Game {
     }
 
     @Override
-    public ResultStroke doStroke(User user, String strokeStr) {
+    public ResultType doStroke(User user, String strokeStr) {
 
         Player player = getPlayer(user);
 
@@ -95,33 +95,36 @@ public class ClassicGame extends Game {
 
                 player.move(stroke, getBoard(), inspectorRules);
                 nextStroke();
-                return new ResultStroke("Success move", true);
+                return ResultType.SUCCESS;
 
             } else {
-                return new ResultStroke("Now is not your move", false);
+                return ResultType.ERROR_NOT_YOU_MOVE;
             }
 
         } catch (CellCorrectException e) {
-            return new ResultStroke("An incorrect cell is entered", false);
+            return ResultType.ERROR_INCORECT_CELL;
         } catch (StrokeCorrectException e) {
-            return new ResultStroke("Incorrect move entered", false);
+            return ResultType.ERROR_INCORECT_MOVE;
         } catch (FigureNotFindException e) {
-            return new ResultStroke("This cell does not have a shape", false);
+            return ResultType.ERROR_CELL_HAVE_NOT_FIGURE;
         } catch (FigureCanNotMoveException e) {
-            return new ResultStroke("The figure does not know how to walk like that", false);
+            return ResultType.ERROR_FIGURE_CAN_NOT_MOVE_THIS;
         } catch (PossibleMoveException e) {
-            return new ResultStroke("This cell does not have your shape", false);
+            return ResultType.ERROR_CELL_HAVE_NOT_YOUR_FIGURE;
         } catch (WayFigureHaveObstaclesException e) {
-            return new ResultStroke("The movement of the figure is prevented by other figures", false);
+            return ResultType.ERROR_OBSTACLES_WAY;
         } catch (Exception e) {
-            return new ResultStroke("Exception", false);
+            return ResultType.ERROR;
         }
 
     }
 
     private Player getPlayer(User user) {
 
-        if(getPlayer1().getUser().equals(user)){
+        User user1 = getPlayer1().getUser();
+        String name = user1.getName();
+
+        if(name.equals(user.getName())){
 
             return getPlayer1();
 
@@ -193,10 +196,15 @@ public class ClassicGame extends Game {
     }
 
     @Override
-    public void moveFigure() {
-        Cell cell = getBoard().getCell('a', 1);
-        Cell cell2 = getBoard().getCell('d', 5);
-        cell2.setFigure(cell.getFigure());
+    public List<String> getListCoordinateCells(String coordinateCell) {
+
+        char letter = coordinateCell.charAt(0);
+        int number = coordinateCell.charAt(1);
+
+        Cell cell = getBoard().getCell(letter, number);
+
+        return null;
+
     }
 
 }

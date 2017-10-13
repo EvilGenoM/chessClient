@@ -13,5 +13,5 @@ public interface InspectorRules {
     void checkMoveRules(Board board, Stroke stroke, Color color) throws Exception;
 
     List<Figure> getOrderFigure(Color color);
-
+    
 }

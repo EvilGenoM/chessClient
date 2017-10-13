@@ -9,26 +9,30 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
-import mobi.mpk.chessandroid.ui.MainActivity;
+import mobi.mpk.chessandroid.observer.Observer;
+import mobi.mpk.chessandroid.observer.model.GameData;
 
-public class GameView extends View {
+public class GameView extends View implements Observer {
 
     private int lengthSide;
 
     @Inject
     Drawer drawer;
-
     @Inject
     GameController controller;
+    @Inject
+    GameData gameData;
 
     private BoardView boardView;
-    private String stroke = "";
+    private String stroke;
+    private boolean secondTouch = false;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        MainActivity.getComponent().inject(this);
-        boardView = new BoardView(lengthSide);
+        App.getComponent().inject(this);
+        gameData.registerObserver(this);
     }
 
     @Override
@@ -38,22 +42,44 @@ public class GameView extends View {
         int y = (int) event.getY();
 
         if(event.getAction() == MotionEvent.ACTION_DOWN){
-            stroke += boardView.getCoordinateCell(x, y) + " ";
-            stroke.trim();
-            if(stroke.length() == 5){
+
+            if(boardView.checkFigure(x, y, controller.getColor())){
+
+                String coordinateCell = boardView.getCoordinateCell(x, y);
+                stroke = coordinateCell;
+
+                secondTouch = true;
+
+                invalidate();
+
+            }else if(secondTouch){
+
+                String coordinateCell = boardView.getCoordinateCell(x, y);
+                stroke += " " + coordinateCell;
+
+                secondTouch = false;
+
                 controller.move(stroke);
+
+                stroke = "";
             }
-            invalidate();
+
         }
 
-        return true;
+        return super.onTouchEvent(event);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        lengthSide = getMeasuredWidth();
+
+        if(getMeasuredHeight() > getMeasuredWidth()){
+            lengthSide = getMeasuredWidth();
+        } else {
+            lengthSide = getMeasuredHeight();
+        }
         setMeasuredDimension(lengthSide, lengthSide);
+        boardView = new BoardView(lengthSide);
     }
 
     @Override
@@ -61,6 +87,15 @@ public class GameView extends View {
         super.onDraw(canvas);
         drawer.setCanvas(canvas);
         boardView.onDrawBoard();
+    }
+
+    @Override
+    public void update() {
+
+        boardView.update();
+
+        invalidate();
+
     }
 
 }

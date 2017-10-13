@@ -6,11 +6,11 @@ import java.util.Map;
 
 import mobi.mpk.chessandroid.model.Board;
 import mobi.mpk.chessandroid.model.Player;
-import mobi.mpk.chessandroid.model.ResultStroke;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.exception.CellCorrectException;
 import mobi.mpk.chessandroid.model.figure.Figure;
 import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.type.ResultType;
 
 public abstract class Game {
 
@@ -45,7 +45,7 @@ public abstract class Game {
 
     public abstract void initBoard();
 
-    public abstract ResultStroke doStroke(User user, String stroke);
+    public abstract ResultType doStroke(User user, String stroke);
 
     public abstract List<Figure> getListFiguresOnBoard();
 
@@ -69,5 +69,6 @@ public abstract class Game {
 
     public abstract Map<String,Enum> getFigureData(char x, int y);
 
-    public abstract void moveFigure();
+    public abstract List<String> getListCoordinateCells(String coordinateCell);
+
 }
