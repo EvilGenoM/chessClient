@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mobi.mpk.chessandroid.GameActivity">
+    tools:context="mobi.mpk.chessandroid.ui.GameActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -31,7 +31,7 @@
         android:textColor="#555"
         android:textSize="30dp" />
 
-    <mobi.mpk.chessandroid.ui.GameView
+    <mobi.mpk.chessandroid.ui.game_view.GameView
         android:id="@+id/GameView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

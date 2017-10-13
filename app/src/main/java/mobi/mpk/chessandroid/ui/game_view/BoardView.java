@@ -1,12 +1,5 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.game_view;
 
-import javax.inject.Inject;
-
-import mobi.mpk.chessandroid.ui.CellView;
-
-/**
- * Created by evgen on 10.10.17.
- */
 
 public class BoardView {
 
@@ -26,10 +19,9 @@ public class BoardView {
         this.top = top;
         this.left = left;
         this.lengthSide = lengthSide;
-        initBoard();
     }
 
-    private void initBoard() {
+    public void onDrawBoard() {
 
         cellView = new CellView[AMOUNT_CELL][AMOUNT_CELL];
 
@@ -51,4 +43,13 @@ public class BoardView {
 
     }
 
+    public String getCoordinateCell(int x, int y) {
+        for (int i = 0; i < AMOUNT_CELL; i++) {
+
+            for (int j = 0; j < AMOUNT_CELL; j++) {
+                cellView[i][j].
+            }
+
+        }
+    }
 }

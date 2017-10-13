@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.game_view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,11 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 
-import mobi.mpk.chessandroid.R;
-
-/**
- * Created by evgen on 10.10.17.
- */
 
 public class Drawer {
 
@@ -19,9 +14,9 @@ public class Drawer {
     private Canvas canvas;
     private Paint paint;
 
-    public Drawer(Context context, Canvas canvas){
-        this.canvas = canvas;
+    public Drawer(Context context){
         this.context = context;
+        this.canvas = new Canvas();
         paint = new Paint();
     }
 
@@ -41,6 +36,10 @@ public class Drawer {
 
         canvas.drawBitmap(bmp, x, y, null);
 
+    }
+
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
     }
 
 }

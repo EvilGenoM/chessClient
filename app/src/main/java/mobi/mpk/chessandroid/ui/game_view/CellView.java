@@ -1,17 +1,15 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.game_view;
 
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
+import mobi.mpk.chessandroid.ui.MainActivity;
 
-/**
- * Created by evgen on 10.10.17.
- */
 
 public class CellView {
 
@@ -32,7 +30,7 @@ public class CellView {
         this.x = x;
         this.y = y;
         this.size = size;
-        GameView.getComponent().inject(this);
+        MainActivity.getComponent().inject(this);
         identifyColor();
         onDraw();
     }
@@ -67,27 +65,24 @@ public class CellView {
 
     private void drawFigure() {
 
-        if (checkExistFigure()) {
+        char x = identifyXtoCell();
+        int y = identifyYtoCell();
+
+        if (controller.checkExistFigure(x, y)) {
 
             Map<String, Enum> figureData = controller.getFigureData(x, y);
-            FigureType figureType = (FigureType) figureData.get("figure");
-            Color figureColor = (Color) figureData.get("color");
+            FigureType figureType = (FigureType) figureData.get("FigureType");
+            Color figureColor = (Color) figureData.get("Color");
 
-            figureView = new FigureView(x, y, size, figureType, figureColor);
+            figureView = new FigureView(this.x, this.y, size, figureType, figureColor);
+            figureView.onDraw();
+
         }
 
     }
 
-    private boolean checkExistFigure() {
-
-        char x = identifyXtoCell();
-        int y = identifyYtoCell();
-
-        return controller.checkExistFigure(x, y);
-    }
-
     private char identifyXtoCell() {
-        int x = (this.x / size) - 1;
+        int x = (this.x / size);
         char letter = 'a';
         for (int i = 0; i < x; i++) {
             letter++;
