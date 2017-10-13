@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.ui.game_view.Drawer;
 
 /**
@@ -20,5 +21,11 @@ public class UtilsModule {
    public Drawer provideDrawer(Context context){
        return new Drawer(context);
    }
+
+    @Provides
+    @Singleton
+    public GameData provideGameData(){
+        return new GameData();
+    }
 
 }

@@ -11,16 +11,19 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.observer.Observer;
+import mobi.mpk.chessandroid.observer.model.GameData;
 
-public class GameView extends View {
+public class GameView extends View implements Observer {
 
     private int lengthSide;
 
     @Inject
     Drawer drawer;
-
     @Inject
     GameController controller;
+    @Inject
+    GameData gameData;
 
     private BoardView boardView;
     private String stroke = "";
@@ -28,6 +31,7 @@ public class GameView extends View {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         App.getComponent().inject(this);
+        gameData.registerObserver(this);
     }
 
     @Override
@@ -42,7 +46,6 @@ public class GameView extends View {
                 stroke.trim();
                 controller.move(stroke);
                 stroke = "";
-                invalidate();
             }
         }
 
@@ -69,4 +72,8 @@ public class GameView extends View {
         boardView.onDrawBoard();
     }
 
+    @Override
+    public void update() {
+        invalidate();
+    }
 }
