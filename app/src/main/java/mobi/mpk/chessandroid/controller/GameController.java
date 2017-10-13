@@ -42,15 +42,15 @@ public class GameController {
         if(white){
             ResultType result = game.doStroke(new User("One"), stroke);
             if(result == ResultType.SUCCESS){
-                gameData.setResultGame();
                 white = false;
             }
+            gameData.setResultGame(result);
         } else {
             ResultType result = game.doStroke(new User("Two"), stroke);
             if(result == ResultType.SUCCESS){
-                gameData.setResultGame();
                 white = true;
             }
+            gameData.setResultGame(result);
         }
 
     }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import mobi.mpk.chessandroid.observer.Observable;
 import mobi.mpk.chessandroid.observer.Observer;
+import mobi.mpk.chessandroid.type.ResultType;
 
 public class GameData implements Observable {
 
@@ -26,13 +27,13 @@ public class GameData implements Observable {
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyObservers(ResultType resultType) {
         for (Observer observer : observers)
-            observer.update();
+            observer.update(resultType);
     }
 
-    public void setResultGame(){
-        notifyObservers();
+    public void setResultGame(ResultType resultType){
+        notifyObservers(resultType);
     }
 
 }

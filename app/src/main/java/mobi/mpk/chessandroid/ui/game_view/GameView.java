@@ -13,6 +13,7 @@ import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.observer.Observer;
 import mobi.mpk.chessandroid.observer.model.GameData;
+import mobi.mpk.chessandroid.type.ResultType;
 
 public class GameView extends View implements Observer {
 
@@ -73,7 +74,12 @@ public class GameView extends View implements Observer {
     }
 
     @Override
-    public void update() {
-        invalidate();
+    public void update(ResultType resultType) {
+
+        if (resultType == ResultType.SUCCESS){
+            invalidate();
+        }
+
     }
+
 }
