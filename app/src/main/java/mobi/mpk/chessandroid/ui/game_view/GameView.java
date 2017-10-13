@@ -13,7 +13,6 @@ import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.observer.Observer;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.type.ResultType;
 
 public class GameView extends View implements Observer {
 
@@ -27,7 +26,8 @@ public class GameView extends View implements Observer {
     GameData gameData;
 
     private BoardView boardView;
-    private String stroke = "";
+    private String stroke;
+    private boolean secondTouch = false;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -42,12 +42,28 @@ public class GameView extends View implements Observer {
         int y = (int) event.getY();
 
         if(event.getAction() == MotionEvent.ACTION_DOWN){
-            stroke += boardView.getCoordinateCell(x, y) + " ";
-            if(stroke.length() == 6){
-                stroke.trim();
+
+            if(boardView.checkFigure(x, y, controller.getColor())){
+
+                String coordinateCell = boardView.getCoordinateCell(x, y);
+                stroke = coordinateCell;
+
+                secondTouch = true;
+
+                invalidate();
+
+            }else if(secondTouch){
+
+                String coordinateCell = boardView.getCoordinateCell(x, y);
+                stroke += " " + coordinateCell;
+
+                secondTouch = false;
+
                 controller.move(stroke);
+
                 stroke = "";
             }
+
         }
 
         return super.onTouchEvent(event);
@@ -74,11 +90,11 @@ public class GameView extends View implements Observer {
     }
 
     @Override
-    public void update(ResultType resultType) {
+    public void update() {
 
-        if (resultType == ResultType.SUCCESS){
-            invalidate();
-        }
+        boardView.update();
+
+        invalidate();
 
     }
 

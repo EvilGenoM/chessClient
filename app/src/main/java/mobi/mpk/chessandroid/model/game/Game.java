@@ -69,4 +69,6 @@ public abstract class Game {
 
     public abstract Map<String,Enum> getFigureData(char x, int y);
 
+    public abstract List<String> getListCoordinateCells(String coordinateCell);
+
 }

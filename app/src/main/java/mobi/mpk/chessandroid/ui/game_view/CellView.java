@@ -20,6 +20,7 @@ public class CellView {
     private Color color;
 
     private FigureView figureView;
+    private boolean onTouch = false;
 
     @Inject
     Drawer drawer;
@@ -32,7 +33,7 @@ public class CellView {
         this.size = size;
         App.getComponent().inject(this);
         identifyColor();
-        onDraw();
+        findFigure();
     }
 
     private void identifyColor() {
@@ -48,7 +49,7 @@ public class CellView {
 
     }
 
-    private void onDraw() {
+    public void onDrawCell() {
 
         int color = 0;
         if (this.color == Color.white) {
@@ -57,13 +58,19 @@ public class CellView {
             color = R.color.blackCell;
         }
 
+        if(onTouch){
+            color = R.color.yellowCell;
+        }
+
         drawer.drawRect(x, y, x + size, y + size, color);
 
-        drawFigure();
+        if(figureView != null){
+            figureView.onDraw();
+        }
 
     }
 
-    private void drawFigure() {
+    private void findFigure() {
 
         char x = identifyXtoCell();
         int y = identifyYtoCell();
@@ -75,7 +82,6 @@ public class CellView {
             Color figureColor = (Color) figureData.get("Color");
 
             figureView = new FigureView(this.x, this.y, size, figureType, figureColor);
-            figureView.onDraw();
 
         }
 
@@ -114,4 +120,14 @@ public class CellView {
 
     }
 
+    public boolean checkFigure(int x, int y, Color color) {
+
+        if(figureView == null || color != figureView.getColor()){
+            return false;
+        } else {
+            onTouch = true;
+            return true;
+        }
+
+    }
 }

@@ -27,13 +27,13 @@ public class GameData implements Observable {
     }
 
     @Override
-    public void notifyObservers(ResultType resultType) {
+    public void notifyObservers() {
         for (Observer observer : observers)
-            observer.update(resultType);
+            observer.update();
     }
 
     public void setResultGame(ResultType resultType){
-        notifyObservers(resultType);
+        notifyObservers();
     }
 
 }

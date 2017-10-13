@@ -195,4 +195,16 @@ public class ClassicGame extends Game {
         return figureData;
     }
 
+    @Override
+    public List<String> getListCoordinateCells(String coordinateCell) {
+
+        char letter = coordinateCell.charAt(0);
+        int number = coordinateCell.charAt(1);
+
+        Cell cell = getBoard().getCell(letter, number);
+
+        return null;
+
+    }
+
 }

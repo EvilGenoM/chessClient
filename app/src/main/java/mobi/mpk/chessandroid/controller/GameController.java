@@ -5,6 +5,7 @@ import java.util.Map;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.Game;
 import mobi.mpk.chessandroid.observer.model.GameData;
+import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.ResultType;
 
 /**
@@ -16,6 +17,7 @@ public class GameController {
     private Game game;
     private GameData gameData;
     private boolean white = true;
+    private Color color = Color.white;
 
     public GameController(GameData gameData){
         this.gameData = gameData;
@@ -43,12 +45,14 @@ public class GameController {
             ResultType result = game.doStroke(new User("One"), stroke);
             if(result == ResultType.SUCCESS){
                 white = false;
+                color = Color.black;
             }
             gameData.setResultGame(result);
         } else {
             ResultType result = game.doStroke(new User("Two"), stroke);
             if(result == ResultType.SUCCESS){
                 white = true;
+                color = Color.white;
             }
             gameData.setResultGame(result);
         }
@@ -63,5 +67,9 @@ public class GameController {
             return true;
         }
 
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
