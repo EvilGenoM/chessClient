@@ -5,14 +5,17 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import mobi.mpk.chessandroid.observer.model.GameData;
+import mobi.mpk.chessandroid.presenter.GamePresenter;
 
 @Module
-public class GameDataModule {
+public class GameModule {
 
     private GameData gameData;
+    private GamePresenter gamePresenter;
 
-    public GameDataModule(){
+    public GameModule(){
         this.gameData = new GameData();
+        this.gamePresenter = new GamePresenter();
     }
 
     @Provides
@@ -21,5 +24,10 @@ public class GameDataModule {
         return gameData;
     }
 
+    @Provides
+    @Singleton
+    public GamePresenter provideGamePresenter() {
+        return gamePresenter;
+    }
 
 }

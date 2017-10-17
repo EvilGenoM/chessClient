@@ -3,8 +3,6 @@ package mobi.mpk.chessandroid.ui.game_view;
 
 import java.util.List;
 
-import mobi.mpk.chessandroid.type.Color;
-
 public class BoardView {
 
     private int AMOUNT_CELL = 8;
@@ -67,7 +65,7 @@ public class BoardView {
 
             for (int j = 0; j < AMOUNT_CELL; j++) {
                 if (cellView[i][j].belongsCell(x, y)) {
-                    coordinateCell = cellView[i][j].getCoordinateCell(x, y);
+                    coordinateCell = cellView[i][j].getCoordinateCell();
                 }
             }
 
@@ -80,29 +78,28 @@ public class BoardView {
         this.listCoordinateCells = listCoordinateCells;
     }
 
-    public boolean checkFigure(int x, int y, Color color) {
-
-        boolean checkFigure = false;
-
-        update();
-
-        for (int i = 0; i < AMOUNT_CELL; i++) {
-
-            for (int j = 0; j < AMOUNT_CELL; j++) {
-                if (cellView[i][j].belongsCell(x, y)) {
-                    checkFigure = cellView[i][j].checkFigure(x, y, color);
-                }
-            }
-
-        }
-
-        return checkFigure;
-    }
-
     public void update() {
 
         initBoard();
 
     }
 
+    public void setHighLightCell(String coordinateCell) {
+
+        for (int i = 0; i < AMOUNT_CELL; i++) {
+
+            for (int j = 0; j < AMOUNT_CELL; j++) {
+                String coordCell = cellView[i][j].getCoordinateCell();
+
+                if(coordCell.equals(coordinateCell)){
+
+                    cellView[i][j].setHeighLight();
+
+                }
+
+            }
+
+        }
+
+    }
 }

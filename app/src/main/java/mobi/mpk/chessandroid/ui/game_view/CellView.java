@@ -20,7 +20,7 @@ public class CellView {
     private Color color;
 
     private FigureView figureView;
-    private boolean onTouch = false;
+    private boolean isHeighLight = false;
 
     @Inject
     Drawer drawer;
@@ -58,7 +58,7 @@ public class CellView {
             color = R.color.blackCell;
         }
 
-        if(onTouch){
+        if(isHeighLight){
             color = R.color.yellowCell;
         }
 
@@ -111,7 +111,7 @@ public class CellView {
 
     }
 
-    public String getCoordinateCell(int x, int y) {
+    public String getCoordinateCell() {
 
         String coordinateCell = "" + identifyXtoCell();
         coordinateCell += identifyYtoCell();
@@ -120,14 +120,9 @@ public class CellView {
 
     }
 
-    public boolean checkFigure(int x, int y, Color color) {
+    public void setHeighLight() {
 
-        if(figureView == null || color != figureView.getColor()){
-            return false;
-        } else {
-            onTouch = true;
-            return true;
-        }
+        this.isHeighLight = true;
 
     }
 }

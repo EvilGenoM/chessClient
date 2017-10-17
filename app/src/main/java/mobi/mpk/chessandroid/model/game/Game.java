@@ -67,6 +67,8 @@ public abstract class Game {
 
     public abstract boolean checkExistFigure(char x, int y);
 
+    public abstract boolean checkExistFigure(char x, int y, Color color);
+
     public abstract Map<String,Enum> getFigureData(char x, int y);
 
     public abstract List<String> getListCoordinateCells(String coordinateCell);

@@ -176,6 +176,22 @@ public class ClassicGame extends Game {
     }
 
     @Override
+    public boolean checkExistFigure(char x, int y, Color color) {
+
+        boolean checkFigure = false;
+
+        Cell cell = getBoard().getCell(x, y);
+        if(cell != null){
+            Figure figure = cell.getFigure();
+            if(figure != null && figure.getColor() == color){
+                checkFigure = true;
+            }
+        }
+
+        return checkFigure;
+    }
+
+    @Override
     public Map<String, Enum> getFigureData(char x, int y) {
 
         Figure figure = null;

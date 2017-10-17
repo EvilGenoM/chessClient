@@ -13,26 +13,26 @@ import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.observer.Observer;
 import mobi.mpk.chessandroid.observer.model.GameData;
+import mobi.mpk.chessandroid.presenter.GamePresenter;
 
 public class GameView extends View implements Observer {
-
-    private int lengthSide;
 
     @Inject
     Drawer drawer;
     @Inject
     GameController controller;
     @Inject
+    GamePresenter gamePresenter;
+    @Inject
     GameData gameData;
 
     private BoardView boardView;
-    private String stroke;
-    private boolean secondTouch = false;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         App.getComponent().inject(this);
         gameData.registerObserver(this);
+        gamePresenter.setGameView(this);
     }
 
     @Override
@@ -41,28 +41,11 @@ public class GameView extends View implements Observer {
         int x = (int) event.getX();
         int y = (int) event.getY();
 
-        if(event.getAction() == MotionEvent.ACTION_DOWN){
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-            if(boardView.checkFigure(x, y, controller.getColor())){
+            String coordinateCell = boardView.getCoordinateCell(x, y);
 
-                String coordinateCell = boardView.getCoordinateCell(x, y);
-                stroke = coordinateCell;
-
-                secondTouch = true;
-
-                invalidate();
-
-            }else if(secondTouch){
-
-                String coordinateCell = boardView.getCoordinateCell(x, y);
-                stroke += " " + coordinateCell;
-
-                secondTouch = false;
-
-                controller.move(stroke);
-
-                stroke = "";
-            }
+            controller.handleStroke(coordinateCell);
 
         }
 
@@ -73,11 +56,14 @@ public class GameView extends View implements Observer {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if(getMeasuredHeight() > getMeasuredWidth()){
+        int lengthSide;
+
+        if (getMeasuredHeight() > getMeasuredWidth()) {
             lengthSide = getMeasuredWidth();
         } else {
             lengthSide = getMeasuredHeight();
         }
+
         setMeasuredDimension(lengthSide, lengthSide);
         boardView = new BoardView(lengthSide);
     }
@@ -95,6 +81,12 @@ public class GameView extends View implements Observer {
         boardView.update();
 
         invalidate();
+
+    }
+
+    public void setHighlightCell(String coordinateCell) {
+
+        boardView.setHighLightCell(coordinateCell);
 
     }
 
