@@ -3,9 +3,9 @@ package mobi.mpk.chessandroid.ui.game_view;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
-import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
+import mobi.mpk.chessandroid.ui.Settings;
 
 
 public class FigureView {
@@ -20,6 +20,8 @@ public class FigureView {
 
     @Inject
     Drawer drawer;
+    @Inject
+    Settings settings;
 
     public FigureView(int x, int y, int size, FigureType figureType, Color color) {
         this.x = x;
@@ -34,39 +36,39 @@ public class FigureView {
 
         if (figureType == FigureType.KING) {
             if (color == Color.white) {
-                drawer.drawBitmap(R.drawable.white_king, x, y, size);
+                drawer.drawBitmap(settings.getWhiteKing(), x, y, size);
             } else {
-                drawer.drawBitmap(R.drawable.black_king, x, y, size);
+                drawer.drawBitmap(settings.getBlackKing(), x, y, size);
             }
         } else if (figureType == FigureType.QUEEN) {
             if (color == Color.white) {
-                drawer.drawBitmap(R.drawable.white_queen, x, y, size);
+                drawer.drawBitmap(settings.getWhiteQueen(), x, y, size);
             } else {
-                drawer.drawBitmap(R.drawable.black_queen, x, y, size);
+                drawer.drawBitmap(settings.getBlackQueen(), x, y, size);
             }
         } else if (figureType == FigureType.BISHOP) {
             if (color == Color.white) {
-                drawer.drawBitmap(R.drawable.white_bishop, x, y, size);
+                drawer.drawBitmap(settings.getWhiteBishop(), x, y, size);
             } else {
-                drawer.drawBitmap(R.drawable.black_bishop, x, y, size);
+                drawer.drawBitmap(settings.getBlackBishop(), x, y, size);
             }
         } else if (figureType == FigureType.KNIGHT) {
             if (color == Color.white) {
-                drawer.drawBitmap(R.drawable.white_knight, x, y, size);
+                drawer.drawBitmap(settings.getWhiteKnight(), x, y, size);
             } else {
-                drawer.drawBitmap(R.drawable.black_knight, x, y, size);
+                drawer.drawBitmap(settings.getBlackKnight(), x, y, size);
             }
         } else if (figureType == FigureType.ROOK) {
             if (color == Color.white) {
-                drawer.drawBitmap(R.drawable.white_rook, x, y, size);
+                drawer.drawBitmap(settings.getWhiteRook(), x, y, size);
             } else {
-                drawer.drawBitmap(R.drawable.black_rook, x, y, size);
+                drawer.drawBitmap(settings.getBlackRook(), x, y, size);
             }
         } else {
             if (color == Color.white) {
-                drawer.drawBitmap(R.drawable.white_pawn, x, y, size);
+                drawer.drawBitmap(settings.getWhitePawn(), x, y, size);
             } else {
-                drawer.drawBitmap(R.drawable.black_pawn, x, y, size);
+                drawer.drawBitmap(settings.getBlackPawn(), x, y, size);
             }
         }
 

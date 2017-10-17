@@ -9,6 +9,7 @@ import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
+import mobi.mpk.chessandroid.ui.Settings;
 
 
 public class CellView {
@@ -26,6 +27,8 @@ public class CellView {
     Drawer drawer;
     @Inject
     GameController controller;
+    @Inject
+    Settings settings;
 
     public CellView(int x, int y, int size) {
         this.x = x;
@@ -53,9 +56,9 @@ public class CellView {
 
         int color = 0;
         if (this.color == Color.white) {
-            color = R.color.whiteCell;
+            color = settings.getWhiteCell();
         } else {
-            color = R.color.blackCell;
+            color = settings.getBlackCell();
         }
 
         if(isHeighLight){

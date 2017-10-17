@@ -6,16 +6,19 @@ import dagger.Module;
 import dagger.Provides;
 import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.GamePresenter;
+import mobi.mpk.chessandroid.ui.Settings;
 
 @Module
 public class GameModule {
 
-    private GameData gameData;
-    private GamePresenter gamePresenter;
+    private final Settings settings;
+    private final GameData gameData;
+    private final GamePresenter gamePresenter;
 
     public GameModule(){
         this.gameData = new GameData();
         this.gamePresenter = new GamePresenter();
+        this.settings = new Settings();
     }
 
     @Provides
@@ -28,6 +31,12 @@ public class GameModule {
     @Singleton
     public GamePresenter provideGamePresenter() {
         return gamePresenter;
+    }
+
+    @Provides
+    @Singleton
+    public Settings provideSettings() {
+        return settings;
     }
 
 }
