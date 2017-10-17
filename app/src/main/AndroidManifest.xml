@@ -3,10 +3,10 @@
     package="mobi.mpk.chessandroid">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.GameActivity"></activity>
+        <activity android:name=".ui.GameActivity" />
+        <activity android:name=".ui.SettingsActivity" />
+        <activity android:name=".ui.settings.LanguageSettingsActivity"></activity>
     </application>
 
 </manifest>

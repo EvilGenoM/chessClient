@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ChessAndroid</string>
+    <string-array name="options">
+        <item>Language</item>
+        <item>Game</item>
+        <item>Board</item>
+    </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Русский</item>
+    </string-array>
 </resources>
