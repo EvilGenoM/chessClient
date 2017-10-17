@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import mobi.mpk.chessandroid.R;
+import mobi.mpk.chessandroid.ui.settings.LanguageSettingsActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -21,9 +22,14 @@ public class SettingsActivity extends AppCompatActivity {
 
                 if(position == 0) {
 
-                    Intent intent = new Intent(this, LanguageSettings.class);
-                    intent.start();
+                    Intent intent = new Intent(SettingsActivity.this, LanguageSettingsActivity.class);
+                    startActivity(intent);
                     
+                } else if (position == 1) {
+
+                    Intent intent = new Intent(SettingsActivity.this, GameSettingsActivity.class);
+                    startActivity(intent);
+
                 }
 
             }
