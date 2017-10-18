@@ -25,4 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickSettings(View view){
+
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+
+    }
+
 }

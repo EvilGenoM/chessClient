@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f1f1f1"
     tools:context="mobi.mpk.chessandroid.ui.GameSettingsActivity">
 
     <Switch
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Board coordinate (A-H) (1-8)"
         android:textSize="20dp"
+        android:textColor="#000"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_alignBaseline="@+id/switch1"
@@ -44,6 +46,7 @@
         android:layout_height="wrap_content"
         android:text="Dragen drop"
         android:textSize="20dp"
+        android:textColor="#000"
         android:layout_marginTop="21dp"
         android:layout_below="@+id/switch1"
         android:layout_alignLeft="@+id/textView5"

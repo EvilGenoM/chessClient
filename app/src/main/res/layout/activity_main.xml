@@ -28,13 +28,23 @@
         android:layout_marginTop="20dp"/>
 
     <Button
+        android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Random Game"
         android:onClick="onClickStartGame"
         android:layout_below="@id/TextWelcomeChess"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:onClick="onClickSettings"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/buttonStartGame"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

@@ -4,6 +4,7 @@
         <item>Language</item>
         <item>Game</item>
         <item>Board</item>
+        <item>Sounds</item>
     </string-array>
     <string-array name="languages">
         <item>English</item>
