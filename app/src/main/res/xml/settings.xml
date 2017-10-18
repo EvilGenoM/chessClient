@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:key="setting_language"
+        android:title="Language"
+        android:summary="Установить язык">
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:key="setting_game"
+        android:title="Game"
+        android:summary="Настроить игру">
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:key="setting_board"
+        android:title="Board"
+        android:summary="Настроить доску">
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:key="setting_sounds"
+        android:title="Sounds"
+        android:summary="Настроить звуки">
+
+        <SwitchPreference
+            android:key="glad"
+            android:summaryOff="Вы уверены, что не будете гладить кота?"
+            android:summaryOn="Гладить кота?"
+            android:switchTextOff="Нет"
+            android:switchTextOn="Да" />
+
+    </PreferenceScreen>
+
+
+</PreferenceScreen>
