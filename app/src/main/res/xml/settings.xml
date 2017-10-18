@@ -8,12 +8,22 @@
 
     </PreferenceScreen>
 
-    <PreferenceScreen
+    <PreferenceCategory
         android:key="setting_game"
-        android:title="Game"
-        android:summary="Настроить игру">
+        android:title="Game display">
 
-    </PreferenceScreen>
+        <SwitchPreference
+            android:key="board_coordinates"
+            android:summary="Board coordinates (A-H, 1-8)"
+            android:defaultValue="true"/>
+
+
+        <SwitchPreference
+            android:key="dragon_drop"
+            android:summary="Dragon drop"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
 
     <PreferenceScreen
         android:key="setting_board"
@@ -23,18 +33,22 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="setting_board"
+        android:title="Pieces"
+        android:summary="Настроить фигуры">
+
+    </PreferenceScreen>
+
+    <PreferenceCategory
         android:key="setting_sounds"
-        android:title="Sounds"
-        android:summary="Настроить звуки">
+        android:title="Sounds">
 
         <SwitchPreference
             android:key="glad"
-            android:summaryOff="Вы уверены, что не будете гладить кота?"
-            android:summaryOn="Гладить кота?"
-            android:switchTextOff="Нет"
-            android:switchTextOn="Да" />
+            android:summary="Включить звук?"
+            android:defaultValue="true"/>
 
-    </PreferenceScreen>
+    </PreferenceCategory>
 
 
 </PreferenceScreen>
