@@ -1,10 +1,9 @@
 package mobi.mpk.chessandroid.ui.game_view;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 
 
@@ -29,12 +28,16 @@ public class Drawer {
 
     }
 
-    public void drawBitmap(int adressBitmap, int x, int y, int size){
+    public void drawBitmap(int adress, int x, int y, int size){
 
-        Bitmap bmpFull = BitmapFactory.decodeResource(context.getResources(), adressBitmap);
+        Drawable draw = context.getResources().getDrawable(adress);
+        draw.setBounds(x, y, x+size, y+size);
+        draw.draw(canvas);
+
+        /*Bitmap bmpFull = BitmapFactory.decodeResource(context.getResources(), adressBitmap);
         Bitmap bmp = Bitmap.createScaledBitmap(bmpFull, size, size, false);
 
-        canvas.drawBitmap(bmp, x, y, null);
+        canvas.drawBitmap(bmp, x, y, null);*/
 
     }
 

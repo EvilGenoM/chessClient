@@ -36,7 +36,11 @@ public class CellView {
         this.size = size;
         App.getComponent().inject(this);
         identifyColor();
-        findFigure();
+
+        if(controller.getGame() != null){
+            findFigure();
+        }
+
     }
 
     private void identifyColor() {

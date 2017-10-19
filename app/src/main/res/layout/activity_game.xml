@@ -7,6 +7,16 @@
     android:background="#f1f1f1"
     tools:context="mobi.mpk.chessandroid.ui.GameActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#333"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingTop="@dimen/tool_bar_top_padding"
+        android:transitionName="actionBar" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -15,7 +25,8 @@
         android:layout_marginLeft="20dp"
         android:text="Player1"
         android:textSize="30dp"
-        android:textColor="#555"/>
+        android:textColor="#555"
+        android:layout_below="@+id/toolbar_game"/>
 
     <TextView
         android:id="@+id/textView3"
