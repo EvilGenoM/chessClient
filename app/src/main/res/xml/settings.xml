@@ -25,19 +25,23 @@
 
     </PreferenceCategory>
 
-    <PreferenceScreen
-        android:key="setting_board"
+    <ListPreference
+        android:key="settings_board"
         android:title="Board"
-        android:summary="Настроить доску">
+        android:entries="@array/settings_board"
+        android:entryValues="@array/listValues"
+        android:defaultValue="@string/settings_classic_pieces">
 
-    </PreferenceScreen>
+    </ListPreference>
 
-    <PreferenceScreen
-        android:key="setting_board"
+    <ListPreference
+        android:key="settings_pieces"
         android:title="Pieces"
-        android:summary="Настроить фигуры">
+        android:entries="@array/settings_pieces"
+        android:entryValues="@array/listValues"
+        android:defaultValue="@string/settings_classic_pieces">
 
-    </PreferenceScreen>
+    </ListPreference>
 
     <PreferenceCategory
         android:key="setting_sounds"

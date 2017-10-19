@@ -19,7 +19,6 @@
         </activity>
         <activity android:name=".ui.GameActivity" />
         <activity android:name=".ui.SettingsActivity" />
-        <activity android:name=".ui.GameSettingsActivity"></activity>
     </application>
 
 </manifest>

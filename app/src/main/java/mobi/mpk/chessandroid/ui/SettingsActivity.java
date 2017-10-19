@@ -1,11 +1,11 @@
 package mobi.mpk.chessandroid.ui;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import android.preference.PreferenceScreen;
 
 import mobi.mpk.chessandroid.R;
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends android.preference.PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +13,8 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.settings);
+
+        PreferenceScreen preference = (PreferenceScreen) findPreference("setting_pieces");
         
     }
 
