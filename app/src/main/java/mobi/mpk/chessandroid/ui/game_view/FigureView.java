@@ -86,4 +86,5 @@ public class FigureView {
     public Color getColor() {
         return color;
     }
+
 }

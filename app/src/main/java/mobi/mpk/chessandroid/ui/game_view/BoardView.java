@@ -132,7 +132,9 @@ public class BoardView {
 
             for (int j = 0; j < AMOUNT_CELL; j++) {
                 if (cellView[i][j].belongsCell(onTouchX, onTouchY)) {
-                    cellView[i][j].onDrawFigureThisCoordinate(x, y);
+                    cellView[i][j].onDrawFigureThisCoordinate(x-40, y-140);
+                    String coord = getCoordinateCell(x, y-70);
+                    setHighLightCell(coord);
                 }
             }
 

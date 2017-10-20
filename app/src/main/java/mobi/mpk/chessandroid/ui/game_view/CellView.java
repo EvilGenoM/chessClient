@@ -67,6 +67,7 @@ public class CellView {
 
         if(isHeighLight){
             color = R.color.yellowCell;
+            isHeighLight = false;
         }
 
         drawer.drawRect(x, y, x + size, y + size, color);
@@ -145,7 +146,7 @@ public class CellView {
 
     public void onDrawFigureThisCoordinate(int x, int y) {
         if(figureView != null){
-            figureView.setLocation(x-40, y-140, size+40);
+            figureView.setLocation(x, y, size+40);
         }
     }
 
