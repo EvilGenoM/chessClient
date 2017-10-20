@@ -52,6 +52,15 @@ public class GameController {
 
     }
 
+    public boolean checkExistFigure(String cordinate) {
+
+        char x = cordinate.charAt(0);
+        int y = Character.digit(cordinate.charAt(1), 10);
+
+        return game.checkExistFigure(x, y);
+
+    }
+
     public Map<String, Enum> getFigureData(char x, int y) {
 
         return game.getFigureData(x, y);

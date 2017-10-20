@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.ui.game_view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -26,7 +27,8 @@ public class GameView extends View implements Observer {
     @Inject
     GameData gameData;
 
-    private boolean onTouch = false;
+    private boolean onTouchMove = false;
+    private boolean onTouchDown = false;
     private int onTouchX;
     private int onTouchY;
 
@@ -50,18 +52,33 @@ public class GameView extends View implements Observer {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 coordinateCell = boardView.getCoordinateCell(x, y);
-                boardView.highlightFigure(x, y);
-                onTouch = true;
-                onTouchX = x;
-                onTouchY = y;
+                controller.handleStroke(coordinateCell);
+                if(controller.checkExistFigure(coordinateCell)){
+                    onTouchX = x;
+                    onTouchY = y;
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            if(onTouchMove){
+                                onTouchDown = true;
+                            }
+                        }
+                    }, 1000);
+                }
                 invalidate();
                 return true;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                update();
+                if(onTouchMove == true){
+                    coordinateCell = boardView.getCoordinateCell(x, y);
+                    controller.handleStroke(coordinateCell);
+                    onTouchMove = false;
+                }
+                onTouchDown = false;
                 return true;
             case MotionEvent.ACTION_MOVE:
-                if(onTouch){
+                onTouchMove = true;
+                if(onTouchDown) {
                     boardView.moveFigure(onTouchX, onTouchY, x, y);
                     invalidate();
                 }
