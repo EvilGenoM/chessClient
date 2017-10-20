@@ -26,6 +26,10 @@ public class GameView extends View implements Observer {
     @Inject
     GameData gameData;
 
+    private boolean onTouch = false;
+    private int onTouchX;
+    private int onTouchY;
+
     private BoardView boardView;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -47,6 +51,9 @@ public class GameView extends View implements Observer {
             case MotionEvent.ACTION_DOWN:
                 coordinateCell = boardView.getCoordinateCell(x, y);
                 boardView.highlightFigure(x, y);
+                onTouch = true;
+                onTouchX = x;
+                onTouchY = y;
                 invalidate();
                 return true;
             case MotionEvent.ACTION_CANCEL:
@@ -54,7 +61,10 @@ public class GameView extends View implements Observer {
                 update();
                 return true;
             case MotionEvent.ACTION_MOVE:
-
+                if(onTouch){
+                    boardView.moveFigure(onTouchX, onTouchY, x, y);
+                    invalidate();
+                }
                 return true;
         }
 

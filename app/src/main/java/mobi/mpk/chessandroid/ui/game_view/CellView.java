@@ -143,4 +143,10 @@ public class CellView {
 
     }
 
+    public void onDrawFigureThisCoordinate(int x, int y) {
+        if(figureView != null){
+            figureView.setLocation(x-40, y-140, size+40);
+        }
+    }
+
 }

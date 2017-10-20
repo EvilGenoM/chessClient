@@ -125,4 +125,18 @@ public class BoardView {
         }
 
     }
+
+    public void moveFigure(int onTouchX, int onTouchY, int x, int y) {
+
+        for (int i = 0; i < AMOUNT_CELL; i++) {
+
+            for (int j = 0; j < AMOUNT_CELL; j++) {
+                if (cellView[i][j].belongsCell(onTouchX, onTouchY)) {
+                    cellView[i][j].onDrawFigureThisCoordinate(x, y);
+                }
+            }
+
+        }
+
+    }
 }
