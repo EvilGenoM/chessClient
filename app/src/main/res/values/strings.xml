@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChessAndroid</string>
+    <string name="app_name">ChessMPK</string>
     <string name="settings_classic_pieces">Classic</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_item_home">Home</string>
