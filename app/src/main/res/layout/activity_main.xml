@@ -38,7 +38,7 @@
         android:layout_below="@id/ImageRook"
         android:layout_marginTop="20dp"/>
 
-    <mobi.mpk.chessandroid.ui.StartGameView
+    <mobi.mpk.chessandroid.ui.game_view.StartGameView
         android:id="@+id/StartGameView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.game_view;
 
 
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.view.View;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
+import mobi.mpk.chessandroid.ui.GameActivity;
 import mobi.mpk.chessandroid.ui.game_view.BoardView;
 import mobi.mpk.chessandroid.ui.game_view.Drawer;
 
