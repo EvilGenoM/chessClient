@@ -63,7 +63,7 @@ public class GameView extends View implements Observer {
                                 onTouchDown = true;
                             }
                         }
-                    }, 1000);
+                    }, 500);
                 }
                 invalidate();
                 return true;
