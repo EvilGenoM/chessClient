@@ -57,6 +57,14 @@ public class BoardView {
 
         }
 
+        for (int i = 0; i < AMOUNT_CELL; i++) {
+
+            for (int j = 0; j < AMOUNT_CELL; j++) {
+                cellView[i][j].onDrawFigure();
+            }
+
+        }
+
     }
 
     public String getCoordinateCell(int x, int y) {
@@ -66,6 +74,21 @@ public class BoardView {
             for (int j = 0; j < AMOUNT_CELL; j++) {
                 if (cellView[i][j].belongsCell(x, y)) {
                     coordinateCell = cellView[i][j].getCoordinateCell();
+                }
+            }
+
+        }
+
+        return coordinateCell;
+    }
+
+    public String highlightFigure(int x, int y) {
+        String coordinateCell = "";
+        for (int i = 0; i < AMOUNT_CELL; i++) {
+
+            for (int j = 0; j < AMOUNT_CELL; j++) {
+                if (cellView[i][j].belongsCell(x, y)) {
+                    cellView[i][j].onDrawFigure(x, y);
                 }
             }
 

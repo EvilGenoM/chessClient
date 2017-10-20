@@ -19,6 +19,10 @@ public class Drawer {
         paint = new Paint();
     }
 
+    public Context getContext() {
+        return context;
+    }
+
     public void drawRect(int left, int top, int right, int bottom, int color){
 
         int colorCell = ContextCompat.getColor(context, color);

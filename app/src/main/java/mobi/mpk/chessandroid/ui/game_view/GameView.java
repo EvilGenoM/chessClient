@@ -41,15 +41,24 @@ public class GameView extends View implements Observer {
         int x = (int) event.getX();
         int y = (int) event.getY();
 
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        String coordinateCell = "";
 
-            String coordinateCell = boardView.getCoordinateCell(x, y);
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                coordinateCell = boardView.getCoordinateCell(x, y);
+                boardView.highlightFigure(x, y);
+                invalidate();
+                return true;
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                update();
+                return true;
+            case MotionEvent.ACTION_MOVE:
 
-            controller.handleStroke(coordinateCell);
-
+                return true;
         }
 
-        return super.onTouchEvent(event);
+        return false;
     }
 
     @Override

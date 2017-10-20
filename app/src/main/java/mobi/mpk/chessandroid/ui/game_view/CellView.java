@@ -71,10 +71,20 @@ public class CellView {
 
         drawer.drawRect(x, y, x + size, y + size, color);
 
+    }
+
+    public void onDrawFigure(){
+
         if(figureView != null){
             figureView.onDraw();
         }
 
+    }
+
+    public void onDrawFigure(int x, int y) {
+        if(figureView != null){
+            figureView.setLocation(this.x-20, this.y-20, size+40);
+        }
     }
 
     private void findFigure() {
@@ -88,7 +98,7 @@ public class CellView {
             FigureType figureType = (FigureType) figureData.get("FigureType");
             Color figureColor = (Color) figureData.get("Color");
 
-            figureView = new FigureView(this.x, this.y, size, figureType, figureColor);
+            figureView = new FigureView(figureType, figureColor, this.x, this.y, size);
 
         }
 
@@ -132,4 +142,5 @@ public class CellView {
         this.isHeighLight = true;
 
     }
+
 }

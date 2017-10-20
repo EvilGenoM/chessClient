@@ -13,9 +13,9 @@
         android:title="Game display">
 
         <SwitchPreference
+            android:defaultValue="true"
             android:key="board_coordinates"
-            android:summary="Board coordinates (A-H, 1-8)"
-            android:defaultValue="true"/>
+            android:summary="Board coordinates (A-H, 1-8)" />
 
 
         <SwitchPreference
