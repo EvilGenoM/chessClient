@@ -3,6 +3,7 @@ package mobi.mpk.chessandroid.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import mobi.mpk.chessandroid.R;
@@ -16,11 +17,17 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = new ActionBar(this, toolbar);
+
     }
 
-    public void onClickStartGame(View view){
+    public void onClickSettings(View view){
 
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
 
     }

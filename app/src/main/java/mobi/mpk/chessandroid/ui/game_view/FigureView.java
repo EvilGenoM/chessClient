@@ -23,7 +23,7 @@ public class FigureView {
     @Inject
     Settings settings;
 
-    public FigureView(int x, int y, int size, FigureType figureType, Color color) {
+    public FigureView(FigureType figureType, Color color, int x, int y, int size) {
         this.x = x;
         this.y = y;
         this.size = size;
@@ -31,6 +31,15 @@ public class FigureView {
         this.color = color;
         App.getComponent().inject(this);
     }
+
+    public void setLocation(int x, int y, int size){
+
+        this.x = x;
+        this.y = y;
+        this.size = size;
+
+    }
+
 
     public void onDraw() {
 
@@ -77,4 +86,5 @@ public class FigureView {
     public Color getColor() {
         return color;
     }
+
 }

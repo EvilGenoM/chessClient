@@ -1,9 +1,33 @@
 <resources>
-    <string name="app_name">ChessAndroid</string>
+    <string name="app_name">ChessMPK</string>
+    <string name="settings_classic_pieces">Classic</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_item_home">Home</string>
+    <string name="drawer_item_new_game">New Game</string>
+    <string name="drawer_item_list_players">List Players</string>
+    <string name="drawer_item_settings">Settings</string>
+    <string name="drawer_item_help">Help</string>
+    <string name="drawer_item_exite">Sing out</string>
     <string-array name="options">
         <item>Language</item>
         <item>Game</item>
         <item>Board</item>
+        <item>Sounds</item>
+    </string-array>
+    <string-array name="settings_pieces">
+        <item>Classic</item>
+        <item>Lichess</item>
+        <item>Nice</item>
+    </string-array>
+    <string-array name="settings_board">
+        <item>Classic</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
     <string-array name="languages">
         <item>English</item>

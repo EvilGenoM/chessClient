@@ -6,7 +6,9 @@ import dagger.Component;
 import mobi.mpk.chessandroid.di.module.GameModule;
 import mobi.mpk.chessandroid.di.module.UtilsModule;
 import mobi.mpk.chessandroid.di.module.ViewModule;
+import mobi.mpk.chessandroid.ui.ActionBar;
 import mobi.mpk.chessandroid.ui.GameActivity;
+import mobi.mpk.chessandroid.ui.game_view.StartGameView;
 import mobi.mpk.chessandroid.ui.game_view.CellView;
 import mobi.mpk.chessandroid.ui.game_view.FigureView;
 import mobi.mpk.chessandroid.ui.game_view.GameView;
@@ -22,5 +24,9 @@ public interface AppComponent {
     void inject(GameActivity gameActivity);
 
     void inject(GameView gameView);
+
+    void inject(StartGameView startGameView);
+
+    void inject(ActionBar actionBar);
 
 }

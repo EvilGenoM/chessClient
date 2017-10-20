@@ -93,8 +93,17 @@ public class ClassicGame extends Game {
 
             if (player.getColorFigures() == nowStroke) {
 
+                boolean attack = false;
+                Cell cell = getBoard().getCell(stroke.getTo());
+                if(cell.getFigure() != null && cell.getFigure().getColor() != nowStroke){
+                    attack = true;
+                }
+
                 player.move(stroke, getBoard(), inspectorRules);
                 nextStroke();
+                if (attack) {
+                    return ResultType.ATTACK;
+                }
                 return ResultType.SUCCESS;
 
             } else {

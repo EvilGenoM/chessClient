@@ -1,8 +1,10 @@
 package mobi.mpk.chessandroid.observer;
 
 
+import mobi.mpk.chessandroid.type.ResultType;
+
 public interface Observer {
 
-    void update();
+    void update(ResultType resultType);
 
 }

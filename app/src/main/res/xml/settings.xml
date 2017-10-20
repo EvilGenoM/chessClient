@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:key="setting_language"
+        android:title="Language"
+        android:summary="Установить язык">
+
+    </PreferenceScreen>
+
+    <PreferenceCategory
+        android:key="setting_game"
+        android:title="Game display">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="board_coordinates"
+            android:summary="Board coordinates (A-H, 1-8)" />
+
+
+        <SwitchPreference
+            android:key="dragon_drop"
+            android:summary="Dragon drop"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <ListPreference
+        android:key="settings_board"
+        android:title="Board"
+        android:entries="@array/settings_board"
+        android:entryValues="@array/listValues"
+        android:defaultValue="@string/settings_classic_pieces">
+
+    </ListPreference>
+
+    <ListPreference
+        android:key="settings_pieces"
+        android:title="Pieces"
+        android:entries="@array/settings_pieces"
+        android:entryValues="@array/listValues"
+        android:defaultValue="@string/settings_classic_pieces">
+
+    </ListPreference>
+
+    <PreferenceCategory
+        android:key="setting_sounds"
+        android:title="Sounds">
+
+        <SwitchPreference
+            android:key="glad"
+            android:summary="Включить звук?"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

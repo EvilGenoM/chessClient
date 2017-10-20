@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
 
@@ -31,6 +32,12 @@ public class GameActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_game);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_game);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = new ActionBar(this, toolbar);
     }
 
 }

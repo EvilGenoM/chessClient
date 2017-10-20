@@ -30,6 +30,8 @@ public class GameController {
 
     public void setGame(Game game) {
         this.game = game;
+        white = true;
+        color = Color.white;
     }
 
     public Color getColor() {
@@ -47,6 +49,15 @@ public class GameController {
     }
 
     public boolean checkExistFigure(char x, int y) {
+
+        return game.checkExistFigure(x, y);
+
+    }
+
+    public boolean checkExistFigure(String cordinate) {
+
+        char x = cordinate.charAt(0);
+        int y = Character.digit(cordinate.charAt(1), 10);
 
         return game.checkExistFigure(x, y);
 
@@ -101,4 +112,13 @@ public class GameController {
 
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void update() {
+
+        gamePresenter.update();
+
+    }
 }
