@@ -30,6 +30,8 @@ public class GameController {
 
     public void setGame(Game game) {
         this.game = game;
+        white = true;
+        color = Color.white;
     }
 
     public Color getColor() {
@@ -112,5 +114,11 @@ public class GameController {
 
     public Game getGame() {
         return game;
+    }
+
+    public void update() {
+
+        gamePresenter.update();
+
     }
 }

@@ -7,7 +7,7 @@
     <string name="drawer_item_list_players">List Players</string>
     <string name="drawer_item_settings">Settings</string>
     <string name="drawer_item_help">Help</string>
-    <string name="drawer_item_exite">Exite</string>
+    <string name="drawer_item_exite">Sing out</string>
     <string-array name="options">
         <item>Language</item>
         <item>Game</item>
