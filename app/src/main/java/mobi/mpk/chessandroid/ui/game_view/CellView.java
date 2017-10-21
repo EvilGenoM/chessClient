@@ -37,7 +37,7 @@ public class CellView {
         App.getComponent().inject(this);
         identifyColor();
 
-        if(controller.getGame() != null){
+        if (controller.getGame() != null) {
             findFigure();
         }
 
@@ -65,7 +65,7 @@ public class CellView {
             color = settings.getBlackCell();
         }
 
-        if(isHeighLight){
+        if (isHeighLight) {
             color = R.color.yellowCell;
             isHeighLight = false;
         }
@@ -74,17 +74,17 @@ public class CellView {
 
     }
 
-    public void onDrawFigure(){
+    public void onDrawFigure() {
 
-        if(figureView != null){
+        if (figureView != null) {
             figureView.onDraw();
         }
 
     }
 
     public void onDrawFigure(int x, int y) {
-        if(figureView != null){
-            figureView.setLocation(this.x-20, this.y-20, size+40);
+        if (figureView != null) {
+            figureView.setLocation(this.x - 20, this.y - 20, size + 40);
         }
     }
 
@@ -145,9 +145,20 @@ public class CellView {
     }
 
     public void onDrawFigureThisCoordinate(int x, int y) {
-        if(figureView != null){
-            figureView.setLocation(x, y, size+40);
+        if (figureView != null) {
+            figureView.setLocation(x, y, size + 40);
         }
     }
 
+    public void onDrawNumber(int i) {
+
+        drawer.drawText("" + i, x+size-10, y + size - 5);
+
+    }
+
+    public void onDrawChar(char a) {
+
+        drawer.drawText("" + a, x, y + size - 5);
+
+    }
 }

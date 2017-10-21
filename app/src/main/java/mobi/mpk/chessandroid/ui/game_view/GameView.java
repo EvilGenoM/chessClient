@@ -9,7 +9,6 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -26,6 +25,7 @@ import mobi.mpk.chessandroid.observer.Observer;
 import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.GamePresenter;
 import mobi.mpk.chessandroid.type.ResultType;
+import mobi.mpk.chessandroid.ui.Settings;
 
 public class GameView extends View implements Observer {
 
@@ -37,10 +37,14 @@ public class GameView extends View implements Observer {
     GamePresenter gamePresenter;
     @Inject
     GameData gameData;
+    @Inject
+    Settings settings;
 
     private AssetManager assetManager;
     private SoundPool soundPool;
     private int soundTouchFigure, soundAttack, soundMove;
+
+    private int lengthSide;
 
     private boolean onTouchMove = false;
     private boolean onTouchDown = false;
@@ -87,12 +91,16 @@ public class GameView extends View implements Observer {
 
     private void playSound(int sound) {
         if (sound > 0) {
-            AudioManager audioManager = (AudioManager) drawer.getContext().getSystemService(Context.AUDIO_SERVICE);
-            float curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-            float maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            float leftVolume = curVolume / maxVolume;
-            float rightVolume = curVolume / maxVolume;
-            soundPool.play(sound, leftVolume, rightVolume, 1, 0, 1);
+            float volumeLeft = 0;
+            float volumeRight = 0;
+            if(settings.getVolume()){
+                AudioManager audioManager = (AudioManager) drawer.getContext().getSystemService(Context.AUDIO_SERVICE);
+                float curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                float maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                volumeLeft = curVolume / maxVolume;
+                volumeRight = curVolume / maxVolume;
+            }
+            soundPool.play(sound, volumeLeft, volumeRight, 1, 0, 1);
         }
     }
 
@@ -120,34 +128,39 @@ public class GameView extends View implements Observer {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 coordinateCell = boardView.getCoordinateCell(x, y);
-                controller.handleStroke(coordinateCell);
                 if (controller.checkExistFigure(coordinateCell)) {
                     onTouchX = x;
                     onTouchY = y;
                     playSound(soundTouchFigure);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            if (onTouchMove) {
-                                onTouchDown = true;
-                            }
-                        }
-                    }, 500);
+                    onTouchDown = true;
                 }
+                controller.handleStroke(coordinateCell);
                 invalidate();
                 return true;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (onTouchMove == true) {
+
+                    if (y > 70 && y < lengthSide - 70) {
+                        y = y - 70;
+                    }
+
+                    if (y > lengthSide) {
+                        y = lengthSide - 10;
+                    } else if (y < 0) {
+                        y = 10;
+                    }
+
                     coordinateCell = boardView.getCoordinateCell(x, y);
                     controller.handleStroke(coordinateCell);
                     onTouchMove = false;
+
                 }
                 onTouchDown = false;
                 return true;
             case MotionEvent.ACTION_MOVE:
-                onTouchMove = true;
-                if (onTouchDown) {
+                if ((Math.abs(x - onTouchX) > 10 || Math.abs(y - onTouchY) > 10) && onTouchDown == true && settings.getDragAndDrop()) {
+                    onTouchMove = true;
                     boardView.moveFigure(onTouchX, onTouchY, x, y);
                     invalidate();
                 }
@@ -160,8 +173,6 @@ public class GameView extends View implements Observer {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        int lengthSide;
 
         if (getMeasuredHeight() > getMeasuredWidth()) {
             lengthSide = getMeasuredWidth();
@@ -177,13 +188,17 @@ public class GameView extends View implements Observer {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawer.setCanvas(canvas);
-        boardView.onDrawBoard();
+        if(settings.getCoordinateBoard()){
+            boardView.onDrawBoard(true);
+        } else {
+            boardView.onDrawBoard(false);
+        }
     }
 
     @Override
     public void update(ResultType resultType) {
 
-        if (resultType == ResultType.SUCCESS){
+        if (resultType == ResultType.SUCCESS) {
             playSound(soundMove);
         } else if (resultType == ResultType.ATTACK) {
             playSound(soundAttack);

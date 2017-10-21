@@ -59,7 +59,7 @@ public class GameController {
         char x = cordinate.charAt(0);
         int y = Character.digit(cordinate.charAt(1), 10);
 
-        return game.checkExistFigure(x, y);
+        return game.checkExistFigure(x, y, color);
 
     }
 
@@ -96,14 +96,14 @@ public class GameController {
 
         if (white) {
             ResultType result = game.doStroke(new User("One"), stroke);
-            if (result == ResultType.SUCCESS) {
+            if (result == ResultType.SUCCESS || result == ResultType.ATTACK) {
                 white = false;
                 color = Color.black;
             }
             gameData.setResultGame(result);
         } else {
             ResultType result = game.doStroke(new User("Two"), stroke);
-            if (result == ResultType.SUCCESS) {
+            if (result == ResultType.SUCCESS || result == ResultType.ATTACK) {
                 white = true;
                 color = Color.white;
             }

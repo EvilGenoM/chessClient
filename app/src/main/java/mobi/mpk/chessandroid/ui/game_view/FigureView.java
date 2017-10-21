@@ -43,43 +43,7 @@ public class FigureView {
 
     public void onDraw() {
 
-        if (figureType == FigureType.KING) {
-            if (color == Color.white) {
-                drawer.drawBitmap(settings.getWhiteKing(), x, y, size);
-            } else {
-                drawer.drawBitmap(settings.getBlackKing(), x, y, size);
-            }
-        } else if (figureType == FigureType.QUEEN) {
-            if (color == Color.white) {
-                drawer.drawBitmap(settings.getWhiteQueen(), x, y, size);
-            } else {
-                drawer.drawBitmap(settings.getBlackQueen(), x, y, size);
-            }
-        } else if (figureType == FigureType.BISHOP) {
-            if (color == Color.white) {
-                drawer.drawBitmap(settings.getWhiteBishop(), x, y, size);
-            } else {
-                drawer.drawBitmap(settings.getBlackBishop(), x, y, size);
-            }
-        } else if (figureType == FigureType.KNIGHT) {
-            if (color == Color.white) {
-                drawer.drawBitmap(settings.getWhiteKnight(), x, y, size);
-            } else {
-                drawer.drawBitmap(settings.getBlackKnight(), x, y, size);
-            }
-        } else if (figureType == FigureType.ROOK) {
-            if (color == Color.white) {
-                drawer.drawBitmap(settings.getWhiteRook(), x, y, size);
-            } else {
-                drawer.drawBitmap(settings.getBlackRook(), x, y, size);
-            }
-        } else {
-            if (color == Color.white) {
-                drawer.drawBitmap(settings.getWhitePawn(), x, y, size);
-            } else {
-                drawer.drawBitmap(settings.getBlackPawn(), x, y, size);
-            }
-        }
+        drawer.drawImg(settings.getPiece(figureType, color), x, y, size);
 
     }
 

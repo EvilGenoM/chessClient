@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:text="Player1"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:textColor="#555"
         android:layout_below="@+id/toolbar_game"/>
 
@@ -42,7 +42,7 @@
         android:text="5:00"
         android:background="#fff"
         android:textColor="#555"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
 
     <mobi.mpk.chessandroid.ui.game_view.GameView
         android:id="@+id/GameView"
@@ -60,7 +60,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:text="Player2"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:textColor="#555"
         android:layout_below="@+id/GameView"/>
 
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:text="5:00"
         android:textColor="#555"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignLeft="@+id/textView3"

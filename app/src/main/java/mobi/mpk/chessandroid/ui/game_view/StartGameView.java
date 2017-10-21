@@ -13,8 +13,6 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.ui.GameActivity;
-import mobi.mpk.chessandroid.ui.game_view.BoardView;
-import mobi.mpk.chessandroid.ui.game_view.Drawer;
 
 public class StartGameView extends View {
 
@@ -59,7 +57,7 @@ public class StartGameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawer.setCanvas(canvas);
-        boardView.onDrawBoard();
+        boardView.onDrawBoard(false);
     }
 
 }

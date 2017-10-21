@@ -1,31 +1,94 @@
 package mobi.mpk.chessandroid.ui;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+
 import mobi.mpk.chessandroid.R;
+import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.type.FigureType;
+import mobi.mpk.chessandroid.ui.game_view.Drawer;
 
 public class Settings {
 
-    private int whiteCell = R.color.whiteCell;
-    private int blackCell = R.color.blackCell;
+    @Inject
+    Drawer drawer;
 
-    private int whiteKing = R.drawable.white_king;
-    private int blackKing = R.drawable.black_king;
+    private Map<FigureType, Integer> piecesWhiteTexture;
+    private Map<FigureType, Integer> piecesBlackTexture;
 
-    private int whiteQueen = R.drawable.white_queen;
-    private int blackQueen = R.drawable.black_queen;
+    private int whiteCell;
+    private int blackCell;
 
-    private int whiteBishop = R.drawable.white_bishop;
-    private int blackBishop = R.drawable.black_bishop;
+    private boolean dragAndDrop;
+    private boolean coordinateBoard;
+    private boolean volume;
 
-    private int whiteKnight = R.drawable.white_knight;
-    private int blackKnight = R.drawable.black_knight;
+    public Settings() {
 
-    private int whiteRook = R.drawable.white_rook;
-    private int blackRook = R.drawable.black_rook;
+        piecesWhiteTexture = new HashMap<>();
+        piecesBlackTexture = new HashMap<>();
 
-    private int whitePawn = R.drawable.white_pawn;
-    private int blackPawn = R.drawable.black_pawn;
+        dragAndDrop = true;
+        coordinateBoard = true;
 
+        volume = true;
+
+        initCellsClassic();
+        initPiecesClassic();
+
+    }
+
+    private void initCellsClassic() {
+
+        whiteCell = R.color.whiteCell;
+        blackCell = R.color.blackCell;
+
+    }
+
+    private void initCellsBlue() {
+
+        whiteCell = R.color.whiteCellBlue;
+        blackCell = R.color.blackCellBlue;
+
+    }
+
+    private void initPiecesClassic() {
+
+        piecesWhiteTexture.clear();
+        piecesBlackTexture.clear();
+
+        piecesWhiteTexture.put(FigureType.KING, R.drawable.white_king);
+        piecesWhiteTexture.put(FigureType.QUEEN, R.drawable.white_queen);
+        piecesWhiteTexture.put(FigureType.BISHOP, R.drawable.white_bishop);
+        piecesWhiteTexture.put(FigureType.KNIGHT, R.drawable.white_knight);
+        piecesWhiteTexture.put(FigureType.ROOK, R.drawable.white_rook);
+        piecesWhiteTexture.put(FigureType.PAWN, R.drawable.white_pawn);
+
+        piecesBlackTexture.put(FigureType.KING, R.drawable.black_king);
+        piecesBlackTexture.put(FigureType.QUEEN, R.drawable.black_queen);
+        piecesBlackTexture.put(FigureType.BISHOP, R.drawable.black_bishop);
+        piecesBlackTexture.put(FigureType.KNIGHT, R.drawable.black_knight);
+        piecesBlackTexture.put(FigureType.ROOK, R.drawable.black_rook);
+        piecesBlackTexture.put(FigureType.PAWN, R.drawable.black_pawn);
+
+    }
+
+    public int getPiece(FigureType figureType, Color color) {
+
+        int address;
+
+        if (color == Color.white) {
+            address = piecesWhiteTexture.get(figureType);
+        } else {
+            address = piecesBlackTexture.get(figureType);
+        }
+
+        return address;
+
+    }
 
     public int getWhiteCell() {
         return whiteCell;
@@ -35,52 +98,40 @@ public class Settings {
         return blackCell;
     }
 
-    public int getWhiteKing() {
-        return whiteKing;
+    public void setClassicCell() {
+        initCellsClassic();
     }
 
-    public int getBlackKing() {
-        return blackKing;
+    public void setBlueCell() {
+        initCellsBlue();
     }
 
-    public int getWhiteQueen() {
-        return whiteQueen;
+    public void setClassicPieces() {
+        initPiecesClassic();
     }
 
-    public int getBlackQueen() {
-        return blackQueen;
+    public void setDragAndDrop(boolean dragAndDrop) {
+        this.dragAndDrop = dragAndDrop;
     }
 
-    public int getWhiteBishop() {
-        return whiteBishop;
+    public boolean getDragAndDrop() {
+        return dragAndDrop;
     }
 
-    public int getBlackBishop() {
-        return blackBishop;
+    public void setCoordinateBoard(boolean coordinateBoard) {
+        this.coordinateBoard = coordinateBoard;
     }
 
-    public int getWhiteKnight() {
-        return whiteKnight;
+    public boolean getCoordinateBoard() {
+        return coordinateBoard;
     }
 
-    public int getBlackKnight() {
-        return blackKnight;
+    public boolean getVolume() {
+        return volume;
     }
 
-    public int getWhiteRook() {
-        return whiteRook;
-    }
-
-    public int getBlackRook() {
-        return blackRook;
-    }
-
-    public int getWhitePawn() {
-        return whitePawn;
-    }
-
-    public int getBlackPawn() {
-        return blackPawn;
+    public void setVolume(boolean volume) {
+        this.volume = volume;
     }
 
 }
