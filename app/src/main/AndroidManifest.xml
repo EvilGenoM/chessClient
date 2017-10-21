@@ -21,7 +21,7 @@
         <activity android:name=".ui.GameActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.SettingsActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
     </application>
 

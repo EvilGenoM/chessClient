@@ -3,8 +3,7 @@
 
     <PreferenceScreen
         android:key="setting_language"
-        android:title="Language"
-        android:summary="Установить язык">
+        android:title="Language">
 
     </PreferenceScreen>
 
@@ -19,8 +18,8 @@
 
 
         <SwitchPreference
-            android:key="dragon_drop"
-            android:summary="Dragon drop"
+            android:key="drag_and_drop"
+            android:summary="Drag and drop"
             android:defaultValue="true"/>
 
     </PreferenceCategory>
@@ -48,8 +47,8 @@
         android:title="Sounds">
 
         <SwitchPreference
-            android:key="glad"
-            android:summary="Включить звук?"
+            android:key="status_sounds"
+            android:summary="Do I enable sound?"
             android:defaultValue="true"/>
 
     </PreferenceCategory>
