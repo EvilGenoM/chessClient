@@ -9,7 +9,6 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -41,6 +40,8 @@ public class GameView extends View implements Observer {
     private AssetManager assetManager;
     private SoundPool soundPool;
     private int soundTouchFigure, soundAttack, soundMove;
+
+    private int lengthSide;
 
     private boolean onTouchMove = false;
     private boolean onTouchDown = false;
@@ -115,6 +116,10 @@ public class GameView extends View implements Observer {
         int x = (int) event.getX();
         int y = (int) event.getY();
 
+        if (x > lengthSide || x < 0 || y > lengthSide || y < 0) {
+            return false;
+        }
+
         String coordinateCell = "";
 
         switch (event.getAction()) {
@@ -125,29 +130,28 @@ public class GameView extends View implements Observer {
                     onTouchX = x;
                     onTouchY = y;
                     playSound(soundTouchFigure);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            if (onTouchMove) {
-                                onTouchDown = true;
-                            }
-                        }
-                    }, 500);
+                    onTouchDown = true;
                 }
                 invalidate();
                 return true;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (onTouchMove == true) {
+
+                    if (y > 70 && y < lengthSide - 70) {
+                        y = y - 70;
+                    }
+
                     coordinateCell = boardView.getCoordinateCell(x, y);
                     controller.handleStroke(coordinateCell);
                     onTouchMove = false;
+
                 }
                 onTouchDown = false;
                 return true;
             case MotionEvent.ACTION_MOVE:
-                onTouchMove = true;
-                if (onTouchDown) {
+                if ((Math.abs(x - onTouchX) > 10 || Math.abs(y - onTouchY) > 10) && onTouchDown == true) {
+                    onTouchMove = true;
                     boardView.moveFigure(onTouchX, onTouchY, x, y);
                     invalidate();
                 }
@@ -160,8 +164,6 @@ public class GameView extends View implements Observer {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        int lengthSide;
 
         if (getMeasuredHeight() > getMeasuredWidth()) {
             lengthSide = getMeasuredWidth();
@@ -183,7 +185,7 @@ public class GameView extends View implements Observer {
     @Override
     public void update(ResultType resultType) {
 
-        if (resultType == ResultType.SUCCESS){
+        if (resultType == ResultType.SUCCESS) {
             playSound(soundMove);
         } else if (resultType == ResultType.ATTACK) {
             playSound(soundAttack);
