@@ -6,4 +6,6 @@
     <color name="whiteCell">#eed1a2</color>
     <color name="blackCell">#c86e50</color>
     <color name="yellowCell">#baaa00</color>
+    <color name="whiteCellBlue">#ddd</color>
+    <color name="blackCellBlue">#99aaff</color>
 </resources>

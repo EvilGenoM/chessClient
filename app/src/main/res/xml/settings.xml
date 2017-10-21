@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceScreen
         android:key="setting_language"
@@ -29,7 +30,7 @@
         android:title="Board"
         android:entries="@array/settings_board"
         android:entryValues="@array/listValues"
-        android:defaultValue="@string/settings_classic_pieces">
+        android:defaultValue="Classic">
 
     </ListPreference>
 

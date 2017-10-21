@@ -47,7 +47,7 @@ public class BoardView {
 
     }
 
-    public void onDrawBoard() {
+    public void onDrawBoard(boolean coordinateBoard) {
 
         for (int i = 0; i < AMOUNT_CELL; i++) {
 
@@ -61,6 +61,26 @@ public class BoardView {
 
             for (int j = 0; j < AMOUNT_CELL; j++) {
                 cellView[i][j].onDrawFigure();
+            }
+
+        }
+
+        if(coordinateBoard){
+
+            char a = 'a';
+
+            for (int i = 0; i < AMOUNT_CELL; i++) {
+
+                cellView[7][i].onDrawChar(a);
+
+                a++;
+
+            }
+
+            for (int i = 0; i < AMOUNT_CELL; i++) {
+
+                cellView[i][7].onDrawNumber(8-i);
+
             }
 
         }
