@@ -116,10 +116,6 @@ public class GameView extends View implements Observer {
         int x = (int) event.getX();
         int y = (int) event.getY();
 
-        if (x > lengthSide || x < 0 || y > lengthSide || y < 0) {
-            return false;
-        }
-
         String coordinateCell = "";
 
         switch (event.getAction()) {
@@ -140,6 +136,12 @@ public class GameView extends View implements Observer {
 
                     if (y > 70 && y < lengthSide - 70) {
                         y = y - 70;
+                    }
+
+                    if (y > lengthSide) {
+                        y = lengthSide - 10;
+                    } else if (y < 0) {
+                        y = 10;
                     }
 
                     coordinateCell = boardView.getCoordinateCell(x, y);
