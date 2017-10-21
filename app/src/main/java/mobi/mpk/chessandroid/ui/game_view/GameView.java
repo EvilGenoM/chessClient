@@ -121,13 +121,13 @@ public class GameView extends View implements Observer {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 coordinateCell = boardView.getCoordinateCell(x, y);
-                controller.handleStroke(coordinateCell);
                 if (controller.checkExistFigure(coordinateCell)) {
                     onTouchX = x;
                     onTouchY = y;
                     playSound(soundTouchFigure);
                     onTouchDown = true;
                 }
+                controller.handleStroke(coordinateCell);
                 invalidate();
                 return true;
             case MotionEvent.ACTION_CANCEL:

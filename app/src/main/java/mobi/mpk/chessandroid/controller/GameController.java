@@ -59,7 +59,7 @@ public class GameController {
         char x = cordinate.charAt(0);
         int y = Character.digit(cordinate.charAt(1), 10);
 
-        return game.checkExistFigure(x, y);
+        return game.checkExistFigure(x, y, color);
 
     }
 
