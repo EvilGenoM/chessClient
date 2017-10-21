@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = new ActionBar(this, toolbar);
+    }
+
+    @Override
+    public void onStart(){
+
+        super.onStart();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean volume = preferences.getBoolean("status_sounds", false);
         settings.setVolume(volume);
+
 
     }
 
