@@ -5,7 +5,6 @@ import android.app.Application;
 import mobi.mpk.chessandroid.di.component.AppComponent;
 import mobi.mpk.chessandroid.di.component.DaggerAppComponent;
 import mobi.mpk.chessandroid.di.module.ViewModule;
-import mobi.mpk.chessandroid.net.Network;
 
 public class App extends Application{
 
@@ -14,7 +13,6 @@ public class App extends Application{
     @Override
     public void onCreate(){
         super.onCreate();
-        Network network = new Network("176.214.153.183");
         component = buildComponent();
     }
 

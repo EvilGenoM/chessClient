@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.net.NetworkSocket;
 import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.GamePresenter;
 import mobi.mpk.chessandroid.ui.game_view.Drawer;
@@ -28,6 +29,12 @@ public class UtilsModule {
     @Singleton
     public GameController provideGameController(GameData gameData, GamePresenter gamePresenter) {
         return new GameController(gameData, gamePresenter);
+    }
+
+    @Provides
+    @Singleton
+    public NetworkSocket provideWebSocket() {
+        return new NetworkSocket();
     }
 
 }
