@@ -9,7 +9,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.iterator.Iterator;
+import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.type.Color;
 import ua.naiksoftware.stomp.Stomp;
 import ua.naiksoftware.stomp.client.StompClient;
@@ -17,7 +17,7 @@ import ua.naiksoftware.stomp.client.StompClient;
 public class NetworkSocket {
 
     @Inject
-    Iterator iterator;
+    IteratorImpl iterator;
 
     private StompClient mStompClient;
     private Gson gson = new GsonBuilder().create();

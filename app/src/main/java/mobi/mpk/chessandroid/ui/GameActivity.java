@@ -9,12 +9,12 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.controller.Controller;
+import mobi.mpk.chessandroid.controller.GameController;
 
 public class GameActivity extends AppCompatActivity {
 
     @Inject
-    Controller controller;
+    GameController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

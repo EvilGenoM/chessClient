@@ -19,15 +19,12 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.controller.GameController;
-import mobi.mpk.chessandroid.model.User;
-import mobi.mpk.chessandroid.model.game.ClassicGame;
-import mobi.mpk.chessandroid.model.game.Game;
+import mobi.mpk.chessandroid.presenter.GamePresenter;
 
 public class ActionBar {
 
     @Inject
-    GameController controller;
+    GamePresenter presenter;
 
     public ActionBar(final Activity activity, Toolbar toolbar) {
 
@@ -68,14 +65,10 @@ public class ActionBar {
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
                     } else if (nameRes == R.string.drawer_item_new_game) {
-                        Game game = new ClassicGame(new User("One"), new User("Two"));
-                        controller.setGame(game);
-                        if (!(activity instanceof GameActivity)) {
-                            Intent intent = new Intent(activity, GameActivity.class);
-                            activity.startActivity(intent);
-                        } else {
-                            controller.update();
-                        }
+
+                        presenter.setContext(activity);
+                        presenter.openWaitingGame();
+
                     } else if (nameRes == R.string.drawer_item_settings && !(activity instanceof SettingsActivity)) {
                         Intent intent = new Intent(activity, SettingsActivity.class);
                         activity.startActivity(intent);

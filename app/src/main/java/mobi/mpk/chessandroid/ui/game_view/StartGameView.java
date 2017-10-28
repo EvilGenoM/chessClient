@@ -11,14 +11,14 @@ import android.view.View;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
-import mobi.mpk.chessandroid.iterator.Iterator;
+import mobi.mpk.chessandroid.presenter.GamePresenter;
 
 public class StartGameView extends View {
 
     @Inject
     Drawer drawer;
     @Inject
-    Iterator iterator;
+    GamePresenter presenter;
 
     private Context context;
     private BoardView boardView;
@@ -48,7 +48,8 @@ public class StartGameView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        iterator.startRandomGame();
+        presenter.setContext(context);
+        presenter.openWaitingGame();
 
         return super.onTouchEvent(event);
     }
