@@ -6,6 +6,7 @@ import dagger.Component;
 import mobi.mpk.chessandroid.di.module.GameModule;
 import mobi.mpk.chessandroid.di.module.UtilsModule;
 import mobi.mpk.chessandroid.di.module.ViewModule;
+import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.ui.ActionBar;
 import mobi.mpk.chessandroid.ui.GameActivity;
 import mobi.mpk.chessandroid.ui.MainActivity;
@@ -31,5 +32,7 @@ public interface AppComponent {
     void inject(StartGameView startGameView);
 
     void inject(ActionBar actionBar);
+
+    void inject(IteratorImpl iterator);
 
 }

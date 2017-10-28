@@ -34,14 +34,8 @@ public class UtilsModule {
 
     @Provides
     @Singleton
-    public IteratorImpl provideIterator() {
-        return new IteratorImpl();
-    }
-
-    @Provides
-    @Singleton
-    public NetworkSocket provideWebSocket() {
-        return new NetworkSocket();
+    public NetworkSocket provideWebSocket(IteratorImpl iterator) {
+        return new NetworkSocket(iterator);
     }
 
 }

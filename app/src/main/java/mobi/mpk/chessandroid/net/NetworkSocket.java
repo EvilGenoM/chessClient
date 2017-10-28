@@ -24,10 +24,39 @@ public class NetworkSocket {
     private String username;
     private String URL = "ws://176.214.146.67:8080/ws";
 
-    public NetworkSocket() {
+    public NetworkSocket(IteratorImpl iterator) {
+
+        connectSocket();
+
+        this.iterator = iterator;
+
+        this.iterator.setNet(this);
+
+    }
+
+    public void connectSocket() {
 
         mStompClient = Stomp.over(WebSocket.class, URL);
         mStompClient.connect();
+
+        mStompClient.lifecycle().subscribe(lifecycleEvent -> {
+
+            switch (lifecycleEvent.getType()){
+
+                case OPENED:
+
+                    break;
+                case ERROR:
+                    iterator.socketError();
+                    break;
+
+                case CLOSED:
+
+                    break;
+
+            }
+
+        });
 
         username = createRandomName();
 
@@ -39,6 +68,29 @@ public class NetworkSocket {
 
         String jsonMessage = createMessage(username, Message.MessageType.CREATE_USER);
         mStompClient.send("/app/server.addName", jsonMessage).subscribe();
+
+    }
+
+    public void lifecircle() {
+
+        mStompClient.lifecycle().subscribe(lifecycleEvent -> {
+
+           switch (lifecycleEvent.getType()){
+
+               case OPENED:
+
+                   break;
+               case ERROR:
+                   iterator.socketError();
+                   break;
+
+               case CLOSED:
+
+                   break;
+
+           }
+
+        });
 
     }
 

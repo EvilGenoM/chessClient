@@ -14,4 +14,6 @@ public interface Presenter {
     void setContext(Context context);
 
     void openWaitingGame();
+
+    void toastShow(String s);
 }

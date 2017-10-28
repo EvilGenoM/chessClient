@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.iterator.Iterator;
+import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.Game;
 import mobi.mpk.chessandroid.observer.model.GameData;
@@ -23,7 +23,7 @@ public class GameController implements Controller {
     private Presenter presenter;
 
     @Inject
-    Iterator iterator;
+    IteratorImpl iterator;
 
     private String enemyName;
     private String username;

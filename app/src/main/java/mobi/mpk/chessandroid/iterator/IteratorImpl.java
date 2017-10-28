@@ -3,22 +3,26 @@ package mobi.mpk.chessandroid.iterator;
 
 import javax.inject.Inject;
 
-import mobi.mpk.chessandroid.controller.Controller;
+import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.ClassicGame;
 import mobi.mpk.chessandroid.model.game.Game;
 import mobi.mpk.chessandroid.net.NetworkSocket;
-import mobi.mpk.chessandroid.presenter.Presenter;
+import mobi.mpk.chessandroid.presenter.GamePresenter;
 import mobi.mpk.chessandroid.type.Color;
 
 public class IteratorImpl implements  Iterator {
 
+    private NetworkSocket net;
+
     @Inject
-    Controller controller;
-    @Inject
-    Presenter presenter;
-    @Inject
-    NetworkSocket net;
+    GameController controller;
+
+    private GamePresenter presenter;
+
+    public IteratorImpl(GamePresenter presenter) {
+        this.presenter = presenter;
+    }
 
     @Override
     public void getStroke(String stroke) {
@@ -66,4 +70,21 @@ public class IteratorImpl implements  Iterator {
 
     }
 
+    public void socketError() {
+
+        presenter.toastShow("Ошибка подключения");
+
+    }
+
+    public void checkSocket() {
+
+        new NetworkSocket(this);
+
+        net.lifecircle();
+
+    }
+
+    public void setNet(NetworkSocket net) {
+        this.net = net;
+    }
 }
