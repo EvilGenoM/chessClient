@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
+import mobi.mpk.chessandroid.iterator.Iterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     Settings settings;
+    @Inject
+    Iterator iterator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         App.getComponent().inject(this);
+
+        iterator.setContext(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

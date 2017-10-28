@@ -19,21 +19,30 @@ public class GameController implements Controller {
     private GameData gameData;
     private Presenter presenter;
 
+    private String enemyName;
+    private String username;
+
+    private Color color;
     private String stroke;
-    private boolean white = true;
-    private Color color = Color.white;
 
     public GameController(GameData gameData, Presenter presenter) {
         this.gameData = gameData;
         this.presenter = presenter;
     }
 
-    public void setGame(Game game) {
+    @Override
+    public void setGame(Game game, String username, String enemy) {
         this.game = game;
-        white = true;
-        color = Color.white;
+        this.username = username;
+        this.enemyName = enemy;
     }
 
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    @Override
     public Color getColor() {
         return color;
     }
@@ -89,7 +98,7 @@ public class GameController implements Controller {
         } else {
 
             stroke += " " + coordinateCell;
-            move(stroke);
+            move(username, stroke);
 
             stroke = "";
 
@@ -97,23 +106,23 @@ public class GameController implements Controller {
 
     }
 
-    private void move(String stroke) {
+    @Override
+    public String getNameEnemy() {
 
-        if (white) {
-            ResultType result = game.doStroke(new User("One"), stroke);
-            if (result == ResultType.SUCCESS || result == ResultType.ATTACK) {
-                white = false;
-                color = Color.black;
-            }
-            gameData.setResultGame(result);
-        } else {
-            ResultType result = game.doStroke(new User("Two"), stroke);
-            if (result == ResultType.SUCCESS || result == ResultType.ATTACK) {
-                white = true;
-                color = Color.white;
-            }
-            gameData.setResultGame(result);
-        }
+        return enemyName;
+
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public void move(String name, String stroke) {
+
+        ResultType result = game.doStroke(new User(name), stroke);
+        gameData.setResultGame(result);
 
     }
 

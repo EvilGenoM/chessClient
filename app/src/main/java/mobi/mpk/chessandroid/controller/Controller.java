@@ -3,7 +3,16 @@ package mobi.mpk.chessandroid.controller;
 
 import java.util.Map;
 
+import mobi.mpk.chessandroid.model.game.Game;
+import mobi.mpk.chessandroid.type.Color;
+
 public interface Controller {
+
+    void setGame(Game game, String username, String enemy);
+
+    void setColor(Color color);
+
+    Color getColor();
 
     boolean checkExistGame();
 
@@ -15,4 +24,9 @@ public interface Controller {
 
     void handleStroke(String coordinateCell);
 
+    void move(String name, String stroke);
+
+    String getNameEnemy();
+
+    String getUsername();
 }

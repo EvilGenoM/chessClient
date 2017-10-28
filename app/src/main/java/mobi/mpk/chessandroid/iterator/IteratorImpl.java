@@ -4,6 +4,9 @@ package mobi.mpk.chessandroid.iterator;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.controller.Controller;
+import mobi.mpk.chessandroid.model.User;
+import mobi.mpk.chessandroid.model.game.ClassicGame;
+import mobi.mpk.chessandroid.model.game.Game;
 import mobi.mpk.chessandroid.net.NetworkSocket;
 import mobi.mpk.chessandroid.presenter.Presenter;
 import mobi.mpk.chessandroid.type.Color;
@@ -15,25 +18,50 @@ public class IteratorImpl implements  Iterator {
     @Inject
     Presenter presenter;
     @Inject
-    NetworkSocket networkSocket;
+    NetworkSocket net;
 
     @Override
-    public void doStroke(String stroke) {
-
+    public void getStroke(String stroke) {
+        controller.move(controller.getUsername(), stroke);
     }
 
     @Override
     public void startGame(String username, String enemyname) {
+
+        User user = new User(username);
+        User enemy = new User(enemyname);
+
+        Game game = new ClassicGame(user, enemy);
+
+        controller.setGame(game, username, enemyname);
+        presenter.openGame();
 
     }
 
     @Override
     public void initColorPlayer(Color color) {
 
+        controller.setColor(color);
+
     }
 
     @Override
     public void waitGame() {
 
+        presenter.openWaitingGame();
+
     }
+
+    @Override
+    public void startRandomGame() {
+
+    }
+
+    @Override
+    public void doStroke(String stroke) {
+
+        net.sendStroke(controller.getNameEnemy(), stroke);
+
+    }
+
 }
