@@ -15,6 +15,6 @@ public interface Iterator {
 
     void startRandomGame();
 
-    void doStroke(String stroke);
+    void sendStroke(String stroke);
 
 }

@@ -55,10 +55,12 @@ public class IteratorImpl implements  Iterator {
     @Override
     public void startRandomGame() {
 
+        net.sendRequestRandomGame();
+
     }
 
     @Override
-    public void doStroke(String stroke) {
+    public void sendStroke(String stroke) {
 
         net.sendStroke(controller.getNameEnemy(), stroke);
 

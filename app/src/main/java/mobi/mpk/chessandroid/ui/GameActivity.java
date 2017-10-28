@@ -3,11 +3,18 @@ package mobi.mpk.chessandroid.ui;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
+
+import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
+import mobi.mpk.chessandroid.controller.Controller;
 
 public class GameActivity extends AppCompatActivity {
+
+    @Inject
+    Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,13 @@ public class GameActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = new ActionBar(this, toolbar);
+
+        TextView textEnemy = (TextView) findViewById(R.id.text_enemy_name);
+        TextView textUser = (TextView) findViewById(R.id.text_name_user);
+
+        textEnemy.setText(controller.getNameEnemy());
+        textUser.setText(controller.getUsername());
+
     }
 
 }

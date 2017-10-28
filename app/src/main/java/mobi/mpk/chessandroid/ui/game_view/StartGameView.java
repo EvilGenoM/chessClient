@@ -2,7 +2,6 @@ package mobi.mpk.chessandroid.ui.game_view;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -12,12 +11,14 @@ import android.view.View;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
-import mobi.mpk.chessandroid.ui.GameActivity;
+import mobi.mpk.chessandroid.iterator.Iterator;
 
 public class StartGameView extends View {
 
     @Inject
     Drawer drawer;
+    @Inject
+    Iterator iterator;
 
     private Context context;
     private BoardView boardView;
@@ -47,8 +48,7 @@ public class StartGameView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        Intent intent = new Intent(context, GameActivity.class);
-        context.startActivity(intent);
+        iterator.startRandomGame();
 
         return super.onTouchEvent(event);
     }

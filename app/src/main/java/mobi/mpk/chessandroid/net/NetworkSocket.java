@@ -109,6 +109,10 @@ public class NetworkSocket {
 
             iterator.waitGame();
 
+        } else if (message.getType().equals(Message.MessageType.GAME_MOVE)) {
+
+            iterator.getStroke(message.getContent());
+
         }
 
     }

@@ -2,6 +2,9 @@ package mobi.mpk.chessandroid.controller;
 
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import mobi.mpk.chessandroid.iterator.Iterator;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.Game;
 import mobi.mpk.chessandroid.observer.model.GameData;
@@ -18,6 +21,9 @@ public class GameController implements Controller {
     private Game game;
     private GameData gameData;
     private Presenter presenter;
+
+    @Inject
+    Iterator iterator;
 
     private String enemyName;
     private String username;
@@ -122,6 +128,11 @@ public class GameController implements Controller {
     public void move(String name, String stroke) {
 
         ResultType result = game.doStroke(new User(name), stroke);
+
+        if(result.equals(ResultType.ATTACK)  || result.equals(ResultType.SUCCESS)) {
+            iterator.sendStroke(stroke);
+        }
+
         gameData.setResultGame(result);
 
     }
