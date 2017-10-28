@@ -7,8 +7,6 @@ import org.java_websocket.WebSocket;
 
 import java.util.Random;
 
-import javax.inject.Inject;
-
 import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.type.Color;
 import ua.naiksoftware.stomp.Stomp;
@@ -16,8 +14,7 @@ import ua.naiksoftware.stomp.client.StompClient;
 
 public class NetworkSocket {
 
-    @Inject
-    IteratorImpl iterator;
+    private IteratorImpl iterator;
 
     private StompClient mStompClient;
     private Gson gson = new GsonBuilder().create();
@@ -26,9 +23,9 @@ public class NetworkSocket {
 
     public NetworkSocket(IteratorImpl iterator) {
 
-        connectSocket();
-
         this.iterator = iterator;
+
+        connectSocket();
 
         this.iterator.setNet(this);
 
@@ -37,7 +34,6 @@ public class NetworkSocket {
     public void connectSocket() {
 
         mStompClient = Stomp.over(WebSocket.class, URL);
-        mStompClient.connect();
 
         mStompClient.lifecycle().subscribe(lifecycleEvent -> {
 
@@ -58,6 +54,8 @@ public class NetworkSocket {
 
         });
 
+        mStompClient.connect();
+
         username = createRandomName();
 
         mStompClient.topic("/channel/" + username).subscribe(topicMessage -> {
@@ -71,28 +69,6 @@ public class NetworkSocket {
 
     }
 
-    public void lifecircle() {
-
-        mStompClient.lifecycle().subscribe(lifecycleEvent -> {
-
-           switch (lifecycleEvent.getType()){
-
-               case OPENED:
-
-                   break;
-               case ERROR:
-                   iterator.socketError();
-                   break;
-
-               case CLOSED:
-
-                   break;
-
-           }
-
-        });
-
-    }
 
     private String createMessage(String name, Message.MessageType type) {
 

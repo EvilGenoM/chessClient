@@ -36,7 +36,6 @@ public class GameModule {
         return iterator;
     }
 
-
     @Provides
     @Singleton
     public GamePresenter provideGamePresenter() {

@@ -76,14 +76,6 @@ public class IteratorImpl implements  Iterator {
 
     }
 
-    public void checkSocket() {
-
-        new NetworkSocket(this);
-
-        net.lifecircle();
-
-    }
-
     public void setNet(NetworkSocket net) {
         this.net = net;
     }
