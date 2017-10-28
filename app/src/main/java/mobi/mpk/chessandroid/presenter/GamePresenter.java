@@ -3,7 +3,7 @@ package mobi.mpk.chessandroid.presenter;
 
 import mobi.mpk.chessandroid.ui.game_view.GameView;
 
-public class GamePresenter {
+public class GamePresenter implements Presenter{
 
     private GameView gameView;
 
@@ -11,6 +11,7 @@ public class GamePresenter {
         this.gameView = gameView;
     }
 
+    @Override
     public void setHighlightCell(String coordonateCell) {
 
         gameView.setHighlightCell(coordonateCell);
@@ -18,6 +19,7 @@ public class GamePresenter {
 
     }
 
+    @Override
     public void update() {
 
         gameView.update();

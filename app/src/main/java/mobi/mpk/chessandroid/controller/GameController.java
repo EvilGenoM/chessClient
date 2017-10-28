@@ -13,7 +13,7 @@ import mobi.mpk.chessandroid.type.ResultType;
  * Created by evgen on 10.10.17.
  */
 
-public class GameController {
+public class GameController implements Controller {
 
     private Game game;
     private GameData gameData;
@@ -38,6 +38,7 @@ public class GameController {
         return color;
     }
 
+    @Override
     public boolean checkExistGame() {
 
         if (game == null) {
@@ -48,12 +49,14 @@ public class GameController {
 
     }
 
+    @Override
     public boolean checkExistFigure(char x, int y) {
 
         return game.checkExistFigure(x, y);
 
     }
 
+    @Override
     public boolean checkExistFigure(String cordinate) {
 
         char x = cordinate.charAt(0);
@@ -63,12 +66,14 @@ public class GameController {
 
     }
 
+    @Override
     public Map<String, Enum> getFigureData(char x, int y) {
 
         return game.getFigureData(x, y);
 
     }
 
+    @Override
     public void handleStroke(String coordinateCell) {
 
         char x = coordinateCell.charAt(0);
