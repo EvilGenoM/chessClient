@@ -113,10 +113,17 @@ public class NetworkSocket {
 
     }
 
-    public void startRandomGame() {
+    public void sendRequestRandomGame() {
 
         String jsonMessage = createMessage(username, Message.MessageType.RANDOM_GAME);
         mStompClient.send("/app/server." + username, jsonMessage).subscribe();
+
+    }
+
+    public void sendStroke(String enemyname, String stroke) {
+
+        String jsonMessage = createMessage(username, stroke,Message.MessageType.GAME_MOVE);
+        mStompClient.send("/app/server." + enemyname, jsonMessage).subscribe();
 
     }
 
