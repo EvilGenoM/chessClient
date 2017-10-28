@@ -5,7 +5,7 @@ import java.util.Map;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.Game;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.presenter.GamePresenter;
+import mobi.mpk.chessandroid.presenter.Presenter;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.ResultType;
 
@@ -17,13 +17,13 @@ public class GameController implements Controller {
 
     private Game game;
     private GameData gameData;
-    private GamePresenter gamePresenter;
+    private Presenter gamePresenter;
 
     private String stroke;
     private boolean white = true;
     private Color color = Color.white;
 
-    public GameController(GameData gameData, GamePresenter gamePresenter) {
+    public GameController(GameData gameData, Presenter gamePresenter) {
         this.gameData = gameData;
         this.gamePresenter = gamePresenter;
     }

@@ -6,10 +6,13 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import mobi.mpk.chessandroid.controller.Controller;
 import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.iterator.Iterator;
+import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.net.NetworkSocket;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.presenter.GamePresenter;
+import mobi.mpk.chessandroid.presenter.Presenter;
 import mobi.mpk.chessandroid.ui.game_view.Drawer;
 
 /**
@@ -27,8 +30,14 @@ public class UtilsModule {
 
     @Provides
     @Singleton
-    public GameController provideGameController(GameData gameData, GamePresenter gamePresenter) {
-        return new GameController(gameData, gamePresenter);
+    public Controller provideGameController(GameData gameData, Presenter presenter) {
+        return new GameController(gameData, presenter);
+    }
+
+    @Provides
+    @Singleton
+    public Iterator provideIterator() {
+        return new IteratorImpl();
     }
 
     @Provides

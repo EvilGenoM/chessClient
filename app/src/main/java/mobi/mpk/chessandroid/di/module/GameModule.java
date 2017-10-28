@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.GamePresenter;
+import mobi.mpk.chessandroid.presenter.Presenter;
 import mobi.mpk.chessandroid.ui.Settings;
 
 @Module
@@ -13,7 +14,7 @@ public class GameModule {
 
     private final Settings settings;
     private final GameData gameData;
-    private final GamePresenter gamePresenter;
+    private final Presenter gamePresenter;
 
     public GameModule(){
         this.gameData = new GameData();
@@ -29,7 +30,7 @@ public class GameModule {
 
     @Provides
     @Singleton
-    public GamePresenter provideGamePresenter() {
+    public Presenter provideGamePresenter() {
         return gamePresenter;
     }
 
