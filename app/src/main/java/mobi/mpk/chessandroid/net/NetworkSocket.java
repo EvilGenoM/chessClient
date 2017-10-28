@@ -40,7 +40,7 @@ public class NetworkSocket {
             switch (lifecycleEvent.getType()){
 
                 case OPENED:
-
+                    iterator.socketOpen();
                     break;
                 case ERROR:
                     iterator.socketError();

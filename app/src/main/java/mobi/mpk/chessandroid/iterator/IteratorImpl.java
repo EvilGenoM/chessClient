@@ -79,4 +79,8 @@ public class IteratorImpl implements  Iterator {
     public void setNet(NetworkSocket net) {
         this.net = net;
     }
+
+    public void socketOpen() {
+        presenter.toastShow("Успешное подключение");
+    }
 }
