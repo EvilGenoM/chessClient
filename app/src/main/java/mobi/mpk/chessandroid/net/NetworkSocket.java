@@ -115,7 +115,8 @@ public class NetworkSocket {
 
     public void startRandomGame() {
 
-
+        String jsonMessage = createMessage(username, Message.MessageType.RANDOM_GAME);
+        mStompClient.send("/app/server." + username, jsonMessage).subscribe();
 
     }
 

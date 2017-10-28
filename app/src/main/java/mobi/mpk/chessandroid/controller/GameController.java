@@ -17,15 +17,15 @@ public class GameController implements Controller {
 
     private Game game;
     private GameData gameData;
-    private Presenter gamePresenter;
+    private Presenter presenter;
 
     private String stroke;
     private boolean white = true;
     private Color color = Color.white;
 
-    public GameController(GameData gameData, Presenter gamePresenter) {
+    public GameController(GameData gameData, Presenter presenter) {
         this.gameData = gameData;
-        this.gamePresenter = gamePresenter;
+        this.presenter = presenter;
     }
 
     public void setGame(Game game) {
@@ -81,10 +81,10 @@ public class GameController implements Controller {
 
         if (game.checkExistFigure(x, y, color)) {
 
-            gamePresenter.update();
+            presenter.update();
 
             stroke = coordinateCell;
-            gamePresenter.setHighlightCell(coordinateCell);
+            presenter.setHighlightCell(coordinateCell);
 
         } else {
 
@@ -123,7 +123,7 @@ public class GameController implements Controller {
 
     public void update() {
 
-        gamePresenter.update();
+        presenter.update();
 
     }
 }
