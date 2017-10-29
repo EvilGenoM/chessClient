@@ -19,7 +19,7 @@ public class NetworkSocket {
     private StompClient mStompClient;
     private Gson gson = new GsonBuilder().create();
     private String username;
-    private String URL = "ws://176.214.146.67:8080/ws";
+    private String URL = "ws://192.168.122.1:8080/ws";
 
     public NetworkSocket(IteratorImpl iterator) {
 
