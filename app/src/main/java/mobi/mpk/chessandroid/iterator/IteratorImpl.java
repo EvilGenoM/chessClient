@@ -7,7 +7,6 @@ import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.model.User;
 import mobi.mpk.chessandroid.model.game.ClassicGame;
 import mobi.mpk.chessandroid.model.game.Game;
-import mobi.mpk.chessandroid.net.NetworkSocket;
 import mobi.mpk.chessandroid.presenter.GamePresenter;
 import mobi.mpk.chessandroid.type.Color;
 
