@@ -4,12 +4,13 @@ package mobi.mpk.chessandroid.net;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import mobi.mpk.chessandroid.net.handler.manager.DefaultManagerHandlerMessage;
 import mobi.mpk.chessandroid.net.handler.manager.ManagerHandlerMessage;
 import mobi.mpk.chessandroid.net.message.MessageRequest;
+import mobi.mpk.chessandroid.net.message.MessageResponse;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
-import okio.ByteString;
 
 
 class EchoWebSocketListener extends WebSocketListener {
@@ -35,15 +36,9 @@ class EchoWebSocketListener extends WebSocketListener {
     @Override
     public void onMessage(WebSocket webSocket, String text) {
 
-        MessageRequest messageRequest = gson.fromJson(text, MessageRequest.class);
-        ManagerHandlerMessage managerHandler = new ManagerHandlerMessage();
-
-    }
-
-    @Override
-    public void onMessage(WebSocket webSocket, ByteString bytes) {
-
-
+        MessageResponse messageResponse = gson.fromJson(text, MessageResponse.class);
+        ManagerHandlerMessage managerHandler = new DefaultManagerHandlerMessage();
+        managerHandler.transfer(messageResponse);
 
     }
 

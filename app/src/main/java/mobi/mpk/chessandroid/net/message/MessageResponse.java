@@ -5,16 +5,18 @@ public class MessageResponse {
 
     private String username;
     private String text;
-    private MessageRequest.MessageType type;
+    private MessageResponse.ComandType comand;
+    private MessageResponse.MessageType type;
 
     public MessageResponse() {
 
     }
 
-    public MessageResponse(String username, String text, MessageRequest.MessageType type) {
+    public MessageResponse(String username, String text, MessageResponse.ComandType comand, MessageResponse.MessageType type) {
 
         this.username = username;
         this.text = text;
+        this.comand = comand;
         this.type = type;
 
     }
@@ -35,12 +37,20 @@ public class MessageResponse {
         this.text = text;
     }
 
-    public MessageRequest.MessageType getType() {
+    public MessageResponse.MessageType getType() {
         return type;
     }
 
-    public void setType(MessageRequest.MessageType type) {
+    public void setType(MessageResponse.MessageType type) {
         this.type = type;
+    }
+
+    public ComandType getComand() {
+        return comand;
+    }
+
+    public void setComand(ComandType comand) {
+        this.comand = comand;
     }
 
     public enum MessageType {
@@ -48,6 +58,12 @@ public class MessageResponse {
         RANDOM_GAME_START, RANDOM_GAME_WAIT, RANDOM_GAME_CANCEL,
         GAME_START, GAME_COLOR, GAME_STOP,
         MOVE, MOVE_RESULT;
+
+    }
+
+    public enum  ComandType {
+
+        GAME, LOBBY;
 
     }
 
