@@ -1,10 +1,10 @@
 package mobi.mpk.chessandroid.net.handler.manager;
 
 
-import mobi.mpk.chessandroid.net.message.MessageRequest;
+import mobi.mpk.chessandroid.net.message.MessageResponse;
 
 public interface ManagerHandlerMessage {
 
-    void transfer(MessageRequest messageRequest);
+    void transfer(MessageResponse messageResponse);
 
 }

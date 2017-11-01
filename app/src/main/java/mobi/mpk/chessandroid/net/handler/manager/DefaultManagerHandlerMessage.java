@@ -1,20 +1,30 @@
 package mobi.mpk.chessandroid.net.handler.manager;
 
 
-import mobi.mpk.chessandroid.net.message.MessageRequest;
+import mobi.mpk.chessandroid.net.message.MessageResponse;
+import mobi.mpk.chessandroid.net.handler.HandlerMessage;
 
-class DefaultManagerHandlerMessage implements ManagerHandlerMessage {
+public class DefaultManagerHandlerMessage implements ManagerHandlerMessage {
+
+    private HandlerMessage gameHandlerMessage;
+    private HandlerMessage lobbyHandlerMessage;
+
+    public DefaultManagerHandlerMessage() {
+
+        HandlerMessage gameHandlerMessage;
+
+    }
 
     @Override
-    public void transfer(MessageRequest messageRequest) {
+    public void transfer(MessageResponse messageResponse) {
 
-        switch (messageRequest.getType()) {
+        switch (messageResponse.getComand()) {
 
-            case GAME_START:
-                
+            case GAME:
+                gameHandlerMessage.handle(messageResponse);
                 break;
 
-            case GAME_STOP:
+            case LOBBY:
 
                 break;
         }
