@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.net;
+package mobi.mpk.chessandroid.net.listener.server;
 
 
 import com.google.gson.Gson;
@@ -13,20 +13,24 @@ import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 
 
-class EchoWebSocketListener extends WebSocketListener {
+public class ServerWebSocketListener extends WebSocketListener {
 
     private Gson gson;
+    private ManagerHandlerMessage managerHandler;
+    private String username;
 
-    public EchoWebSocketListener() {
+    public ServerWebSocketListener() {
 
         gson = new GsonBuilder().create();
+        managerHandler = new DefaultManagerHandlerMessage();
+        username = "Anonymuos";
 
     }
 
     @Override
     public void onOpen(WebSocket webSocket, Response response) {
 
-        MessageRequest messageRequest = new MessageRequest("username", "connect", MessageRequest.MessageType.CONNECTION);
+        MessageRequest messageRequest = new MessageRequest(username, "connect", MessageRequest.MessageType.CONNECTION);
         String jsonMessage = gson.toJson(messageRequest);
 
         webSocket.send(jsonMessage);
@@ -37,7 +41,7 @@ class EchoWebSocketListener extends WebSocketListener {
     public void onMessage(WebSocket webSocket, String text) {
 
         MessageResponse messageResponse = gson.fromJson(text, MessageResponse.class);
-        ManagerHandlerMessage managerHandler = new DefaultManagerHandlerMessage();
+
         managerHandler.transfer(messageResponse);
 
     }
@@ -45,7 +49,7 @@ class EchoWebSocketListener extends WebSocketListener {
     @Override
     public void onClosed(WebSocket webSocket, int code, String reason) {
 
-        MessageRequest messageRequest = new MessageRequest("username", "disconnect", MessageRequest.MessageType.DISCONNECTION);
+        MessageRequest messageRequest = new MessageRequest(username, "disconnect", MessageRequest.MessageType.DISCONNECTION);
         String jsonMessage = gson.toJson(messageRequest);
 
         webSocket.send(jsonMessage);
