@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.net.handler;
 
 
 import mobi.mpk.chessandroid.net.message.MessageResponse;
+import mobi.mpk.chessandroid.presenter.PresenterIn;
 
 class LobbyHandlerMessage implements HandlerMessage {
 
