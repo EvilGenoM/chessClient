@@ -19,7 +19,6 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.presenter.GamePresenter;
 
 public class ActionBar {
 

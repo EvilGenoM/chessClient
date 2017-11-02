@@ -2,13 +2,10 @@ package mobi.mpk.chessandroid.controller;
 
 import java.util.Map;
 
-import javax.inject.Inject;
-
-import mobi.mpk.chessandroid.iterator.IteratorImpl;
-import mobi.mpk.chessandroid.model.User;
-import mobi.mpk.chessandroid.model.game.Game;
+import mobi.mpk.chessandroid.domain.User;
+import mobi.mpk.chessandroid.domain.game.Game;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.presenter.Presenter;
+import mobi.mpk.chessandroid.presenter.game.in.GamePresenterIn;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.ResultType;
 
@@ -20,10 +17,7 @@ public class GameController implements Controller {
 
     private Game game;
     private GameData gameData;
-    private Presenter presenter;
-
-    @Inject
-    IteratorImpl iterator;
+    private GamePresenterIn presenter;
 
     private String enemyName;
     private String username;
@@ -31,7 +25,7 @@ public class GameController implements Controller {
     private Color color;
     private String stroke;
 
-    public GameController(GameData gameData, Presenter presenter) {
+    public GameController(GameData gameData, GamePresenterIn presenter) {
         this.gameData = gameData;
         this.presenter = presenter;
     }
@@ -130,7 +124,7 @@ public class GameController implements Controller {
         ResultType result = game.doStroke(new User(name), stroke);
 
         if(result.equals(ResultType.ATTACK)  || result.equals(ResultType.SUCCESS)) {
-            iterator.sendStroke(stroke);
+            presenter.makeMove(stroke);
         }
 
         gameData.setResultGame(result);

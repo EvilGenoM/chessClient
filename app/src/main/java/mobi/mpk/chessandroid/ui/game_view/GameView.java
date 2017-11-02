@@ -23,7 +23,7 @@ import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.observer.Observer;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.presenter.GamePresenter;
+import mobi.mpk.chessandroid.presenter.game.in.GamePresenterIn;
 import mobi.mpk.chessandroid.type.ResultType;
 import mobi.mpk.chessandroid.ui.Settings;
 
@@ -34,7 +34,7 @@ public class GameView extends View implements Observer {
     @Inject
     GameController controller;
     @Inject
-    GamePresenter gamePresenter;
+    GamePresenterIn gamePresenter;
     @Inject
     GameData gameData;
     @Inject

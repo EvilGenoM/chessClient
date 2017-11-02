@@ -3,7 +3,7 @@ package mobi.mpk.chessandroid.controller;
 
 import java.util.Map;
 
-import mobi.mpk.chessandroid.model.game.Game;
+import mobi.mpk.chessandroid.domain.game.Game;
 import mobi.mpk.chessandroid.type.Color;
 
 public interface Controller {
