@@ -1,8 +1,8 @@
 package mobi.mpk.chessandroid.interactor.stategame;
 
 
-import mobi.mpk.chessandroid.model.User;
-import mobi.mpk.chessandroid.model.game.Game;
+import mobi.mpk.chessandroid.domain.User;
+import mobi.mpk.chessandroid.domain.game.Game;
 
 public interface StateGame {
 

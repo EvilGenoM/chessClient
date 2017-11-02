@@ -1,8 +1,9 @@
-package mobi.mpk.chessandroid.interactor;
+package mobi.mpk.chessandroid.interactor.in;
 
 import mobi.mpk.chessandroid.interactor.stategame.StateGame;
-import mobi.mpk.chessandroid.model.User;
+import mobi.mpk.chessandroid.domain.User;
 import mobi.mpk.chessandroid.type.Color;
+import mobi.mpk.chessandroid.type.ResultType;
 
 public class NetInteractorIn implements InteractorIn {
 
@@ -15,11 +16,9 @@ public class NetInteractorIn implements InteractorIn {
     }
 
     @Override
-    public void startGame(User user) {
+    public void startGame(User user1, User user2) {
 
-        User localUser = new User("Anonymous");
-        User netUser = user;
-        stateGame.createGame(localUser, netUser);
+        stateGame.createGame(user1, user2);
 
     }
 
@@ -27,7 +26,7 @@ public class NetInteractorIn implements InteractorIn {
     public void initColorPieces(Color color) {
 
         User user = stateGame.getUser1();
-        stateGame.getGame().initColor(user, color);
+        //stateGame.getGame().initColor(user, color);
 
     }
 
@@ -39,10 +38,12 @@ public class NetInteractorIn implements InteractorIn {
     }
 
     @Override
-    public void makeMove(String username, String move) {
+    public ResultType makeMove(String username, String move) {
 
         User user = stateGame.getUser(username);
-        stateGame.getGame().doStroke(user, move);
+        ResultType resultType = stateGame.getGame().doStroke(user, move);
+
+        return resultType;
 
     }
 
