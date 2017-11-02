@@ -1,8 +1,8 @@
 package mobi.mpk.chessandroid.net.handler;
 
 
-import mobi.mpk.chessandroid.interactor.InteractorIn;
-import mobi.mpk.chessandroid.model.User;
+import mobi.mpk.chessandroid.repository.out.RepositoryOut;
+import mobi.mpk.chessandroid.domain.User;
 import mobi.mpk.chessandroid.net.message.MessageResponse;
 import mobi.mpk.chessandroid.type.Color;
 
@@ -11,11 +11,11 @@ class GameHandlerMessage implements HandlerMessage {
     private final int NUMBER_CELLS = 2;
     private final int LENGTH_NAME_CELL = 2;
 
-    private InteractorIn interactor;
+    private RepositoryOut repository;
 
-    public GameHandlerMessage(InteractorIn interactor) {
+    public GameHandlerMessage(RepositoryOut repository) {
 
-        this.interactor = interactor;
+        this.repository = repository;
 
     }
 
@@ -44,7 +44,7 @@ class GameHandlerMessage implements HandlerMessage {
     private void startGame(String username) {
 
         User user = new User(username);
-        interactor.startGame(user);
+        repository.startGame(user);
 
     }
 
@@ -52,15 +52,15 @@ class GameHandlerMessage implements HandlerMessage {
 
         if (message.equals("win")) {
 
-            interactor.wonUser();
+            repository.wonUser();
 
         } else if (message.equals("loss")) {
 
-            interactor.lostUser();
+            repository.lostUser();
 
         } else {
 
-            interactor.stopGame();
+            repository.stopGame("Game End");
 
         }
 
@@ -79,7 +79,7 @@ class GameHandlerMessage implements HandlerMessage {
 
         }
 
-        interactor.initColorPieces(colorPiece);
+        repository.initColorPieces(colorPiece);
 
     }
 
@@ -87,7 +87,7 @@ class GameHandlerMessage implements HandlerMessage {
 
         if (moveValidate(move)) {
 
-            interactor.makeMove(username, move);
+            repository.makeMove(username, move);
 
         }
 

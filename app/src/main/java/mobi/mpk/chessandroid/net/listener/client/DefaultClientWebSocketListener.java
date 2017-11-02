@@ -29,7 +29,7 @@ public class DefaultClientWebSocketListener implements ClientWebSocketListener {
     }
 
     @Override
-    public void stopRandomGame() {
+    public void cancelRandomGame() {
 
         String jsonMessage = gson.toJson(createMessage(null, MessageRequest.MessageType.RANDOM_GAME_CANCEL));
 

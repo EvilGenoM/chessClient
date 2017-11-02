@@ -5,7 +5,7 @@ public interface ClientWebSocketListener {
 
     void startRandomGame();
 
-    void stopRandomGame();
+    void cancelRandomGame();
 
     void makeMove(String move);
 

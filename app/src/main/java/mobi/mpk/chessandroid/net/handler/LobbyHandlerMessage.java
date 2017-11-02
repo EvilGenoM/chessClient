@@ -2,15 +2,15 @@ package mobi.mpk.chessandroid.net.handler;
 
 
 import mobi.mpk.chessandroid.net.message.MessageResponse;
-import mobi.mpk.chessandroid.presenter.lobby.LobbyPresenterIn;
+import mobi.mpk.chessandroid.repository.out.RepositoryOut;
 
 class LobbyHandlerMessage implements HandlerMessage {
 
-    private LobbyPresenterIn presenter;
+    private RepositoryOut repository;
 
-    public LobbyHandlerMessage(LobbyPresenterIn presenter) {
+    public LobbyHandlerMessage(RepositoryOut repository) {
 
-        this.presenter = presenter;
+        this.repository = repository;
 
     }
 
@@ -35,19 +35,19 @@ class LobbyHandlerMessage implements HandlerMessage {
 
     private void cancelRandomGame(String message) {
 
-        presenter.closeDialogWait(message);
+        repository.cancelRandomGame(message);
 
     }
 
     private void startRandomGame() {
 
-        presenter.startGame();
+        repository.startRandomGame();
 
     }
 
     private void waitRandomGame() {
 
-        presenter.openDialogWait("Wait random game");
+        repository.waitRandomGame();
 
     }
 
