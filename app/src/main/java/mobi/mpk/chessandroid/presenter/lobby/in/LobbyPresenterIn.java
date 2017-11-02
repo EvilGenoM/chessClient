@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.presenter.lobby;
+package mobi.mpk.chessandroid.presenter.lobby.in;
 
 
 import android.content.Context;
@@ -13,4 +13,5 @@ public interface LobbyPresenterIn {
 
     void setActivity(Context context);
 
+    void abortGame();
 }
