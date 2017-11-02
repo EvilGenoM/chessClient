@@ -2,13 +2,13 @@ package mobi.mpk.chessandroid.net.handler;
 
 
 import mobi.mpk.chessandroid.net.message.MessageResponse;
-import mobi.mpk.chessandroid.presenter.PresenterIn;
+import mobi.mpk.chessandroid.presenter.lobby.LobbyPresenterIn;
 
 class LobbyHandlerMessage implements HandlerMessage {
 
-    private PresenterIn presenter;
+    private LobbyPresenterIn presenter;
 
-    public LobbyHandlerMessage(PresenterIn presenter) {
+    public LobbyHandlerMessage(LobbyPresenterIn presenter) {
 
         this.presenter = presenter;
 

@@ -1,9 +1,9 @@
-package mobi.mpk.chessandroid.presenter;
+package mobi.mpk.chessandroid.presenter.lobby;
 
 
 import android.content.Context;
 
-class DefaultPresenterIn implements PresenterIn {
+class DefaultLobbyPresenterIn implements LobbyPresenterIn {
 
     private Context context;
 
@@ -19,11 +19,6 @@ class DefaultPresenterIn implements PresenterIn {
 
     @Override
     public void startGame() {
-
-    }
-
-    @Override
-    public void makeMove(String move) {
 
     }
 
