@@ -25,8 +25,9 @@ public class DefaultManagerHandlerMessage implements ManagerHandlerMessage {
                 break;
 
             case LOBBY:
-
+                lobbyHandlerMessage.handle(messageResponse);
                 break;
+
         }
 
     }
