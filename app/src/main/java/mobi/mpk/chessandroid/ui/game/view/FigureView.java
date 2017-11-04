@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
-import mobi.mpk.chessandroid.ui.setting.Settings;
+import mobi.mpk.chessandroid.settings.Settings;
 import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
 
 
