@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.ui.Settings;
+import mobi.mpk.chessandroid.ui.setting.Settings;
 
 @Module
 public class GameModule {

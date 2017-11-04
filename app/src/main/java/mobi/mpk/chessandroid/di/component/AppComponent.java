@@ -7,13 +7,13 @@ import mobi.mpk.chessandroid.di.module.GameModule;
 import mobi.mpk.chessandroid.di.module.UtilsModule;
 import mobi.mpk.chessandroid.di.module.ViewModule;
 import mobi.mpk.chessandroid.iterator.IteratorImpl;
-import mobi.mpk.chessandroid.ui.ActionBar;
-import mobi.mpk.chessandroid.ui.GameActivity;
-import mobi.mpk.chessandroid.ui.MainActivity;
-import mobi.mpk.chessandroid.ui.game_view.CellView;
-import mobi.mpk.chessandroid.ui.game_view.FigureView;
-import mobi.mpk.chessandroid.ui.game_view.GameView;
-import mobi.mpk.chessandroid.ui.game_view.StartGameView;
+import mobi.mpk.chessandroid.ui.actionbar.ActionBar;
+import mobi.mpk.chessandroid.ui.game.GameActivity;
+import mobi.mpk.chessandroid.ui.main.MainActivity;
+import mobi.mpk.chessandroid.ui.game.view.CellView;
+import mobi.mpk.chessandroid.ui.game.view.FigureView;
+import mobi.mpk.chessandroid.ui.game.view.GameView;
+import mobi.mpk.chessandroid.ui.main.StartGameView;
 
 @Component(modules = {ViewModule.class, UtilsModule.class, GameModule.class})
 @Singleton

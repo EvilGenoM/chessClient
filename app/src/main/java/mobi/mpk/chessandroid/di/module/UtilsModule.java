@@ -9,7 +9,7 @@ import dagger.Provides;
 import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.iterator.IteratorImpl;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.ui.game_view.Drawer;
+import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
 
 /**
  * Created by evgen on 10.10.17.
