@@ -185,14 +185,16 @@ public class ClassicGame extends Game {
     }
 
     @Override
-    public boolean checkExistFigure(char x, int y, Color color) {
+    public boolean checkExistFigure(char x, int y, User user) {
 
         boolean checkFigure = false;
+
+        Player player = getPlayer(user);
 
         Cell cell = getBoard().getCell(x, y);
         if(cell != null){
             Figure figure = cell.getFigure();
-            if(figure != null && figure.getColor() == color){
+            if(figure != null && figure.getColor() == player.getColorFigures()){
                 checkFigure = true;
             }
         }
@@ -229,6 +231,33 @@ public class ClassicGame extends Game {
         Cell cell = getBoard().getCell(letter, number);
 
         return null;
+
+    }
+
+    @Override
+    public void initColor(User user, Color color) {
+
+        User user1 = getPlayer1().getUser();
+
+        if(user1.equals(user)) {
+
+            getPlayer1().setColorFigures(color);
+            if(color == Color.white) {
+                getPlayer2().setColorFigures(Color.black);
+            } else {
+                getPlayer2().setColorFigures(Color.white);
+            }
+
+        } else {
+
+            getPlayer2().setColorFigures(color);
+            if(color == Color.white) {
+                getPlayer1().setColorFigures(Color.black);
+            } else {
+                getPlayer1().setColorFigures(Color.white);
+            }
+
+        }
 
     }
 
