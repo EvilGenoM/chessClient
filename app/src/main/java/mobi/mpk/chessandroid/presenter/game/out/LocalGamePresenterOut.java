@@ -5,38 +5,43 @@ import java.util.Map;
 
 import mobi.mpk.chessandroid.interactor.in.InteractorIn;
 import mobi.mpk.chessandroid.presenter.game.in.GamePresenterIn;
-import mobi.mpk.chessandroid.repository.in.RepositoryIn;
 import mobi.mpk.chessandroid.type.ResultType;
 
-public class NetGamePresenterOut implements GamePresenterOut {
+public class LocalGamePresenterOut implements GamePresenterOut {
 
-    private RepositoryIn repository;
     private InteractorIn interactor;
 
     private GamePresenterIn presenter;
 
     private String stroke;
-    private String username;
+    private String username1;
+    private String username2;
+    private boolean white;
 
-    public NetGamePresenterOut(RepositoryIn repository, InteractorIn interactor, GamePresenterIn presenter) {
+    public LocalGamePresenterOut(InteractorIn interactor, GamePresenterIn presenter) {
 
-        this.repository = repository;
         this.interactor = interactor;
 
         this.presenter = presenter;
-        this.username = "Anonymous";
+        this.username1 = "One";
+        this.username2 = "Two";
+        this.white = true;
 
     }
 
     @Override
     public void makeMove(String move) {
 
-        ResultType resultType = interactor.makeMove(username, move);
+        ResultType resultType;
+
+        if(white) {
+            resultType = interactor.makeMove(username1, move);
+        } else {
+            resultType = interactor.makeMove(username2, move);
+        }
 
         if(resultType == ResultType.SUCCESS || resultType == ResultType.ATTACK) {
-
-            repository.sendMove(move);
-
+            white = !white;
         }
 
     }
@@ -45,7 +50,6 @@ public class NetGamePresenterOut implements GamePresenterOut {
     public void stopGame() {
 
         interactor.stopGame();
-        repository.stopGame();
 
     }
 
@@ -61,6 +65,14 @@ public class NetGamePresenterOut implements GamePresenterOut {
 
         char x = cordinate.charAt(0);
         int y = Character.digit(cordinate.charAt(1), 10);
+
+        String username;
+
+        if(white) {
+            username = username1;
+        } else {
+            username = username2;
+        }
 
         return interactor.checkExistFigure(x, y, username);
 
@@ -78,6 +90,14 @@ public class NetGamePresenterOut implements GamePresenterOut {
 
         char x = coordinateCell.charAt(0);
         int y = Integer.parseInt(String.valueOf(coordinateCell.charAt(1)));
+
+        String username;
+
+        if(white) {
+            username = username1;
+        } else {
+            username = username2;
+        }
 
         if (interactor.checkExistFigure(x, y, username)) {
 

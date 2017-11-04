@@ -13,5 +13,7 @@ public interface LobbyPresenterIn {
 
     void setActivity(Context context);
 
+    Context getContext();
+
     void abortGame();
 }

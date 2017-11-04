@@ -17,6 +17,11 @@ public class DefaultLobbyPresenterIn implements LobbyPresenterIn {
     }
 
     @Override
+    public Context getContext() {
+        return this.context;
+    }
+
+    @Override
     public void openDialogWait(String message) {
 
 
