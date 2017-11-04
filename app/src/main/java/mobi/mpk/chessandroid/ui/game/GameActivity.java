@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.ui.actionbar.ActionBar;
+import mobi.mpk.chessandroid.ui.game.view.GameView;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -32,4 +33,17 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GameView gameView = (GameView) findViewById(R.id.GameView);
+
+        if(gameView != null) {
+
+            gameView.update();
+
+        }
+
+    }
 }

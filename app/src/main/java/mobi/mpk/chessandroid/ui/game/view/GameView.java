@@ -25,7 +25,7 @@ import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.game.in.GamePresenterIn;
 import mobi.mpk.chessandroid.presenter.game.out.GamePresenterOut;
 import mobi.mpk.chessandroid.type.ResultType;
-import mobi.mpk.chessandroid.ui.setting.Settings;
+import mobi.mpk.chessandroid.settings.Settings;
 import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
 
 public class GameView extends View implements Observer {
@@ -211,9 +211,13 @@ public class GameView extends View implements Observer {
 
     public void update() {
 
-        boardView.update();
+        if(boardView != null) {
 
-        invalidate();
+            boardView.update();
+
+            invalidate();
+
+        }
 
     }
 
