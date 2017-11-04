@@ -8,13 +8,13 @@ import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.ResultType;
 
-public class NetInteractorIn implements InteractorIn {
+public class DefaultInteractorIn implements InteractorIn {
 
     private StateGame stateGame;
 
     private GameData gameData;
 
-    public NetInteractorIn(StateGame stateGame, GameData gameData) {
+    public DefaultInteractorIn(StateGame stateGame, GameData gameData) {
 
         this.stateGame = stateGame;
         this.gameData = gameData;
