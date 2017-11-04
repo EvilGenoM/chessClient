@@ -6,21 +6,22 @@ import com.google.gson.GsonBuilder;
 
 import mobi.mpk.chessandroid.net.WebSocketConnection;
 import mobi.mpk.chessandroid.net.message.MessageRequest;
+import mobi.mpk.chessandroid.settings.Settings;
 import okhttp3.WebSocket;
 
 public class DefaultClientWebSocketListener implements ClientWebSocketListener {
 
-    private WebSocketConnection connection;
-
     private WebSocket webSocket;
     private Gson gson;
 
-    public DefaultClientWebSocketListener(WebSocketConnection connection) {
+    private Settings settings;
 
-        this.connection = connection;
+    public DefaultClientWebSocketListener(WebSocketConnection connection, Settings settings) {
 
         this.webSocket = connection.getWebSocket();
         this.gson = new GsonBuilder().create();
+
+        this.settings = settings;
 
     }
 
@@ -62,7 +63,7 @@ public class DefaultClientWebSocketListener implements ClientWebSocketListener {
 
     private MessageRequest createMessage(String text, MessageRequest.MessageType  type) {
 
-        return new MessageRequest("Anonymous", text, type);
+        return new MessageRequest(settings.getUsername(), text, type);
 
 
     }

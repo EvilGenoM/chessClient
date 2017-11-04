@@ -2,6 +2,7 @@ package mobi.mpk.chessandroid.net;
 
 
 import mobi.mpk.chessandroid.net.listener.server.ServerWebSocketListener;
+import mobi.mpk.chessandroid.settings.Settings;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
@@ -14,7 +15,11 @@ public class WebSocketConnection implements Connection {
     private OkHttpClient client;
     private WebSocket webSocket;
 
-    public WebSocketConnection() {
+    private Settings settings;
+
+    public WebSocketConnection(Settings settings) {
+
+        this.settings = settings;
 
         client = new OkHttpClient();
         connection();
@@ -24,8 +29,8 @@ public class WebSocketConnection implements Connection {
     @Override
     public void connection() {
 
-        Request request = new Request.Builder().url("ws://localhost:8080/ws/").build();
-        WebSocketListener webSocketListener = new ServerWebSocketListener();
+        Request request = new Request.Builder().url("ws://"+settings.getAddress() + "/ws/").build();
+        WebSocketListener webSocketListener = new ServerWebSocketListener(settings);
 
         webSocket = client.newWebSocket(request, webSocketListener);
 

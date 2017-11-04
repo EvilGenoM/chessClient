@@ -8,6 +8,7 @@ import mobi.mpk.chessandroid.net.handler.manager.DefaultManagerHandlerMessage;
 import mobi.mpk.chessandroid.net.handler.manager.ManagerHandlerMessage;
 import mobi.mpk.chessandroid.net.message.MessageRequest;
 import mobi.mpk.chessandroid.net.message.MessageResponse;
+import mobi.mpk.chessandroid.settings.Settings;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
@@ -15,21 +16,29 @@ import okhttp3.WebSocketListener;
 
 public class ServerWebSocketListener extends WebSocketListener {
 
+    private Settings settings;
+
     private Gson gson;
+
+    private boolean test = false;
 
     private ManagerHandlerMessage managerHandler;
 
     private String username;
-    public ServerWebSocketListener() {
+    public ServerWebSocketListener(Settings settings) {
+
+        this.settings = settings;
 
         gson = new GsonBuilder().create();
         managerHandler = new DefaultManagerHandlerMessage();
-        username = "Anonymuos";
+        username = settings.getUsername();
 
     }
 
     @Override
     public void onOpen(WebSocket webSocket, Response response) {
+
+        settings.setConnection(true);
 
         MessageRequest messageRequest = new MessageRequest(username, "connect", MessageRequest.MessageType.CONNECTION);
         String jsonMessage = gson.toJson(messageRequest);
@@ -59,7 +68,9 @@ public class ServerWebSocketListener extends WebSocketListener {
 
     @Override
     public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-        super.onFailure(webSocket, t, response);
+
+        settings.setConnection(false);
+
     }
 
 }
