@@ -7,7 +7,7 @@ import dagger.Provides;
 import mobi.mpk.chessandroid.interactor.stategame.ClassicStateGame;
 import mobi.mpk.chessandroid.interactor.stategame.StateGame;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.ui.setting.Settings;
+import mobi.mpk.chessandroid.settings.Settings;
 
 @Module
 public class GameModule {
