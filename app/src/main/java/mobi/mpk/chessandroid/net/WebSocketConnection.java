@@ -7,7 +7,7 @@ import okhttp3.Request;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 
-class WebSocketConnection implements Connection {
+public class WebSocketConnection implements Connection {
 
     private static final int NORMAL_CLOSURE_STATUS = 1000;
 
@@ -34,6 +34,12 @@ class WebSocketConnection implements Connection {
     public void disconnection() {
 
         webSocket.close(NORMAL_CLOSURE_STATUS, "WebSocket connect closed");
+
+    }
+
+    public WebSocket getWebSocket() {
+
+        return webSocket;
 
     }
 

@@ -3,7 +3,7 @@ package mobi.mpk.chessandroid.repository.in;
 
 import mobi.mpk.chessandroid.net.listener.client.ClientWebSocketListener;
 
-class NetRepositoryIn implements RepositoryIn {
+public class NetRepositoryIn implements RepositoryIn {
 
     private ClientWebSocketListener listener;
 

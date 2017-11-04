@@ -5,7 +5,7 @@ import mobi.mpk.chessandroid.domain.User;
 import mobi.mpk.chessandroid.domain.game.ClassicGame;
 import mobi.mpk.chessandroid.domain.game.Game;
 
-class ClassicStateGame implements StateGame {
+public class ClassicStateGame implements StateGame {
 
     private Game game;
     private User user1;

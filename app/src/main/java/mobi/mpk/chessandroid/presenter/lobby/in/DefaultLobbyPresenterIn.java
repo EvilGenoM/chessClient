@@ -7,7 +7,7 @@ import android.content.Intent;
 import mobi.mpk.chessandroid.ui.game.GameActivity;
 import mobi.mpk.chessandroid.ui.main.MainActivity;
 
-class DefaultLobbyPresenterIn implements LobbyPresenterIn {
+public class DefaultLobbyPresenterIn implements LobbyPresenterIn {
 
     private Context context;
 
