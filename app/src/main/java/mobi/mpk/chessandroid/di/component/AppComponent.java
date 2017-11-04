@@ -3,23 +3,28 @@ package mobi.mpk.chessandroid.di.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import mobi.mpk.chessandroid.di.module.CommunicationModule;
+import mobi.mpk.chessandroid.di.module.DrawerModule;
 import mobi.mpk.chessandroid.di.module.GameModule;
-import mobi.mpk.chessandroid.di.module.UtilsModule;
+import mobi.mpk.chessandroid.di.module.NetModule;
 import mobi.mpk.chessandroid.di.module.ViewModule;
-import mobi.mpk.chessandroid.iterator.IteratorImpl;
-import mobi.mpk.chessandroid.ui.ActionBar;
-import mobi.mpk.chessandroid.ui.GameActivity;
-import mobi.mpk.chessandroid.ui.MainActivity;
-import mobi.mpk.chessandroid.ui.game_view.CellView;
-import mobi.mpk.chessandroid.ui.game_view.FigureView;
-import mobi.mpk.chessandroid.ui.game_view.GameView;
-import mobi.mpk.chessandroid.ui.game_view.StartGameView;
+import mobi.mpk.chessandroid.net.listener.server.ServerWebSocketListener;
+import mobi.mpk.chessandroid.ui.actionbar.ActionBar;
+import mobi.mpk.chessandroid.ui.game.GameActivity;
+import mobi.mpk.chessandroid.ui.game.view.CellView;
+import mobi.mpk.chessandroid.ui.game.view.FigureView;
+import mobi.mpk.chessandroid.ui.game.view.GameView;
+import mobi.mpk.chessandroid.ui.main.MainActivity;
+import mobi.mpk.chessandroid.ui.main.StartGameView;
+import mobi.mpk.chessandroid.ui.setting.SettingsActivity;
 
-@Component(modules = {ViewModule.class, UtilsModule.class, GameModule.class})
+@Component(modules = {ViewModule.class, DrawerModule.class, GameModule.class, CommunicationModule.class, NetModule.class})
 @Singleton
 public interface AppComponent {
 
     void inject(CellView cellView);
+
+    void inject(SettingsActivity settingsActivity);
 
     void inject(FigureView figureView);
 
@@ -33,6 +38,6 @@ public interface AppComponent {
 
     void inject(ActionBar actionBar);
 
-    void inject(IteratorImpl iterator);
+    void inject(ServerWebSocketListener listener);
 
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f1f1f1"
-    tools:context="mobi.mpk.chessandroid.ui.GameActivity">
+    tools:context="mobi.mpk.chessandroid.ui.game.GameActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_game"
@@ -44,7 +44,7 @@
         android:textColor="#555"
         android:textSize="20dp" />
 
-    <mobi.mpk.chessandroid.ui.game_view.GameView
+    <mobi.mpk.chessandroid.ui.game.view.GameView
         android:id="@+id/GameView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

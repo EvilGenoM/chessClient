@@ -4,24 +4,22 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import mobi.mpk.chessandroid.iterator.IteratorImpl;
+import mobi.mpk.chessandroid.interactor.stategame.ClassicStateGame;
+import mobi.mpk.chessandroid.interactor.stategame.StateGame;
 import mobi.mpk.chessandroid.observer.model.GameData;
-import mobi.mpk.chessandroid.presenter.GamePresenter;
-import mobi.mpk.chessandroid.ui.Settings;
+import mobi.mpk.chessandroid.settings.Settings;
 
 @Module
 public class GameModule {
 
     private final Settings settings;
+    private final StateGame stateGame;
     private final GameData gameData;
-    private final GamePresenter gamePresenter;
-    private final IteratorImpl iterator;
 
     public GameModule(){
         this.gameData = new GameData();
-        this.gamePresenter = new GamePresenter();
+        this.stateGame = new ClassicStateGame();
         this.settings = new Settings();
-        this.iterator = new IteratorImpl(gamePresenter);
     }
 
     @Provides
@@ -32,14 +30,8 @@ public class GameModule {
 
     @Provides
     @Singleton
-    public IteratorImpl provideIteratorImpl() {
-        return iterator;
-    }
-
-    @Provides
-    @Singleton
-    public GamePresenter provideGamePresenter() {
-        return gamePresenter;
+    public StateGame provideStateGame() {
+        return stateGame;
     }
 
     @Provides

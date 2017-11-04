@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -16,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,15 +26,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.GameActivity"
+            android:name=".ui.game.GameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name=".ui.setting.SettingsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".ui.WaitingGameActivity"></activity>
     </application>
 
 </manifest>
