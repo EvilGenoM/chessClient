@@ -17,6 +17,7 @@ public class WebSocketConnection implements Connection {
     public WebSocketConnection() {
 
         client = new OkHttpClient();
+        connection();
 
     }
 

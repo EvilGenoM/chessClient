@@ -16,9 +16,10 @@ import okhttp3.WebSocketListener;
 public class ServerWebSocketListener extends WebSocketListener {
 
     private Gson gson;
-    private ManagerHandlerMessage managerHandler;
-    private String username;
 
+    private ManagerHandlerMessage managerHandler;
+
+    private String username;
     public ServerWebSocketListener() {
 
         gson = new GsonBuilder().create();
@@ -54,6 +55,11 @@ public class ServerWebSocketListener extends WebSocketListener {
 
         webSocket.send(jsonMessage);
 
+    }
+
+    @Override
+    public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+        super.onFailure(webSocket, t, response);
     }
 
 }
