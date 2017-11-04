@@ -2,6 +2,10 @@ package mobi.mpk.chessandroid.presenter.lobby.in;
 
 
 import android.content.Context;
+import android.content.Intent;
+
+import mobi.mpk.chessandroid.ui.game.GameActivity;
+import mobi.mpk.chessandroid.ui.main.MainActivity;
 
 class DefaultLobbyPresenterIn implements LobbyPresenterIn {
 
@@ -29,14 +33,16 @@ class DefaultLobbyPresenterIn implements LobbyPresenterIn {
     @Override
     public void startGame() {
 
-
+        Intent intent = new Intent(context, GameActivity.class);
+        context.startActivity(intent);
 
     }
 
     @Override
     public void abortGame() {
 
-
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
 
     }
 

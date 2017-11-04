@@ -1,7 +1,7 @@
 package mobi.mpk.chessandroid.presenter.game.in;
 
 
-import mobi.mpk.chessandroid.ui.game_view.GameView;
+import mobi.mpk.chessandroid.ui.game.view.GameView;
 
 public interface GamePresenterIn {
 
