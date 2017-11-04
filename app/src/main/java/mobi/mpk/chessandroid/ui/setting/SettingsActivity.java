@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.setting;
 
 import android.os.Bundle;
 

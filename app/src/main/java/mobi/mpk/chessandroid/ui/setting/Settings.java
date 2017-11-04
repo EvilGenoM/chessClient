@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.setting;
 
 
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import mobi.mpk.chessandroid.R;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
-import mobi.mpk.chessandroid.ui.game_view.Drawer;
+import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
 
 public class Settings {
 

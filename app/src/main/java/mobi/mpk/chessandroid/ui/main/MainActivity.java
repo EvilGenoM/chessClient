@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +12,10 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.iterator.IteratorImpl;
+import mobi.mpk.chessandroid.presenter.lobby.in.LobbyPresenterIn;
+import mobi.mpk.chessandroid.ui.setting.Settings;
+import mobi.mpk.chessandroid.ui.setting.SettingsActivity;
+import mobi.mpk.chessandroid.ui.actionbar.ActionBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     Settings settings;
     @Inject
-    GamePresenter gamePresenter;
-    @Inject
-    IteratorImpl iterator;
+    LobbyPresenterIn gamePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +34,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         App.getComponent().inject(this);
 
-        gamePresenter.setContext(this);
-        new NetworkSocket(iterator);
+        gamePresenter.setActivity(this);
+
+        showToolbar();
+
+    }
+
+    private void showToolbar() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = new ActionBar(this, toolbar);
+
     }
 
     @Override

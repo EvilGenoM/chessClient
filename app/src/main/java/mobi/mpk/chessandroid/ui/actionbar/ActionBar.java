@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.actionbar;
 
 
 import android.app.Activity;
@@ -19,11 +19,14 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
+import mobi.mpk.chessandroid.presenter.lobby.out.LobbyPresenterOut;
+import mobi.mpk.chessandroid.ui.main.MainActivity;
+import mobi.mpk.chessandroid.ui.setting.SettingsActivity;
 
 public class ActionBar {
 
     @Inject
-    GamePresenter presenter;
+    LobbyPresenterOut presenter;
 
     public ActionBar(final Activity activity, Toolbar toolbar) {
 
@@ -65,12 +68,13 @@ public class ActionBar {
                         activity.startActivity(intent);
                     } else if (nameRes == R.string.drawer_item_new_game) {
 
-                        presenter.setContext(activity);
-                        presenter.openWaitingGame();
+                        presenter.startRandomGame();
 
                     } else if (nameRes == R.string.drawer_item_settings && !(activity instanceof SettingsActivity)) {
+
                         Intent intent = new Intent(activity, SettingsActivity.class);
                         activity.startActivity(intent);
+
                     }
 
                 }

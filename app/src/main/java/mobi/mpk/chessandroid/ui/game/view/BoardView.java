@@ -1,5 +1,4 @@
-package mobi.mpk.chessandroid.ui.game_view;
-
+package mobi.mpk.chessandroid.ui.game.view;
 
 import java.util.List;
 

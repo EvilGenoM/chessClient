@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui.game_view;
+package mobi.mpk.chessandroid.ui.game.drawer;
 
 import android.content.Context;
 import android.graphics.Canvas;

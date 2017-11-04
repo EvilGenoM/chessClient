@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui.game_view;
+package mobi.mpk.chessandroid.ui.main;
 
 
 import android.content.Context;
@@ -11,13 +11,16 @@ import android.view.View;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
+import mobi.mpk.chessandroid.presenter.lobby.out.LobbyPresenterOut;
+import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
+import mobi.mpk.chessandroid.ui.game.view.BoardView;
 
 public class StartGameView extends View {
 
     @Inject
     Drawer drawer;
     @Inject
-    GamePresenter presenter;
+    LobbyPresenterOut presenter;
 
     private Context context;
     private BoardView boardView;
@@ -47,8 +50,7 @@ public class StartGameView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        presenter.setContext(context);
-        presenter.openWaitingGame();
+        presenter.startRandomGame();
 
         return super.onTouchEvent(event);
     }

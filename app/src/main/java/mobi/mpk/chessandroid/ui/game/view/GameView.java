@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui.game_view;
+package mobi.mpk.chessandroid.ui.game.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -20,21 +20,22 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
-import mobi.mpk.chessandroid.controller.GameController;
 import mobi.mpk.chessandroid.observer.Observer;
 import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.game.in.GamePresenterIn;
+import mobi.mpk.chessandroid.presenter.game.out.GamePresenterOut;
 import mobi.mpk.chessandroid.type.ResultType;
-import mobi.mpk.chessandroid.ui.Settings;
+import mobi.mpk.chessandroid.ui.setting.Settings;
+import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
 
 public class GameView extends View implements Observer {
 
     @Inject
     Drawer drawer;
     @Inject
-    GameController controller;
+    GamePresenterOut gamePresenter;
     @Inject
-    GamePresenterIn gamePresenter;
+    GamePresenterIn gamePresenterIn;
     @Inject
     GameData gameData;
     @Inject
@@ -57,7 +58,7 @@ public class GameView extends View implements Observer {
         super(context, attrs);
         App.getComponent().inject(this);
         gameData.registerObserver(this);
-        gamePresenter.setGameView(this);
+        gamePresenterIn.setGameView(this);
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             createOldSoundPool();
@@ -128,13 +129,13 @@ public class GameView extends View implements Observer {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 coordinateCell = boardView.getCoordinateCell(x, y);
-                if (controller.checkExistFigure(coordinateCell)) {
+                if (gamePresenter.checkExistFigure(coordinateCell)) {
                     onTouchX = x;
                     onTouchY = y;
                     playSound(soundTouchFigure);
                     onTouchDown = true;
                 }
-                controller.handleStroke(coordinateCell);
+                gamePresenter.handleGameEvent(coordinateCell);
                 invalidate();
                 return true;
             case MotionEvent.ACTION_CANCEL:
@@ -152,7 +153,7 @@ public class GameView extends View implements Observer {
                     }
 
                     coordinateCell = boardView.getCoordinateCell(x, y);
-                    controller.handleStroke(coordinateCell);
+                    gamePresenter.handleGameEvent(coordinateCell);
                     onTouchMove = false;
 
                 }

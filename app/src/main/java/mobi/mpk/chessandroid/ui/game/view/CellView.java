@@ -1,4 +1,4 @@
-package mobi.mpk.chessandroid.ui.game_view;
+package mobi.mpk.chessandroid.ui.game.view;
 
 import java.util.Map;
 
@@ -6,10 +6,11 @@ import javax.inject.Inject;
 
 import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
-import mobi.mpk.chessandroid.controller.GameController;
+import mobi.mpk.chessandroid.presenter.game.out.GamePresenterOut;
 import mobi.mpk.chessandroid.type.Color;
 import mobi.mpk.chessandroid.type.FigureType;
-import mobi.mpk.chessandroid.ui.Settings;
+import mobi.mpk.chessandroid.ui.setting.Settings;
+import mobi.mpk.chessandroid.ui.game.drawer.Drawer;
 
 
 public class CellView {
@@ -26,7 +27,7 @@ public class CellView {
     @Inject
     Drawer drawer;
     @Inject
-    GameController controller;
+    GamePresenterOut presenterOut;
     @Inject
     Settings settings;
 
@@ -37,7 +38,7 @@ public class CellView {
         App.getComponent().inject(this);
         identifyColor();
 
-        if (controller.getGame() != null) {
+        if (presenterOut.checkExistGame()) {
             findFigure();
         }
 
@@ -93,9 +94,9 @@ public class CellView {
         char x = identifyXtoCell();
         int y = identifyYtoCell();
 
-        if (controller.checkExistFigure(x, y)) {
+        if (presenterOut.checkExistFigure(x, y)) {
 
-            Map<String, Enum> figureData = controller.getFigureData(x, y);
+            Map<String, Enum> figureData = presenterOut.getFigureData(x, y);
             FigureType figureType = (FigureType) figureData.get("FigureType");
             Color figureColor = (Color) figureData.get("Color");
 

@@ -1,17 +1,28 @@
-package mobi.mpk.chessandroid.ui;
+package mobi.mpk.chessandroid.ui.game;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import mobi.mpk.chessandroid.App;
 import mobi.mpk.chessandroid.R;
+import mobi.mpk.chessandroid.ui.actionbar.ActionBar;
 
-public class WaitingGameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_waiting_game);
+
+        App.getComponent().inject(this);
+
+        setContentView(R.layout.activity_game);
+
+        showToolbar();
+
+    }
+
+    private void showToolbar() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_game);
         setSupportActionBar(toolbar);
@@ -20,4 +31,5 @@ public class WaitingGameActivity extends AppCompatActivity {
         ActionBar actionBar = new ActionBar(this, toolbar);
 
     }
+
 }
