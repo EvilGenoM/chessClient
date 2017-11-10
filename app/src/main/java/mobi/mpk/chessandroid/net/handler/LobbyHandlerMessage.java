@@ -1,6 +1,7 @@
 package mobi.mpk.chessandroid.net.handler;
 
 
+import mobi.mpk.chessandroid.domain.User;
 import mobi.mpk.chessandroid.net.message.MessageResponse;
 import mobi.mpk.chessandroid.repository.out.RepositoryOut;
 
@@ -20,7 +21,7 @@ class LobbyHandlerMessage implements HandlerMessage {
         switch (messageResponse.getType()) {
 
             case RANDOM_GAME_START:
-                startRandomGame();
+                startRandomGame(messageResponse.getText());
                 break;
             case RANDOM_GAME_WAIT:
                 waitRandomGame();
@@ -39,9 +40,10 @@ class LobbyHandlerMessage implements HandlerMessage {
 
     }
 
-    private void startRandomGame() {
+    private void startRandomGame(String username) {
 
         repository.startRandomGame();
+        repository.startGame(new User(username));
 
     }
 

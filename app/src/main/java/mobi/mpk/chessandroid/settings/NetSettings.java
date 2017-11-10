@@ -1,6 +1,8 @@
 package mobi.mpk.chessandroid.settings;
 
 
+import java.util.Random;
+
 public class NetSettings {
 
     private boolean connection;
@@ -9,6 +11,8 @@ public class NetSettings {
     private String address;
 
     public NetSettings() {
+
+        username = "" + new Random(1000);
 
     }
 
@@ -33,6 +37,10 @@ public class NetSettings {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+
+        if(!username.equals("Anonymous")) {
+            this.username = username;
+        }
+
     }
 }
