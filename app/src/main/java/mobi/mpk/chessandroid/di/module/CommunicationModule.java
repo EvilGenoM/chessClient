@@ -14,11 +14,11 @@ import mobi.mpk.chessandroid.observer.model.GameData;
 import mobi.mpk.chessandroid.presenter.game.in.DefaultGamePresenterIn;
 import mobi.mpk.chessandroid.presenter.game.in.GamePresenterIn;
 import mobi.mpk.chessandroid.presenter.game.out.GamePresenterOut;
-import mobi.mpk.chessandroid.presenter.game.out.LocalGamePresenterOut;
+import mobi.mpk.chessandroid.presenter.game.out.NetGamePresenterOut;
 import mobi.mpk.chessandroid.presenter.lobby.in.DefaultLobbyPresenterIn;
 import mobi.mpk.chessandroid.presenter.lobby.in.LobbyPresenterIn;
 import mobi.mpk.chessandroid.presenter.lobby.out.LobbyPresenterOut;
-import mobi.mpk.chessandroid.presenter.lobby.out.LocalLobbyPresenterOut;
+import mobi.mpk.chessandroid.presenter.lobby.out.NetLobbyPresenterOut;
 import mobi.mpk.chessandroid.repository.in.NetRepositoryIn;
 import mobi.mpk.chessandroid.repository.in.RepositoryIn;
 import mobi.mpk.chessandroid.repository.out.NetRepositoryOut;
@@ -67,14 +67,14 @@ public class CommunicationModule {
     @Provides
     @Singleton
     public LobbyPresenterOut provideLobbyPresenterOut(RepositoryIn repositoryIn, LobbyPresenterIn presenterIn, InteractorIn interactorIn) {
-        return new LocalLobbyPresenterOut(presenterIn, interactorIn);
+        return new NetLobbyPresenterOut(repositoryIn);
     }
 
     @Provides
     @Singleton
     public GamePresenterOut provideGamePresenterOut(RepositoryIn repositoryIn, InteractorIn interactorIn, GamePresenterIn presenterIn) {
 
-        return new LocalGamePresenterOut(interactorIn, presenterIn);
+        return new NetGamePresenterOut(repositoryIn, interactorIn, presenterIn);
 
     }
 
