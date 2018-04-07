@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceScreen
+        android:key="setting_language"
+        android:title="Language">
+
+    </PreferenceScreen>
+
+    <PreferenceCategory
+        android:key="setting_game"
+        android:title="Game display">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="board_coordinates"
+            android:summary="Board coordinates (A-H, 1-8)" />
+
+
+        <SwitchPreference
+            android:key="drag_and_drop"
+            android:summary="Drag and drop"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <ListPreference
+        android:key="settings_board"
+        android:title="Board"
+        android:entries="@array/settings_board"
+        android:entryValues="@array/listValues"
+        android:defaultValue="Classic">
+
+    </ListPreference>
+
+    <ListPreference
+        android:key="settings_pieces"
+        android:title="Pieces"
+        android:entries="@array/settings_pieces"
+        android:entryValues="@array/listValues"
+        android:defaultValue="@string/settings_classic_pieces">
+
+    </ListPreference>
+
+    <PreferenceCategory
+        android:key="setting_sounds"
+        android:title="Sounds">
+
+        <SwitchPreference
+            android:key="status_sounds"
+            android:summary="Do I enable sound?"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="setting_net"
+        android:title="Internet">
+
+        <EditTextPreference
+            android:key="net_address"
+            android:title="Server's address"
+            android:defaultValue="192.168.0.3"
+            />
+
+        <EditTextPreference
+            android:key="net_username"
+            android:title="User's name"
+            android:defaultValue="Anonymous"
+            />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
